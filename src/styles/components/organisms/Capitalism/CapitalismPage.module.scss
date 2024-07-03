@@ -1,0 +1,23 @@
+@import '../../../mixins';
+@import '../../../variables';
+@import '../../../functions';
+
+.main {
+  @include container;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+@media screen and (min-width: $largeScreen) {
+  .main {
+    gap: sizeVW(12);
+  }
+}
+
+@media screen and (max-width: $maxMobile) {
+  .main {
+    gap: 10px;
+  }
+}

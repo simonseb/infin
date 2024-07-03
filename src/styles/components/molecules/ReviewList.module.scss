@@ -1,0 +1,86 @@
+@import '../../functions';
+@import '../../variables';
+@import '../../mixins';
+
+.reviews {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 51px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 52px;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 52px;
+}
+
+.buttonLeft,
+.buttonRight {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 66px;
+  height: 66px;
+
+  border-radius: 50%;
+  background-color: #ffffff18;
+  border-color: transparent;
+
+  svg {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.buttonRight svg {
+  rotate: 180deg;
+}
+
+.span {
+  opacity: 0.3;
+}
+
+@media screen and (min-width: $largeScreen) {
+  .reviews {
+    margin-top: sizeVW(51);
+  }
+
+  .list {
+    gap: sizeVW(52);
+  }
+
+  .pagination {
+    gap: 24px;
+    margin-top: sizeVW(52);
+  }
+
+  .buttonLeft,
+  .buttonRight {
+    width: sizeVW(66);
+    height: sizeVW(66);
+
+    svg {
+      width: sizeVW(30);
+      height: sizeVW(30);
+    }
+  }
+}
+
+@media screen and (max-width: $maxMobile) {
+  .reviews {
+    margin-top: 60px;
+  }
+  .pagination {
+    justify-content: space-between;
+    margin-top: 48px;
+  }
+}

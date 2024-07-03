@@ -1,0 +1,62 @@
+@import '../../variables';
+@import '../../mixins';
+@import '../../functions';
+
+.button {
+  @include main-button;
+}
+
+.button:disabled,
+.button:disabled:hover {
+  @include cursor-default;
+
+  color: $light;
+  background-color: #e0e0e0;
+  border-color: transparent;
+}
+
+.primary {
+  color: $light;
+  background-color: $dark;
+
+  &:hover,
+  &:focus {
+    background-color: $accent;
+    color: $dark;
+  }
+}
+
+.ghost {
+  background: none;
+  font-weight: 500;
+
+  color: $dark;
+  border: 1px solid rgb(255, 255, 255, 0.16);
+
+  &:hover,
+  &:focus {
+    background-color: $accent;
+    border-color: transparent;
+  }
+}
+
+.light {
+  color: $dark;
+  background-color: $light;
+
+  &:hover,
+  &:focus {
+    color: $light;
+    background-color: $dark;
+  }
+}
+
+.accent {
+  color: $dark;
+  background-color: $accent;
+
+  &:hover,
+  &:focus {
+    background-color: $light;
+  }
+}

@@ -1,0 +1,51 @@
+@import '../../functions';
+@import '../../variables';
+@import '../../mixins';
+
+.switcher {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 3px;
+
+  width: 326px;
+  height: 68px;
+
+  border-radius: 129px;
+  background-color: rgba(18, 18, 18, 0.06);
+}
+
+.leftButton,
+.rightButton {
+  border-radius: 129px;
+
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.24px;
+  text-transform: uppercase;
+
+  color: $dark;
+  border-color: transparent;
+  background-color: transparent;
+}
+
+@media screen and (min-width: $largeScreen) {
+  .switcher {
+    padding: sizeVW(3);
+    width: sizeVW(326);
+    height: sizeVW(68);
+    border-radius: sizeVW(129);
+  }
+
+  .leftButton,
+  .rightButton {
+    border-radius: sizeVW(129);
+    font-size: sizeVW(12);
+    letter-spacing: sizeVW(0.24);
+  }
+}
+
+@media screen and (max-width: $maxMobile) {
+  .switcher {
+    width: 100%;
+  }
+}

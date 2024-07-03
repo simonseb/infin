@@ -1,0 +1,47 @@
+@import '../../functions';
+@import '../../variables';
+@import '../../mixins';
+
+.image {
+  margin-bottom: 30px;
+
+  width: 100%;
+  height: auto;
+}
+
+.title {
+  margin-bottom: 12px;
+
+  color: $light;
+  font-size: 28px;
+  line-height: 110%;
+}
+
+.description {
+  margin-bottom: 40px;
+
+  color: $light;
+  font-size: 16px;
+  line-height: 150%;
+  opacity: 0.4;
+}
+
+.avatar {
+  color: $light;
+}
+
+@media screen and (min-width: $largeScreen) {
+  .image {
+    margin-bottom: sizeVW(30);
+  }
+
+  .title {
+    margin-bottom: sizeVW(12);
+    font-size: sizeVW(28);
+  }
+
+  .description {
+    margin-bottom: sizeVW(40);
+    font-size: sizeVW(16);
+  }
+}

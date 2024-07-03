@@ -1,0 +1,41 @@
+@import '../../../variables';
+@import '../../../mixins';
+@import '../../../functions';
+
+.description {
+  padding-bottom: 50px;
+  padding-right: 14px;
+}
+
+.title {
+  @include h3;
+
+  margin-top: 148px;
+  margin-bottom: 16px;
+  max-width: 460px;
+}
+
+@media screen and (min-width: $largeScreen) {
+  .description {
+    padding-bottom: vw(50);
+    padding-right: vw(14);
+  }
+
+  .title {
+    margin-top: vw(148);
+    margin-bottom: vw(16);
+    max-width: vw(460);
+  }
+}
+
+@media screen and (max-width: $maxTablet) {
+  .description {
+    padding-bottom: 0;
+    padding-right: 0;
+  }
+
+  .title {
+    margin-top: 40px;
+    max-width: 323px;
+  }
+}

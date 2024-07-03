@@ -1,0 +1,162 @@
+@import '../mixins';
+@import '../variables';
+@import '../functions';
+
+.footer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  padding-top: 60px;
+  padding-left: 18px;
+  padding-right: 18px;
+
+  min-height: 777px;
+}
+
+.topBlock {
+  display: flex;
+  margin-bottom: 120px;
+}
+
+.text {
+  min-width: 220px;
+  width: 220px;
+
+  opacity: 0.4;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(5, 113px);
+  width: 100%;
+  justify-content: space-between;
+
+  margin-left: 154px;
+}
+
+.listItem {
+  width: 113px;
+
+  @include p3;
+
+  & a {
+    display: block;
+  }
+
+  & a:hover {
+    color: $light;
+  }
+}
+
+.title {
+  @include p4;
+  margin-bottom: 16px;
+}
+
+.logo {
+  position: relative;
+  bottom: 0;
+
+  max-width: 100%;
+  width: auto;
+  height: auto;
+}
+
+.thinkseb {
+  position: absolute;
+  left: 18px;
+  bottom: 0;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.copyright {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+.copyrightAccent {
+  opacity: 0.4;
+}
+
+@media screen and (min-width: $largeScreen) {
+  .footer {
+    padding-top: sizeVW(60);
+    padding-left: sizeVW(18);
+    padding-right: sizeVW(18);
+
+    min-height: sizeVW(777);
+  }
+
+  .topBlock {
+    margin-bottom: sizeVW(120);
+  }
+
+  .text {
+    min-width: sizeVW(220);
+    width: sizeVW(220);
+  }
+
+  .list {
+    grid-template-columns: repeat(5, sizeVW(113));
+
+    margin-left: sizeVW(154);
+  }
+
+  .listItem {
+    width: sizeVW(113);
+  }
+
+  .title {
+    margin-bottom: sizeVW(16);
+  }
+
+  .thinkseb {
+    left: sizeVW(18);
+    gap: sizeVW(10);
+  }
+
+  .copyright {
+    font-size: sizeVW(12);
+    line-height: sizeVW(16);
+  }
+}
+
+@media screen and (max-width: $maxTablet) {
+  .topBlock {
+    flex-direction: column;
+  }
+
+  .list {
+    margin-top: 30px;
+    margin-left: 0;
+  }
+
+  .thinkseb {
+    position: static;
+    margin-top: auto;
+    margin-bottom: 30px;
+  }
+}
+
+@media screen and (max-width: $maxMobile) {
+  .footer {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+  .list {
+    grid-template-columns: repeat(2, 113px);
+    grid-template-rows: repeat(3, auto);
+    row-gap: 40px;
+    max-width: 326px;
+  }
+  .thinkseb {
+    margin-bottom: 20px;
+  }
+}

@@ -1,0 +1,130 @@
+@import '../../../mixins';
+@import '../../../variables';
+@import '../../../functions';
+
+.benefits {
+  position: relative;
+  display: grid;
+  grid-template-columns: 39% 61%;
+  padding-bottom: 92px;
+
+  background-color: $dark;
+  color: $light;
+}
+
+.title {
+  @include h3;
+  color: $light;
+  margin-top: 36px;
+}
+
+.titleAccent {
+  color: $accent;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  margin-top: 50px;
+}
+
+.listItem {
+  display: flex;
+  gap: 40px;
+}
+
+.smallTitle {
+  @include p4;
+  min-width: 113px;
+  width: 113px;
+}
+
+.text {
+  font-size: 20px;
+  line-height: 130%;
+}
+
+.plusesIcon {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+
+  width: 303px;
+  height: 293px;
+}
+
+@media screen and (min-width: $largeScreen) {
+  .benefits {
+    padding-bottom: sizeVW(92);
+  }
+
+  .title {
+    margin-top: sizeVW(36);
+  }
+
+  .list {
+    gap: sizeVW(60);
+    margin-top: sizeVW(50);
+  }
+
+  .listItem {
+    gap: sizeVW(40);
+  }
+
+  .smallTitle {
+    min-width: sizeVW(113);
+    width: sizeVW(113);
+  }
+
+  .text {
+    font-size: sizeVW(20);
+  }
+
+  .plusesIcon {
+    bottom: sizeVW(30);
+    left: sizeVW(30);
+
+    width: sizeVW(303);
+    height: sizeVW(293);
+  }
+}
+
+@media screen and (max-width: $maxTablet) {
+  .benefits {
+    padding-bottom: 16px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .benefits {
+    grid-template-columns: 1fr;
+    padding-bottom: 30px;
+  }
+  .plusesIcon {
+    position: static;
+  }
+}
+
+@media screen and (max-width: $maxMobile) {
+  .title {
+    margin-top: 30px;
+  }
+
+  .list {
+    gap: 40px;
+    margin-top: 40px;
+  }
+  .smallTitle {
+    min-width: 82px;
+    width: 82px;
+  }
+
+  .text {
+    font-size: 14px;
+  }
+
+  .plusesIconMobile {
+    margin-top: 30px;
+  }
+}

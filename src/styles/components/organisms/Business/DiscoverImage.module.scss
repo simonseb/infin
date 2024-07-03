@@ -1,0 +1,62 @@
+@import '../../../mixins';
+@import '../../../variables';
+
+.discoverImage {
+  position: relative;
+  background-color: $light;
+  border-radius: 30px;
+  padding-top: 12px;
+  overflow: hidden;
+}
+
+.playButton {
+  position: absolute;
+  left: 50%;
+  bottom: 30px;
+
+  transform: translateX(-50%);
+}
+
+.image {
+  width: 100%;
+  height: auto;
+}
+
+.imageMob {
+  display: none;
+}
+
+.player {
+  max-width: 60vw;
+}
+
+@media screen and (max-width: $maxTablet) {
+  .imageDesc {
+    display: none;
+  }
+
+  .imageMob {
+    display: block;
+  }
+
+  .discoverImage {
+    min-height: calc(((630 * 100) / 375) * 1vw);
+  }
+
+  .player {
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media screen and (min-width: $largeScreen) {
+  .discoverImage {
+    border-radius: vw(30);
+    padding-top: vw(12);
+  }
+
+  .playButton {
+    bottom: vw(30);
+  }
+}

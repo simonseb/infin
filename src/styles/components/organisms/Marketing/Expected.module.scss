@@ -1,0 +1,258 @@
+@import '../../../mixins';
+@import '../../../variables';
+@import '../../../functions';
+
+.section {
+  position: relative;
+  background-color: $light;
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.topBlock {
+  display: grid;
+  grid-template-columns: 113px 1fr;
+  z-index: 2;
+}
+
+.pluses {
+  position: absolute;
+  left: 0;
+  top: 100px;
+  transform: translateX(-52%);
+  width: 304px;
+
+  svg {
+    stroke: $accent !important;
+  }
+}
+
+.smallText {
+  @include p4;
+  z-index: 2;
+}
+
+.titleBox {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 2;
+}
+
+.bigText {
+  @include p1;
+  position: relative;
+
+  max-width: 600px;
+  background-color: $light;
+  z-index: 2;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  margin-top: 236px;
+  position: relative;
+
+  li div,
+  li p {
+    padding-left: 30px;
+    z-index: 2;
+  }
+  z-index: 2;
+}
+
+.list :first-child {
+  div,
+  p {
+    padding-left: 0;
+  }
+}
+
+.plusesSmall {
+  display: none;
+}
+
+.listNumber {
+  border-bottom: 1px solid $darkOpacity;
+
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 566%;
+  letter-spacing: -0.12px;
+  z-index: 2;
+}
+
+.listText {
+  margin-top: 26px;
+  font-size: 16px;
+  line-height: 130%;
+  z-index: 2;
+}
+
+.plusIcon {
+  position: absolute;
+  top: 163px;
+  right: 30px;
+
+  width: 39px;
+  height: 39px;
+
+  stroke: $dark;
+  opacity: 0.12;
+}
+
+.listBr {
+  display: none;
+}
+
+@media screen and (min-width: $largeScreen) {
+  .section {
+    padding-top: vw(80);
+    padding-bottom: vw(80);
+  }
+
+  .pluses {
+    top: vw(100);
+    width: vw(304);
+  }
+
+  .bigText {
+    max-width: vw(600);
+  }
+
+  .list {
+    margin-top: vw(236);
+  }
+
+  .listNumber {
+    border-bottom: vw(1) solid $darkOpacity;
+
+    font-size: vw(12);
+    letter-spacing: vw(-0.12);
+  }
+
+  .listText {
+    margin-top: vw(26);
+    font-size: vw(16);
+  }
+
+  .plusIcon {
+    top: vw(163);
+    right: vw(30);
+
+    width: vw(39);
+    height: vw(39);
+  }
+}
+
+@media screen and (max-width: $maxTablet) {
+  .topBlock {
+    grid-template-columns: 1fr;
+  }
+  .bigText {
+    margin-top: 46px;
+    max-width: 100%;
+    width: 600px;
+  }
+
+  .plusesSmall {
+    position: absolute;
+    display: block;
+    z-index: 3;
+
+    top: 170px;
+    left: 454px;
+  }
+
+  .pluses {
+    display: none !important;
+  }
+
+  .titleBox {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .list {
+    grid-template-columns: 1fr;
+
+    li div,
+    li p {
+      padding-left: 0;
+    }
+  }
+
+  .list :first-child div {
+    margin-top: 0;
+  }
+
+  .listNumber {
+    line-height: 266.667%;
+    margin-top: 30px;
+  }
+
+  .listText {
+    margin-top: 8px;
+  }
+
+  .plusIcon {
+    top: 80px;
+    right: 30px;
+  }
+}
+
+@media screen and (max-width: $maxMobile) {
+  .section {
+    padding-top: 20px;
+    padding-bottom: 48px;
+  }
+  .bigText {
+    max-width: 323px;
+    width: 100%;
+  }
+
+  .plusesSmall {
+    top: 316px;
+    left: 134px;
+  }
+  .listNumber {
+    border: none;
+  }
+  .plusIcon {
+    top: 20px;
+    right: 18px;
+  }
+
+  .list {
+    & :first-child p {
+      max-width: 290px;
+    }
+    & :nth-child(2) p {
+      max-width: 300px;
+    }
+    & :nth-child(3) p {
+      max-width: 323px;
+    }
+    & :nth-child(4) p {
+      max-width: 280px;
+    }
+    & :nth-child(5) p {
+      max-width: 240px;
+    }
+  }
+  .listBr {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 374px) {
+  .bigText {
+    max-width: 272px;
+  }
+
+  .plusesSmall {
+    top: 386px;
+    left: 44px;
+  }
+}

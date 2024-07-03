@@ -1,0 +1,200 @@
+@import '../../../variables';
+@import '../../../mixins';
+@import '../../../functions';
+
+.hero {
+  position: relative;
+  padding-top: calc(136px + 106px);
+  margin-bottom: 130px;
+
+  overflow-x: hidden;
+}
+
+.topBlock {
+  display: flex;
+  z-index: 2;
+}
+
+.imageContainer {
+  border-radius: 20px;
+
+  overflow: hidden;
+  width: 201px;
+}
+
+.image {
+  border-radius: 20px;
+  width: 100%;
+  height: auto;
+}
+
+.bottomBlock {
+  display: flex;
+  margin-top: 128px;
+}
+
+.titleBox {
+  position: relative;
+  display: inline-block;
+}
+
+.mainTitle {
+  @include h2;
+  position: relative;
+  z-index: 2;
+
+  max-width: 910px;
+  // background-color: $grey;
+
+  &::selection {
+    background: $accent;
+  }
+  &::-moz-selection {
+    background: $accent;
+  }
+}
+
+.plusesGrid {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+
+  transform: translate(48%, -60%);
+}
+
+.smallText {
+  @include p4;
+  z-index: 2;
+
+  span {
+    display: block;
+    max-width: 56px;
+  }
+}
+
+.description {
+  @include p4;
+  display: inline-block;
+  opacity: 1;
+  position: relative;
+  z-index: 2;
+}
+
+.smallText,
+.description {
+  width: 113px;
+  margin-right: 25px;
+}
+
+.button {
+  margin-left: auto;
+  align-self: end;
+  width: 179px;
+  margin-right: 45px;
+}
+
+#home_wrapper {
+  position: relative;
+}
+
+@media screen and (min-width: $largeScreen) {
+  .hero {
+    padding-top: sizeVW(242);
+    margin-bottom: sizeVW(130);
+  }
+
+  .imageContainer {
+    border-radius: sizeVW(20);
+    width: sizeVW(201);
+    z-index: 2;
+  }
+
+  .image {
+    border-radius: sizeVW(20);
+  }
+
+  .bottomBlock {
+    margin-top: sizeVW(128);
+  }
+
+  .mainTitle {
+    max-width: sizeVW(910);
+  }
+
+  .smallText {
+    span {
+      max-width: sizeVW(56);
+    }
+  }
+
+  .smallText,
+  .description {
+    width: sizeVW(113);
+    margin-right: sizeVW(25);
+  }
+
+  .button {
+    width: sizeVW(179);
+    height: sizeVW(90);
+    margin-right: sizeVW(45);
+    z-index: 2;
+  }
+}
+
+@media screen and (max-width: $maxTablet) {
+  .plusesGrid {
+    transform: translate(0%, -55%);
+  }
+
+  .hero {
+    padding-top: 109px;
+  }
+
+  .bottomBlock {
+    flex-direction: column;
+  }
+
+  .mainTitle {
+    margin-top: 16px;
+  }
+
+  .button {
+    margin-top: 30px;
+  }
+}
+
+@media screen and (max-width: $maxMobile) {
+  .plusesGrid {
+    transform: translate(15%, -20%);
+  }
+
+  .mainTitle {
+    max-width: 530px;
+  }
+
+  .smallText {
+    margin-right: 19px;
+  }
+
+  .imageContainer {
+    width: 100%;
+  }
+
+  .description {
+    width: 93px;
+    margin-right: 0;
+  }
+
+  .button {
+    width: 211px;
+    height: 72px;
+    margin-right: 0;
+  }
+}
+
+@media screen and (max-width: 555px) {
+  .plusesGrid {
+    transform: translate(17%, -30%);
+  }
+}

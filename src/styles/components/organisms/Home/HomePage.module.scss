@@ -1,0 +1,30 @@
+@import '../../../mixins.scss';
+@import '../../../variables';
+@import '../../../functions';
+
+.page {
+  background-color: $grey;
+}
+
+.main {
+  @include container;
+  position: relative;
+}
+
+.cardList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+@media screen and (min-width: $largeScreen) {
+  .cardList {
+    gap: sizeVW(12);
+  }
+}
+
+@media screen and (max-width: $maxMobile) {
+  .cardList {
+    gap: 10px;
+  }
+}

@@ -1,0 +1,123 @@
+@import '../../../mixins';
+@import '../../../variables';
+@import '../../../functions';
+
+.section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-bottom: 80px;
+
+  color: $light;
+  background-color: $dark;
+}
+
+.cardTitle {
+  color: $light;
+}
+
+.title {
+  @include h3;
+
+  margin-top: 36px;
+  max-width: 489px;
+  color: $light;
+
+  // & :nth-child(2) {
+  //   span :nth-child(2) {
+  //     color: $accent;
+  //   }
+  // }
+  span {
+    color: $accent;
+  }
+}
+
+.titleAccent {
+  color: $accent;
+}
+
+.pluses {
+  display: inline-flex;
+  gap: 14px;
+  margin-top: 150px;
+}
+
+.plusIcon {
+  stroke: $light;
+  stroke-width: 2.5px;
+  opacity: 0.4;
+
+  width: 39px;
+  height: 39px;
+}
+
+.description {
+  @include p3;
+
+  margin-top: 122px;
+  width: 283px;
+
+  & p {
+    opacity: 0.4;
+  }
+}
+
+.hr {
+  margin-top: 24px;
+  margin-bottom: 24px;
+
+  background-color: $light;
+  opacity: 0.08;
+}
+
+@media screen and (min-width: $largeScreen) {
+  .section {
+    padding-bottom: sizeVW(80);
+  }
+
+  .title {
+    margin-top: sizeVW(36);
+    max-width: sizeVW(489);
+  }
+
+  .pluses {
+    gap: sizeVW(14);
+    margin-top: sizeVW(150);
+  }
+
+  .plusIcon {
+    stroke-width: sizeVW(2.5);
+    width: sizeVW(39);
+    height: sizeVW(39);
+  }
+
+  .description {
+    margin-top: sizeVW(122);
+    width: sizeVW(283);
+  }
+
+  .hr {
+    margin-top: sizeVW(24);
+    margin-bottom: sizeVW(24);
+  }
+}
+
+@media screen and (max-width: $maxMobile) {
+  .section {
+    display: block;
+    padding-bottom: 16px;
+  }
+
+  .title {
+    margin-top: 30px;
+  }
+
+  .pluses {
+    margin-top: 30px;
+  }
+
+  .description {
+    margin-top: 40px;
+    width: 100%;
+  }
+}

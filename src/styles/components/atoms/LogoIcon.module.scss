@@ -1,0 +1,10 @@
+@import '../../mixins';
+
+.logo {
+  @include transition;
+
+  max-width: 100%;
+
+  width: auto;
+  height: auto;
+}

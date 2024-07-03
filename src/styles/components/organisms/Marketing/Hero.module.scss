@@ -1,0 +1,183 @@
+@import '../../../mixins';
+@import '../../../variables';
+@import '../../../functions';
+
+.section {
+  padding-top: 191px;
+  padding-bottom: 160px;
+}
+
+.tag {
+  display: inline-block;
+  padding: 10px 16px;
+
+  border-radius: 8px;
+  background: rgba(18, 18, 18, 0.08);
+  backdrop-filter: blur(8px);
+
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 150%;
+  letter-spacing: 0.12px;
+  color: $light;
+}
+
+.title {
+  @include h2;
+  margin-top: 26px;
+  max-width: 713px;
+
+  span {
+    color: $light;
+  }
+}
+
+.topBlock {
+  display: flex;
+  justify-content: space-between;
+}
+
+.imageContainer {
+  max-width: 580px;
+  width: 100%;
+  margin-left: 60px;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+}
+
+.bottomBlock {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 51px;
+}
+
+.textBox {
+  margin-left: 30px;
+  max-width: 580px;
+}
+
+.bottomText {
+  margin-top: 16px;
+  font-size: 16px;
+  opacity: 0.5;
+  max-width: 574px;
+}
+
+.button {
+  z-index: 2;
+}
+
+.button:hover {
+  background-color: $light;
+}
+
+.whitePluses {
+  svg {
+    stroke: '#ffffff' !important;
+  }
+}
+
+@media screen and (min-width: $largeScreen) {
+  .section {
+    padding-top: vw(191);
+    padding-bottom: vw(120);
+  }
+
+  .tag {
+    padding: vw(10) vw(16);
+    border-radius: vw(8);
+    backdrop-filter: blur(vw(8));
+
+    font-size: vw(12);
+    letter-spacing: vw(0.12);
+  }
+
+  .title {
+    margin-top: vw(26);
+    max-width: vw(713);
+  }
+
+  .imageContainer {
+    max-width: vw(580);
+    margin-left: vw(60);
+  }
+
+  .bottomBlock {
+    margin-top: vw(51);
+  }
+
+  .textBox {
+    margin-left: vw(30);
+    max-width: vw(580);
+  }
+
+  .bottomText {
+    margin-top: vw(16);
+    font-size: vw(16);
+    max-width: vw(574);
+  }
+}
+
+@media screen and (max-width: $maxTablet) {
+  .section {
+    padding-top: 109px;
+    padding-bottom: 80px;
+  }
+  .topBlock {
+    display: block;
+  }
+  .imageContainer {
+    margin-left: auto;
+    margin-top: 48px;
+  }
+  .bottomBlock {
+    flex-direction: column;
+  }
+  .button {
+    margin-left: auto;
+    margin-top: 40px;
+    order: 1;
+  }
+  .textBox {
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: $maxMobile) {
+  .title {
+    margin-top: 20px;
+  }
+  .imageContainer {
+    max-width: 100%;
+    margin-left: 0;
+  }
+  .bottomBlock {
+    margin-top: 30px;
+  }
+  .bottomText {
+    margin-top: 12px;
+  }
+  .button {
+    width: 211px;
+    height: 72px;
+  }
+}
+
+@media screen and (min-width: 461px) and (max-width: $maxMobile) {
+  .title {
+    @include h2;
+    max-width: 443px;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .title {
+    max-width: 343px;
+    font-size: 42px;
+    line-height: 100%;
+    letter-spacing: -0.42px;
+  }
+}

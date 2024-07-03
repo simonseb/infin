@@ -1,0 +1,39 @@
+@import '../../functions';
+@import '../../variables';
+@import '../../mixins';
+
+.title {
+  display: flex;
+
+  justify-content: space-between;
+  font-weight: 600;
+  height: 14px;
+}
+
+.numb {
+  font-size: 14px;
+  line-height: 14px;
+}
+
+.shortTitle {
+  font-size: 12px;
+  line-height: normal;
+  letter-spacing: 0.12px;
+  text-transform: uppercase;
+}
+
+@media screen and (min-width: $largeScreen) {
+  .title {
+    height: sizeVW(14);
+  }
+
+  .numb {
+    font-size: sizeVW(14);
+    line-height: sizeVW(14);
+  }
+
+  .shortTitle {
+    font-size: sizeVW(12);
+    letter-spacing: sizeVW(0.12);
+  }
+}

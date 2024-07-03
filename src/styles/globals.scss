@@ -1,0 +1,40 @@
+@import '../styles/variables';
+@import '../styles/mixins';
+
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  min-height: 100dvh;
+
+
+}
+
+body {
+  @include p2;
+  @include cursor-default;
+
+  width: 100%;
+  color: $dark;
+  overscroll-behavior: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  @include cursor-pointer;
+}
+
+li {
+  list-style: none;
+}
+
+button {
+  font-family: inherit;
+  @include cursor-pointer;
+}

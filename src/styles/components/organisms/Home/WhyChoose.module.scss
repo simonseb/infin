@@ -1,0 +1,200 @@
+@import '../../../mixins';
+@import '../../../variables';
+@import '../../../functions';
+
+.section {
+  position: relative;
+
+  display: grid;
+  grid-template-columns: auto 1fr;
+
+  padding-top: 150px;
+  margin-bottom: 130px;
+  padding-bottom: 30px;
+}
+
+.title {
+  @include h3;
+
+  width: 359px;
+  grid-column: 1;
+}
+
+.cardList {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-left: auto;
+
+  max-width: 951px;
+  width: 951px;
+}
+
+.plusesContainer {
+  position: absolute;
+  left: 18px;
+  bottom: 30px;
+
+  svg {
+    width: 145px;
+    height: 92px;
+  }
+}
+
+.card {
+  position: relative;
+  display: flex;
+  width: 100%;
+}
+
+.hr {
+  position: relative;
+  width: calc(100% + 30px) !important;
+}
+
+.smallTitle {
+  @include p4;
+  min-width: 113px;
+  width: 113px;
+}
+
+.rightBlock {
+  display: flex;
+}
+
+.text {
+  max-width: 432px;
+  margin-right: 154px;
+}
+
+.imageContainer {
+  position: relative;
+  margin-left: auto;
+
+  min-width: 223px;
+  width: 223px;
+  height: 223px;
+
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.image {
+  border-radius: 20px;
+  width: 100% !important;
+  height: auto !important;
+
+  object-position: top;
+  object-fit: cover;
+}
+
+@media screen and (min-width: $largeScreen) {
+  .section {
+    padding-top: sizeVW(150);
+    margin-bottom: sizeVW(130);
+    padding-bottom: sizeVW(30);
+  }
+
+  .title {
+    width: sizeVW(359);
+  }
+
+  .cardList {
+    gap: sizeVW(30);
+    max-width: sizeVW(951);
+    width: sizeVW(951);
+  }
+
+  .plusesContainer {
+    left: sizeVW(18);
+    bottom: sizeVW(30);
+
+    svg {
+      width: sizeVW(145);
+      height: sizeVW(92);
+    }
+  }
+
+  .hr {
+    width: calc(100% + sizeVW(30)) !important;
+  }
+
+  .smallTitle {
+    min-width: sizeVW(113);
+    width: sizeVW(113);
+  }
+
+  .text {
+    max-width: sizeVW(432);
+    margin-right: (154);
+  }
+
+  .imageContainer {
+    min-width: sizeVW(223);
+    width: sizeVW(223);
+    height: sizeVW(223);
+
+    border-radius: sizeVW(20);
+  }
+
+  .image {
+    border-radius: sizeVW(20);
+  }
+}
+
+@media screen and (max-width: 1320px) {
+  .cardList {
+    width: auto;
+  }
+  .text {
+    margin-right: 30px;
+  }
+}
+
+@media screen and (max-width: $maxTablet) {
+  .section {
+    display: flex;
+    flex-direction: column;
+    padding-top: 100px;
+    padding-bottom: 20px;
+    margin-bottom: 80px;
+  }
+
+  .cardList {
+    margin-left: 0;
+    max-width: 100%;
+  }
+
+  .title {
+    margin-bottom: 40px;
+  }
+
+  .hr {
+    width: 100% !important;
+  }
+
+  .rightBlock {
+    width: 100%;
+  }
+
+  .plusesContainer {
+    bottom: 10px;
+  }
+}
+
+@media screen and (max-width: $maxMobile) {
+  .rightBlock {
+    flex-direction: column;
+  }
+  .text {
+    margin-right: 0;
+    max-width: 100%;
+    width: 100%;
+  }
+  .imageContainer {
+    margin-top: 20px;
+    margin-left: 0;
+    width: 100%;
+    height: auto;
+  }
+}

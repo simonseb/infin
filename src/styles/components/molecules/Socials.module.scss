@@ -1,0 +1,61 @@
+@import '../../functions';
+@import '../../variables';
+@import '../../mixins';
+
+.socials {
+  display: inline-flex;
+  gap: 8px;
+}
+
+.link {
+  @include transition;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+
+  border-radius: 50%;
+  background-color: #f4f4f4 !important;
+
+  &:hover {
+    background-color: $accent !important;
+  }
+
+  cursor: url('/icons/cursor-pointer.svg'), pointer !important;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+}
+
+.fbIcon {
+  width: 19px;
+  height: 19px;
+}
+
+@media screen and (min-width: $largeScreen) {
+  .socials {
+    gap: vw(8);
+  }
+
+  .link {
+    width: vw(40);
+    height: vw(40);
+    padding: vw(10);
+  }
+
+  .icon {
+    width: vw(16);
+    height: vw(16);
+  }
+
+  .fbIcon {
+    width: vw(19);
+    height: vw(19);
+  }
+}

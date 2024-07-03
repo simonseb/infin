@@ -1,0 +1,9 @@
+@function sizeVW($n) {
+  $size: ($n * 100) / 1440;
+  @return $size * 1vw;
+}
+// the same fn with shorter name
+@function vw($n) {
+  $size: ($n * 100) / 1440;
+  @return $size * 1vw;
+}

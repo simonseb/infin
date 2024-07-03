@@ -1,0 +1,46 @@
+@import '../../functions';
+@import '../../variables';
+@import '../../mixins';
+
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.position {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 133.333%;
+  opacity: 0.4;
+}
+
+.name {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 125%;
+}
+
+.image {
+  width: 52px;
+  height: 52px;
+}
+
+@media screen and (min-width: $largeScreen) {
+  .avatar {
+    gap: sizeVW(12);
+  }
+
+  .position {
+    font-size: sizeVW(12);
+  }
+
+  .name {
+    font-size: sizeVW(16);
+  }
+
+  .image {
+    width: sizeVW(52);
+    height: sizeVW(52);
+  }
+}

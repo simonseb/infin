@@ -1,0 +1,102 @@
+@import '../../../mixins';
+@import '../../../variables';
+@import '../../../functions';
+
+.section {
+  padding-top: 190px;
+  padding-bottom: 30px;
+}
+
+.tag {
+  display: inline-block;
+  padding: 10px 16px;
+
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 150%;
+  letter-spacing: 0.12px;
+}
+
+.title {
+  @include h2;
+  margin-top: 26px;
+  max-width: 1267px;
+}
+
+.bottomBlock {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 193px;
+}
+
+.bottomText {
+  font-size: 62px;
+  font-weight: 500;
+  line-height: 110%;
+  letter-spacing: -0.62px;
+  opacity: 0.4;
+}
+
+@media screen and (min-width: $largeScreen) {
+  .section {
+    padding-top: sizeVW(190);
+    padding-bottom: sizeVW(30);
+  }
+
+  .tag {
+    padding: sizeVW(10) sizeVW(16);
+
+    border-radius: sizeVW(8);
+    backdrop-filter: blur(sizeVW(8));
+
+    font-size: sizeVW(12);
+    letter-spacing: sizeVW(0.12);
+  }
+
+  .title {
+    margin-top: sizeVW(26);
+    max-width: sizeVW(1267);
+  }
+
+  .bottomBlock {
+    margin-top: sizeVW(193);
+  }
+
+  .bottomText {
+    font-size: sizeVW(62);
+    letter-spacing: sizeVW(-0.62);
+  }
+}
+
+@media screen and (max-width: $maxMobile) {
+  .section {
+    padding-top: 109px;
+    padding-bottom: 16px;
+  }
+
+  .title {
+    margin-top: 20px;
+    max-width: 424px;
+  }
+  .bottomBlock {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 80px;
+  }
+  .bottomText {
+    margin-top: 80px;
+    order: 1;
+    font-size: 42px;
+    letter-spacing: -0.42px;
+  }
+  .button {
+    margin-left: auto;
+    width: 211px;
+    height: 72px;
+  }
+}

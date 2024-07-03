@@ -1,0 +1,174 @@
+@import '../../../mixins';
+@import '../../../variables';
+@import '../../../functions';
+
+.section {
+  position: relative;
+  padding-top: 160px;
+  padding-bottom: 180px;
+
+  display: grid;
+  grid-template-columns: 40% 60%;
+}
+
+.leftBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.smallText {
+  @include p4;
+  color: $light;
+  max-width: 113px;
+  align-self: flex-start;
+}
+
+.image {
+  margin-top: 113px;
+  width: 321px;
+  height: 310px;
+}
+
+.title {
+  @include h2;
+  color: $light;
+
+  span {
+    color: $accent;
+  }
+}
+
+.bigText {
+  margin-top: 80px;
+  max-width: 561px;
+  line-height: 140%;
+  color: $light;
+}
+
+.plusIcon {
+  width: 39px;
+  height: 39px;
+
+  stroke: #6b6b6b;
+  opacity: 0.3;
+}
+
+.plusesGroup {
+  width: 144px;
+  height: 91px;
+}
+
+.plusIcon,
+.plusesGroup {
+  position: absolute;
+}
+
+.topPlus {
+  top: 160px;
+  right: 18px;
+}
+
+.bottomRightPlus {
+  bottom: 180px;
+  right: 18px;
+}
+
+.plusesGroup {
+  bottom: 180px;
+  left: 18px;
+}
+
+.leftPlus {
+  display: none;
+}
+
+@media screen and (min-width: $largeScreen) {
+  .section {
+    padding-top: vw(160);
+    padding-bottom: vw(180);
+  }
+
+  .smallText {
+    max-width: vw(113);
+  }
+
+  .image {
+    margin-top: vw(113);
+    width: vw(321);
+    height: vw(310);
+  }
+
+  .bigText {
+    margin-top: vw(80);
+    max-width: vw(561);
+  }
+
+  .plusIcon {
+    width: vw(39);
+    height: vw(39);
+  }
+
+  .plusesGroup {
+    width: vw(144);
+    height: vw(91);
+  }
+
+  .topPlus {
+    top: vw(160);
+    right: vw(18);
+  }
+
+  .bottomRightPlus {
+    bottom: vw(180);
+    right: vw(18);
+  }
+
+  .plusesGroup {
+    bottom: vw(180);
+    left: vw(18);
+  }
+}
+
+@media screen and (max-width: $maxTablet) {
+  .section {
+    padding-top: 100px;
+    padding-bottom: 100px;
+    grid-template-columns: 1fr;
+  }
+  .image {
+    margin-top: 34px;
+  }
+  .title {
+    margin-top: 48px;
+  }
+  .bigText {
+    max-width: 100%;
+    line-height: 130%;
+  }
+
+  .plusesGroup {
+    bottom: 100px;
+    left: 18px;
+  }
+
+  .pluses {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .topPlus {
+    top: 100px;
+    right: 18px;
+  }
+
+  .leftPlus {
+    display: block;
+    position: static;
+  }
+
+  .bottomRightPlus {
+    position: static;
+  }
+}

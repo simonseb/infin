@@ -1,0 +1,25 @@
+//colors
+$dark: #121212;
+// $darkOpacity: #12121229;
+$darkOpacity: #1212121f;
+$light: #fff;
+$accent: #ffcd00;
+$lightGrey: #f3f3f3;
+$grey: #c1c1c1;
+$darkGrey: #6b6b6b;
+$red: #f00;
+
+//breakpoints
+$maxMobile: '767px';
+$maxTablet: '1080px';
+$maxDesktop: '1440px';
+$largeScreen: '1441px';
+
+:export {
+  dark: $dark;
+  light: $light;
+  accent: $accent;
+  grey: $grey;
+  darkGrey: $darkGrey;
+  darkOpacity: $darkOpacity;
+}

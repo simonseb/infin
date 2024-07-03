@@ -1,0 +1,43 @@
+@import '../../../mixins';
+@import '../../../variables';
+@import '../../../functions';
+
+.topBlock {
+  @include container;
+
+  padding-bottom: 12px;
+  border-radius: 0px 0px 36px 36px;
+  background-color: $light;
+}
+
+.bottomBlock {
+  @include container;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+@media screen and (min-width: $largeScreen) {
+  .topBlock {
+    padding-bottom: sizeVW(12);
+    border-radius: 0 0 sizeVW(36) sizeVW(36);
+  }
+
+  .bottomBlock {
+    gap: sizeVW(12);
+    margin-bottom: sizeVW(12);
+  }
+}
+
+@media screen and (max-width: $maxMobile) {
+  .topBlock {
+    padding-bottom: 10px;
+  }
+
+  .bottomBlock {
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+}

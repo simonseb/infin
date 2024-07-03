@@ -1,0 +1,61 @@
+@import '../../variables';
+@import '../../functions';
+@import '../../mixins';
+
+.textarea {
+  padding: 13px 16px;
+  height: 240px;
+  width: 100%;
+  resize: none;
+
+  border: none;
+  border-radius: 6px;
+  outline-color: black;
+  background: $lightGrey;
+
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22px;
+  color: $dark;
+}
+
+.textarea::placeholder {
+  color: $grey;
+}
+
+.error {
+  border: 1px solid $red;
+}
+
+.textareaWrapper {
+  position: relative;
+}
+
+.errorMessage {
+  position: absolute;
+  bottom: -16px;
+  left: 0;
+  color: $red;
+}
+
+@media screen and (min-width: $largeScreen) {
+  .textarea {
+    padding: sizeVW(13) sizeVW(16);
+    height: sizeVW(240);
+
+    border-radius: sizeVW(6);
+    font-size: sizeVW(16);
+    line-height: sizeVW(22);
+  }
+
+  .error {
+    border: sizeVW(1) solid $red;
+  }
+}
+
+@media screen and (max-width: $maxMobile) {
+  .textarea {
+    height: 338px;
+  }
+}

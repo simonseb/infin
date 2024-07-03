@@ -1,0 +1,133 @@
+@import '../../../mixins';
+@import '../../../variables';
+@import '../../../functions';
+
+.section {
+  margin-top: 120px;
+  margin-bottom: 163px;
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 918px;
+}
+
+.title {
+  @include h4;
+}
+
+.p {
+  margin-top: 24px;
+}
+
+.image {
+  margin-top: 60px;
+}
+
+.caption {
+  padding-left: 8px;
+  margin-top: 20px;
+  margin-bottom: 60px;
+  border-left: 2px solid $accent;
+}
+
+.quote {
+  padding-left: 24px;
+  border-left: 2px solid $accent;
+}
+
+.bottomTitle {
+  margin-top: 120px;
+}
+
+.bottomBlock {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 120px;
+  padding-top: 40px;
+
+  border-top: 1px solid $darkOpacity;
+}
+
+.socialsText {
+  @include p4;
+  margin-bottom: 16px;
+}
+
+@media screen and (min-width: $largeScreen) {
+  .section {
+    margin-top: vw(120);
+    margin-bottom: vw(163);
+  }
+
+  .container {
+    max-width: vw(918);
+  }
+
+  .p {
+    margin-top: vw(24);
+  }
+
+  .image {
+    margin-top: vw(60);
+  }
+
+  .caption {
+    padding-left: vw(8);
+    margin-top: vw(20);
+    margin-bottom: vw(60);
+    border-left: vw(2) solid $accent;
+  }
+
+  .quote {
+    padding-left: 24px;
+    border-left: vw(2) solid $accent;
+  }
+
+  .bottomTitle {
+    margin-top: vw(120);
+  }
+
+  .bottomBlock {
+    margin-top: vw(120);
+    padding-top: vw(40);
+  }
+
+  .socialsText {
+    margin-bottom: vw(16);
+  }
+}
+
+@media screen and (max-width: $maxMobile) {
+  .section {
+    margin-top: 80px;
+    margin-bottom: 100px;
+  }
+
+  .bottomTitle {
+    margin-top: 80px;
+  }
+
+  .bottomBlock {
+    margin-top: 80px;
+    padding-top: 30px;
+    display: block;
+  }
+
+  .socialsBox {
+    margin-top: 24px;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .socials {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .socials a {
+    width: 100%;
+    height: calc((100vw - 56px) / 4);
+  }
+}

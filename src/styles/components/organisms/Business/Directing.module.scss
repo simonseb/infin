@@ -1,0 +1,101 @@
+@import '../../../mixins';
+@import '../../../variables';
+@import '../../../functions';
+
+.directing {
+  background-color: $light;
+
+  display: grid;
+  grid-template-columns: 40% 60%;
+}
+
+.imageContainer {
+  max-width: 537px;
+}
+
+.image {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.rightBlock {
+  display: flex;
+  flex-direction: column;
+  padding-left: 30px;
+}
+
+.smallText {
+  @include p4;
+}
+
+.title {
+  @include h3;
+  margin-top: 80px;
+
+  span {
+    color: $accent;
+  }
+}
+
+.button {
+  margin-top: auto;
+  margin-left: auto;
+
+  width: 243px !important;
+}
+
+@media screen and (min-width: $largeScreen) {
+  .rightBlock {
+    padding-left: sizeVW(30);
+  }
+
+  .title {
+    margin-top: sizeVW(80);
+  }
+
+  .button {
+    width: sizeVW(243) !important;
+  }
+
+  .imageContainer {
+    max-width: 100%;
+    width: sizeVW(537);
+  }
+}
+
+@media screen and (max-width: $maxTablet) {
+  .directing {
+    grid-template-columns: 1fr;
+  }
+
+  .rightBlock {
+    padding-left: 0;
+  }
+
+  .smallText {
+    margin-top: 20px;
+  }
+
+  .title {
+    margin-top: 60px;
+  }
+  .button {
+    margin-top: 48px;
+  }
+
+  .imageContainer {
+    max-width: 100%;
+  }
+}
+
+@media screen and (max-width: $maxMobile) {
+  .imageContainer {
+    width: 100%;
+    height: auto;
+  }
+
+  .button {
+    margin-left: 0;
+    width: 100% !important;
+  }
+}

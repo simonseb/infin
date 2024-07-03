@@ -1,0 +1,125 @@
+@import '../../variables';
+@import '../../mixins';
+@import '../../functions';
+
+.cardDescription {
+  margin-top: 40px;
+}
+
+.topBlock {
+  display: flex;
+  padding-bottom: 60px;
+}
+
+.topTitle,
+.bottomTitle {
+  @include p4;
+  min-width: 88px;
+  width: 88px;
+  margin-right: 34px;
+}
+
+.hr {
+  width: calc(100% + 30px) !important;
+}
+
+.bigText {
+  max-width: 668px;
+}
+
+.bottomBlock {
+  display: flex;
+}
+
+.bottomTextLeft,
+.bottomTextRight {
+  @include p3;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 223px;
+}
+
+.bottomTextRight {
+  margin-left: 106px;
+
+  & :first-child {
+    max-width: 203px;
+  }
+}
+
+@media screen and (min-width: $largeScreen) {
+  .cardDescription {
+    margin-top: vw(40);
+  }
+
+  .topBlock {
+    padding-bottom: vw(60);
+  }
+
+  .topTitle,
+  .bottomTitle {
+    @include p4;
+    min-width: vw(88);
+    width: vw(88);
+    margin-right: vw(34);
+  }
+
+  .hr {
+    width: calc(100% + vw(30)) !important;
+  }
+
+  .bigText {
+    max-width: vw(668);
+  }
+
+  .bottomTextLeft,
+  .bottomTextRight {
+    gap: vw(12);
+    max-width: vw(223);
+  }
+
+  .bottomTextRight {
+    margin-left: vw(106);
+
+    & :first-child {
+      max-width: vw(203);
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .hr {
+    width: 100% !important;
+  }
+}
+
+@media screen and (max-width: $maxMobile) {
+  .topBlock,
+  .bottomBlock {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .topTitle,
+  .bottomTitle {
+    min-width: auto;
+    width: auto;
+    margin-right: 0;
+  }
+
+  .topTitle,
+  .bottomTitle {
+    margin-bottom: 10px;
+  }
+
+  .bottomTextLeft,
+  .bottomTextRight {
+    max-width: 100%;
+  }
+
+  .bottomTextRight {
+    margin-left: 0;
+  }
+}

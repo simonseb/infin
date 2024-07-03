@@ -1,0 +1,127 @@
+@import '../../../mixins';
+@import '../../../variables';
+@import '../../../functions';
+
+.section {
+  padding-top: 0;
+  padding-bottom: 100px;
+}
+
+.hrTop {
+  margin-bottom: 160px !important;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  @include h3;
+  max-width: 770px;
+}
+
+.text2 {
+  @include p1;
+}
+
+.text,
+.smallText {
+  max-width: 380px;
+}
+
+.smallText {
+  margin-top: 65px;
+
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.hrMid {
+  margin-top: 160px;
+  margin-bottom: 160px !important;
+}
+
+.title1br {
+  display: none;
+}
+
+@media screen and (min-width: $largeScreen) {
+  .section {
+    padding-bottom: vw(100);
+  }
+
+  .hrTop {
+    margin-bottom: vw(160) !important;
+  }
+
+  .title {
+    max-width: vw(770);
+  }
+
+  .text,
+  .smallText {
+    max-width: vw(380);
+  }
+
+  .smallText {
+    margin-top: vw(65);
+
+    font-size: vw(14);
+    line-height: vw(18);
+  }
+
+  .hrMid {
+    margin-top: vw(160);
+    margin-bottom: vw(160) !important;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .wrapper {
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .textBox {
+    margin-top: 30px;
+  }
+}
+
+@media screen and (max-width: $maxMobile) {
+  .section {
+    padding-bottom: 48px;
+  }
+
+  .hrTop {
+    margin-bottom: 100px !important;
+  }
+
+  .hrMid {
+    margin-top: 48px;
+    margin-bottom: 100px !important;
+  }
+
+  .textBox {
+    margin-top: 100px;
+  }
+
+  .text,
+  .smallText {
+    max-width: 100%;
+  }
+
+  .smallText {
+    margin-top: 24px;
+  }
+
+  .title2br {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .title1br {
+    display: block;
+  }
+}

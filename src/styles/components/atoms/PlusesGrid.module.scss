@@ -1,0 +1,30 @@
+@import '../../functions';
+@import '../../mixins';
+@import '../../variables';
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(6, auto);
+  grid-template-rows: repeat(5, auto);
+  gap: 14px;
+
+  svg {
+    stroke: #fff;
+
+    width: 39px;
+    height: 39px;
+  }
+}
+
+@media screen and (min-width: $largeScreen) {
+  .grid {
+    grid-template-columns: repeat(6, auto);
+    grid-template-rows: repeat(5, auto);
+    gap: sizeVW(14);
+
+    svg {
+      width: sizeVW(39);
+      height: sizeVW(39);
+    }
+  }
+}

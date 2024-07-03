@@ -1,0 +1,94 @@
+@import '../../../mixins';
+@import '../../../variables';
+@import '../../../functions';
+
+.section {
+  padding-top: 190px;
+  padding-bottom: 40px;
+}
+
+.topBlock,
+.bottomBlock {
+  display: grid;
+  grid-template-columns: 58% 42%;
+  align-items: flex-end;
+}
+
+.smallText {
+  @include p4;
+}
+
+.title {
+  @include h3;
+  margin-top: 16px;
+  max-width: 660px;
+}
+
+.socialsBox {
+  padding-bottom: 10px;
+}
+
+.bottomBlock {
+  margin-top: 120px;
+}
+
+.bottomText {
+  opacity: 0.5;
+}
+
+.br {
+  display: none;
+}
+
+@media screen and (min-width: $largeScreen) {
+  .section {
+    padding-top: sizeVW(190);
+    padding-bottom: sizeVW(40);
+  }
+
+  .title {
+    margin-top: sizeVW(16);
+    max-width: sizeVW(660);
+  }
+
+  .socialsBox {
+    padding-bottom: sizeVW(10);
+  }
+
+  .bottomBlock {
+    margin-top: sizeVW(120);
+  }
+}
+
+@media screen and (max-width: $maxTablet) {
+  .topBlock,
+  .bottomBlock {
+    grid-template-columns: 1fr;
+  }
+
+  .socialsBox {
+    margin-top: 30px;
+    padding-bottom: 0;
+  }
+
+  .bottomText {
+    margin-top: 20px;
+  }
+}
+
+@media screen and (max-width: $maxMobile) {
+  .section {
+    padding-top: 109px;
+    padding-bottom: 30px;
+  }
+
+  .bottomBlock {
+    margin-top: 60px;
+  }
+  .title {
+    max-width: 343px;
+  }
+  .br {
+    display: block;
+  }
+}

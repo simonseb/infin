@@ -1,0 +1,70 @@
+@import '../../functions';
+@import '../../variables';
+@import '../../mixins';
+
+.reviewer {
+  display: flex;
+  margin-top: 24px;
+
+  align-items: center;
+}
+
+.imageContainer {
+  margin-left: 1px;
+
+  width: 52px;
+  height: 52px;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+}
+
+.nameBox {
+  display: block;
+  margin-left: 12px;
+}
+
+.name {
+  font-weight: 600;
+  line-height: 22px;
+}
+
+.job {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  opacity: 0.4;
+}
+
+@media screen and (min-width: $largeScreen) {
+  .reviewer {
+    margin-top: sizeVW(24);
+  }
+
+  .imageContainer {
+    margin-left: sizeVW(1);
+    width: sizeVW(52);
+    height: sizeVW(52);
+  }
+
+  .nameBox {
+    margin-left: sizeVW(12);
+  }
+
+  .name {
+    line-height: sizeVW(22);
+  }
+
+  .job {
+    font-size: sizeVW(14);
+    line-height: sizeVW(22);
+  }
+}
+
+@media screen and (max-width: $maxMobile) {
+  .reviewer {
+    margin-top: 20px;
+  }
+}

@@ -1,0 +1,161 @@
+@import '../../../mixins';
+@import '../../../variables';
+@import '../../../functions';
+
+.section {
+  padding-top: 160px;
+  padding-bottom: 180px;
+
+  color: $light;
+}
+
+.underTitle {
+  @include p4;
+  max-width: 90px;
+}
+
+.title {
+  @include h2;
+
+  margin-top: 26px;
+  color: $light;
+
+  span {
+    color: $accent;
+  }
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 80px;
+}
+
+.bigText {
+  max-width: 832px;
+  font-size: 32px;
+  line-height: 118.75%;
+}
+
+.listBox {
+  max-width: 353px;
+  font-size: 16px;
+  line-height: 130%;
+}
+
+.list {
+  margin-top: 16px;
+  padding-left: 14px;
+
+  li {
+    list-style: disc;
+    margin-top: 10px;
+  }
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.listTitle {
+  opacity: 0.4;
+}
+
+.buttonBox {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-top: 80px;
+}
+
+.buttonText {
+  max-width: 223px;
+  font-size: 16px;
+  line-height: 130%;
+  opacity: 0.4;
+}
+
+@media screen and (min-width: $largeScreen) {
+  .section {
+    padding-top: vw(160);
+    padding-bottom: vw(180);
+  }
+
+  .underTitle {
+    max-width: vw(90);
+  }
+
+  .title {
+    margin-top: vw(26);
+  }
+
+  .wrapper {
+    margin-top: vw(80);
+  }
+
+  .bigText {
+    max-width: vw(832);
+    font-size: vw(32);
+  }
+
+  .listBox {
+    max-width: vw(353);
+    font-size: vw(16);
+  }
+
+  .list {
+    margin-top: vw(16);
+    padding-left: vw(14);
+
+    li {
+      margin-top: vw(10);
+    }
+  }
+
+  .buttonBox {
+    gap: vw(30);
+    margin-top: vw(80);
+  }
+
+  .buttonText {
+    max-width: vw(223);
+    font-size: vw(16);
+  }
+}
+
+@media screen and (max-width: 1240px) {
+  .wrapper {
+    display: block;
+  }
+
+  .listBox {
+    margin-top: 80px;
+  }
+}
+
+@media screen and (max-width: $maxTablet) {
+  .section {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+  .title {
+    margin-top: 16px;
+  }
+  .wrapper {
+    margin-top: 40px;
+  }
+  .listBox {
+    margin-top: 48px;
+  }
+  .buttonBox {
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 60px;
+  }
+  .button {
+    width: 100%;
+  }
+  .buttonText {
+    max-width: 100%;
+  }
+}

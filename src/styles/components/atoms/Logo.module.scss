@@ -1,0 +1,18 @@
+@import '../../mixins';
+
+.logoBox {
+  width: 100%;
+
+  svg {
+    @include transition;
+
+    max-width: 100%;
+
+    width: 100%;
+    height: auto;
+  }
+
+  &:hover {
+    @include cursor-pointer;
+  }
+}

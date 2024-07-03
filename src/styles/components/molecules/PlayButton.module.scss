@@ -1,0 +1,65 @@
+@import '../../functions';
+@import '../../variables';
+@import '../../mixins';
+
+.button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  width: 185px;
+}
+
+.buttonText {
+  margin-left: auto;
+  margin-right: auto;
+
+  font-size: 14px;
+  letter-spacing: 0.14px;
+}
+
+.buttonCircle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 66px;
+  height: 66px;
+
+  border-radius: 50%;
+  background-color: $accent;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.button:hover .buttonCircle {
+  background-color: $dark;
+  svg {
+    fill: $accent;
+  }
+}
+
+@media screen and (min-width: $largeScreen) {
+  .button {
+    padding: sizeVW(12);
+    width: sizeVW(185);
+  }
+
+  .buttonText {
+    font-size: sizeVW(14);
+    letter-spacing: sizeVW(0.14);
+  }
+
+  .buttonCircle {
+    width: sizeVW(66);
+    height: sizeVW(66);
+
+    svg {
+      width: sizeVW(16);
+      height: sizeVW(16);
+    }
+  }
+}

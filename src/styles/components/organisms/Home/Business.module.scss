@@ -1,0 +1,61 @@
+@import '../../../variables';
+@import '../../../mixins';
+@import '../../../functions';
+
+.section {
+  display: flex;
+  gap: 30px;
+
+  background-color: $light;
+}
+
+.box {
+  width: 100%;
+}
+
+.title {
+  @include h3;
+
+  margin-top: 36px;
+  max-width: 668px;
+}
+
+.imageWithButton {
+  max-width: 421px;
+}
+
+@media screen and (min-width: $largeScreen) {
+  .section {
+    gap: vw(30);
+  }
+
+  .title {
+    margin-top: vw(36);
+    max-width: vw(668);
+  }
+
+  .imageWithButton {
+    max-width: vw(421);
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .section {
+    flex-direction: column;
+  }
+  .box {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .imageWithButton {
+    max-width: 100%;
+  }
+}
+
+@media screen and (max-width: $maxMobile) {
+  .title {
+    max-width: 310px;
+  }
+}

@@ -1,0 +1,40 @@
+@import '../../variables';
+@import '../../functions';
+@import '../../mixins';
+
+.section {
+  width: 100%;
+  overflow: hidden;
+}
+
+.filled {
+  padding: 30px;
+  border-radius: 30px;
+}
+
+.ghost {
+  padding-left: 18px;
+  padding-right: 18px;
+}
+
+@media screen and (min-width: $largeScreen) {
+  .filled {
+    padding: sizeVW(30);
+    border-radius: sizeVW(30);
+  }
+
+  .ghost {
+    padding-left: sizeVW(18);
+    padding-right: sizeVW(18);
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .filled {
+    padding: 20px 16px 16px 16px;
+  }
+  .ghost {
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+}

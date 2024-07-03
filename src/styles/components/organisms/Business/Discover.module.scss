@@ -1,0 +1,59 @@
+@import '../../../mixins';
+@import '../../../variables';
+@import '../../../functions';
+
+.discover {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  padding-top: 148px;
+  padding-bottom: 36px;
+}
+
+.title {
+  @include h3;
+  max-width: 610px;
+}
+
+.text {
+  @include p3;
+  opacity: 0.4;
+  max-width: 223px;
+}
+
+@media screen and (min-width: $largeScreen) {
+  .discover {
+    padding-top: sizeVW(148);
+    padding-bottom: sizeVW(36);
+  }
+
+  .title {
+    max-width: sizeVW(610);
+  }
+
+  .text {
+    max-width: sizeVW(223);
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .discover {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .text {
+    margin-top: 24px;
+    margin-left: auto;
+    max-width: 211px;
+  }
+}
+
+@media screen and (max-width: $maxMobile) {
+  .title {
+    max-width: 343px;
+  }
+  .text {
+    max-width: 211px;
+  }
+}
