@@ -29,7 +29,7 @@ export default function Expected({ }: ExpectedProps) {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}>
       <div id='home_wrapper' className={styles.wrapper}>
-        <Cursor cursorDisplay={cursorVisibility} className={styles.pluses} />
+        {/* <Cursor cursorDisplay={cursorVisibility} className={styles.pluses} /> */}
         <div className={styles.topBlock}>
           <p className={styles.smallText}>Expected outcomes</p>
 

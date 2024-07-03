@@ -32,6 +32,7 @@
 .nav {
   @include p3;
   padding-left: 32px;
+  padding-top: 20px;
 
   display: grid;
   grid-template-columns: repeat(5, auto);

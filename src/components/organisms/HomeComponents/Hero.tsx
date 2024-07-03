@@ -34,7 +34,7 @@ export default function Hero({ }: HeroProps) {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}>
       <div id='home_wrapper' className={styles.wrapper}>
-        <Cursor cursorDisplay={cursorVisibility} />
+        {/* <Cursor cursorDisplay={cursorVisibility} /> */}
         <div className={styles.topBlock}>
           <p className={styles.smallText}>
             <span>Web + Mobile app</span>
