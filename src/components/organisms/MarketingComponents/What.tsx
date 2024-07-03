@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import styles from '../../../styles/components/organisms/Marketing/What.module.scss';
 import clsx from 'clsx';
@@ -7,10 +8,11 @@ import { Section } from '@/components/atoms/Section';
 import Image from 'next/image';
 import PlusIcon from '../../../../public/icons/plus.svg';
 import PlusesGroup from '../../../../public/icons/plus-group.svg';
+import { motion } from 'framer-motion';
 
-interface WhatProps {}
+interface WhatProps { }
 
-export default function What({}: WhatProps) {
+export default function What({ }: WhatProps) {
   return (
     <Section type="ghost" className={styles.section}>
       <div className={styles.leftBlock}>
@@ -25,11 +27,17 @@ export default function What({}: WhatProps) {
           quality={100}
         />
 
-        <div className={styles.pluses}>
-          <PlusIcon className={clsx(styles.plusIcon, styles.topPlus)} />
-          <PlusIcon className={clsx(styles.plusIcon, styles.leftPlus)} />
-          <PlusIcon className={clsx(styles.plusIcon, styles.bottomRightPlus)} />
-        </div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 2, delay: 0.5 }}
+        >
+          <div className={styles.pluses}>
+            <PlusIcon className={clsx(styles.plusIcon, styles.topPlus)} />
+            <PlusIcon className={clsx(styles.plusIcon, styles.leftPlus)} />
+            <PlusIcon className={clsx(styles.plusIcon, styles.bottomRightPlus)} />
+          </div>
+        </motion.div>
       </div>
 
       <div className={styles.rightBlock}>
@@ -57,8 +65,13 @@ export default function What({}: WhatProps) {
           contributions and their insights.
         </p>
       </div>
-
-      <PlusesGroup className={styles.plusesGroup} />
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 2, delay: 0.5 }}
+      >
+        <PlusesGroup className={styles.plusesGroup} />
+      </motion.div>
     </Section>
   );
 }

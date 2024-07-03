@@ -14,13 +14,15 @@ interface HeroProps { }
 
 export default function Hero({ }: HeroProps) {
   const router = useRouter();
-  const [cursorVisibility, setCursorVisibility] = useState<'block' | 'none'>('block');
+  const [cursorVisibility, setCursorVisibility] = useState<'block' | 'none'>('none');
 
   const handleMouseEnter = () => {
+    console.log('hero', 'block');
     setCursorVisibility('block');
   };
 
   const handleMouseLeave = () => {
+    console.log('hero', 'none');
     setCursorVisibility('none');
   };
 

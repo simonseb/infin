@@ -13,17 +13,19 @@ import Cursor from '@/components/atoms/Cursor';
 interface ExpectedProps { }
 
 export default function Expected({ }: ExpectedProps) {
-  const [cursorVisibility, setCursorVisibility] = useState<'block' | 'none'>('block');
+  const [cursorVisibility, setCursorVisibility] = useState<'block' | 'none'>('none');
 
   const handleMouseEnter = () => {
+    console.log('expected', 'block');
     setCursorVisibility('block');
   };
 
   const handleMouseLeave = () => {
+    console.log('expected', 'none');
     setCursorVisibility('none');
   };
   return (
-    <Section type="filled" className={styles.section}
+    <Section id="expected" type="filled" className={styles.section}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}>
       <div id='home_wrapper' className={styles.wrapper}>
