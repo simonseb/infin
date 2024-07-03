@@ -1,4 +1,4 @@
-import React, { DetailedHTMLProps, HtmlHTMLAttributes } from 'react';
+import React, { DetailedHTMLProps, HtmlHTMLAttributes, useState } from 'react';
 import styles from '../../styles/components/molecules/ReviewList.module.scss';
 import clsx from 'clsx';
 
@@ -20,6 +20,19 @@ export default function ReviewList({
   className,
   ...props
 }: ReviewListProps) {
+
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const totalPage = 3;
+
+  const goToPage = (page: number) => {
+    if (page < 1 || page > totalPage)
+      return;
+    setCurrentPage(page);
+  }
+  const formatNumber = (num: number) => {
+    return num.toString().padStart(2, '0');
+  }
+
   return (
     <div className={clsx(styles.reviews, className)} {...props}>
       <ul className={styles.list}>
@@ -29,15 +42,15 @@ export default function ReviewList({
       </ul>
 
       <div className={styles.pagination}>
-        <button aria-label="button preview" className={styles.buttonLeft}>
+        <button aria-label="button preview" className={styles.buttonLeft} onClick={() => goToPage(currentPage - 1)}>
           <ArrowIcon />
         </button>
 
         <div>
-          01 <span className={styles.span}>/ 03</span>
+          {formatNumber(currentPage)} <span className={styles.span}>/ {formatNumber(totalPage)}</span>
         </div>
 
-        <button aria-label="button next" className={styles.buttonRight}>
+        <button aria-label="button next" className={styles.buttonRight} onClick={() => goToPage(currentPage + 1)}>
           <ArrowIcon />
         </button>
       </div>
