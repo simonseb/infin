@@ -54,15 +54,6 @@
   }
 }
 
-.plusesGrid {
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  right: 0;
-
-  transform: translate(48%, -60%);
-}
-
 .smallText {
   @include p4;
   z-index: 2;
@@ -143,10 +134,6 @@
 }
 
 @media screen and (max-width: $maxTablet) {
-  .plusesGrid {
-    transform: translate(0%, -55%);
-  }
-
   .hero {
     padding-top: 109px;
   }
@@ -165,10 +152,6 @@
 }
 
 @media screen and (max-width: $maxMobile) {
-  .plusesGrid {
-    transform: translate(15%, -20%);
-  }
-
   .mainTitle {
     max-width: 530px;
   }
@@ -190,11 +173,5 @@
     width: 211px;
     height: 72px;
     margin-right: 0;
-  }
-}
-
-@media screen and (max-width: 555px) {
-  .plusesGrid {
-    transform: translate(17%, -30%);
   }
 }

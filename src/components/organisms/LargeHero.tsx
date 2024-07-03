@@ -10,7 +10,6 @@ import { useRouter } from 'next/navigation';
 
 import Image from 'next/image';
 import PlusIcon from '../../../public/icons/plus.svg';
-// import PlusesGrid from '../atoms/PlusesGrid';
 
 interface LargeHeroProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -103,8 +102,6 @@ export default function LargeHero({
         <br />
         {bottomTextSecond}
       </p>
-
-      {/* {pluses && <PlusesGrid className={styles.plusesGrid} />} */}
     </Section>
   );
 }

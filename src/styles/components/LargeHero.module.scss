@@ -90,21 +90,6 @@
   opacity: 0.4;
 }
 
-.plusesGrid {
-  position: absolute;
-  z-index: 2;
-  left: 50%;
-  top: 250px;
-
-  transform: translateX(-30%);
-
-  svg {
-    stroke: #6b6b6b !important;
-    stroke-width: 1.5px !important;
-    opacity: 0.6;
-  }
-}
-
 @media screen and (min-width: $largeScreen) {
   .hero {
     padding-top: vw(190);
@@ -140,14 +125,6 @@
   .bottomText {
     margin-top: vw(154);
     max-width: vw(822);
-  }
-
-  .plusesGrid {
-    top: vw(250);
-
-    svg {
-      stroke-width: vw(1.5) !important;
-    }
   }
 }
 
@@ -198,10 +175,6 @@
   .bottomText {
     margin-top: 100px;
     max-width: 100%;
-  }
-
-  .plusesGrid {
-    display: none !important;
   }
 
   .imageText {
