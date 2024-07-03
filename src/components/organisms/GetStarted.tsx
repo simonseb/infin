@@ -59,7 +59,7 @@ export default function GetStarted({ className }: GetStartedProps) {
       type="filled"
       id="getstarted"
     >
-      <div ref={containerRef}>
+      <div ref={containerRef} style={{ textAlign: 'center' }}>
         <CardTitle
           className={styles.cardTitle}
           showTitle={false}
