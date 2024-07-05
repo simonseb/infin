@@ -15,9 +15,25 @@ import AnimatedLineText from '../../molecules/AnimatedLineText';
 import CardDescription from '@/components/molecules/CardDescription';
 import { useRouter } from 'next/navigation';
 
-interface BusinessProps extends CardProps { }
+interface IHomeData {
+  attributes?: {
+    title: string;
+    Description: string;
+    blocks: {
+      title: string;
+      content: string;
+      topleft: string;
+      topright: string;
+      bottomleft: string;
+      bottomright: string;
+    }[];
+  };
+}
 
-export default function Business({ className }: BusinessProps) {
+interface BusinessProps extends CardProps {
+  data?: [IHomeData] | undefined;
+}
+export default function Business({ className, data }: BusinessProps) {
   const router = useRouter();
   const { setActiveSection, removeActiveSection } = useContext(
     AppContext,
@@ -31,6 +47,17 @@ export default function Business({ className }: BusinessProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isInView]);
 
+  if (!data) {
+    return null;
+  }
+
+  const { attributes } = data[0];
+
+  if (!attributes) {
+    return null;
+  }
+
+  const { blocks = [] } = attributes;
   return (
     <Section
       className={clsx(styles.section, className)}
@@ -50,24 +77,15 @@ export default function Business({ className }: BusinessProps) {
           text={['The Insufficient Status', 'Quo for Businesses']}
           className={styles.title}
         /> */}
-        <h3 className={styles.title}>
-          The Insufficient Status, Quo for Businesses
-        </h3>
+        <h3 className={styles.title}>{blocks[2].title}</h3>
 
         <CardDescription
           titleTop="For Employers"
-          textMain="It’s hard to evaluate individual contributions in a team
-              environment because some employees are more visible. Similarly,
-              some employees may take more credit than others. Meanwhile, the
-              ones who are actually driving the company’s success may be flying
-              completely under the radar. And then, employers have to decide on
-              bonuses and promotions based on limited information and often with
-              resentment from the employees. It’s frustrating."
-          textTopLeft="Determine the individual contribution and ROI of every employee"
-          textBottomLeft="Identify underperformers and better utilize employee strengths"
-          textTopRight="Improve team dynamics and company culture"
-          textBottomRight="Invest with better alignment of ROI, labor spend, and business
-                objectives"
+          textMain={blocks[2].content}
+          textTopLeft={blocks[2].topleft}
+          textBottomLeft={blocks[2].bottomleft}
+          textTopRight={blocks[2].topright}
+          textBottomRight={blocks[2].bottomright}
         />
       </div>
 

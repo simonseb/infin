@@ -14,9 +14,28 @@ import { Divider } from '../../atoms/Divider';
 import { useScroll, useTransform, motion } from 'framer-motion';
 import useCheckIsMobile from '@/hooks/useCheckIsMobile';
 
-interface WhyChooseProps { }
+interface WhyChooseProps {}
 
-export default function WhyChoose({ }: WhyChooseProps) {
+interface IHomeData {
+  attributes?: {
+    title: string;
+    Description: string;
+    blocks: {
+      title: string;
+      article: {
+        name: string;
+        descritpion: string;
+        title: string;
+      }[];
+    }[];
+  };
+}
+
+interface WhyChooseProps {
+  data?: [IHomeData] | undefined; // Allow undefined
+}
+
+export default function WhyChoose({ data }: WhyChooseProps) {
   const { isTablet } = useCheckIsMobile();
   const containerRef = useRef(null);
 
@@ -26,6 +45,19 @@ export default function WhyChoose({ }: WhyChooseProps) {
   });
 
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.5]);
+
+  if (!data) {
+    return null;
+  }
+
+  const { attributes } = data[0];
+
+  if (!attributes) {
+    return null;
+  }
+
+  const { blocks = [] } = attributes;
+
   return (
     <Section className={styles.section} type="ghost">
       <AnimatedLineText
@@ -40,12 +72,9 @@ export default function WhyChoose({ }: WhyChooseProps) {
           <Divider className={styles.hr} />
 
           <div className={styles.card}>
-            <h4 className={styles.smallTitle}>The old way</h4>
+            <h4 className={styles.smallTitle}>{blocks[1].article[0].name}</h4>
             <div className={styles.rightBlock}>
-              <p className={styles.text}>
-                Workers compete with their peers for recognition from bosses who
-                also don’t like this dynamic.
-              </p>
+              <p className={styles.text}>{blocks[1].article[0].descritpion}</p>
 
               <div className={styles.imageContainer}>
                 <motion.div style={{ scale }}>
@@ -67,15 +96,9 @@ export default function WhyChoose({ }: WhyChooseProps) {
           <Divider className={styles.hr} />
 
           <div className={styles.card}>
-            <h4 className={styles.smallTitle}>The INFIN way</h4>
+            <h4 className={styles.smallTitle}>{blocks[1].article[1].name}</h4>
             <div className={styles.rightBlock}>
-              <p className={styles.text}>
-                Colleagues dynamically observe and rank each other’s
-                contributions in a confidential, anonymous manner. The INFIN
-                then calculates ownable, individual value and automatically
-                distributes peer-reviewed recognition and rewards (while giving
-                execs a clear picture of individual ROI).
-              </p>
+              <p className={styles.text}>{blocks[1].article[1].descritpion}</p>
 
               <div className={styles.imageContainer}>
                 <motion.div style={{ scale }}>

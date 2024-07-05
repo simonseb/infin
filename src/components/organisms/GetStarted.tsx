@@ -23,9 +23,24 @@ import AnimatedLineText from '../molecules/AnimatedLineText';
 import AnimatedText from '../molecules/AnimatedText';
 import useCheckIsMobile from '@/hooks/useCheckIsMobile';
 
-interface GetStartedProps extends CardProps { }
+interface IHomeData {
+  attributes?: {
+    blocks: {
+      question: string;
+      title: string;
+      button: {
+        label: string;
+        href: string;
+      }[];
+    }[];
+  };
+}
 
-export default function GetStarted({ className }: GetStartedProps) {
+interface GetStartedProps extends CardProps {
+  data?: [IHomeData] | undefined;
+}
+
+export default function GetStarted({ className, data }: GetStartedProps) {
   const { setActiveSection, removeActiveSection } = useContext(
     AppContext,
   ) as IAppContext;
@@ -53,6 +68,17 @@ export default function GetStarted({ className }: GetStartedProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isInViewTargetBottom, isInViewTargetMiddle]);
 
+  if (!data) {
+    return null;
+  }
+
+  const { attributes } = data[0];
+
+  if (!attributes) {
+    return null;
+  }
+
+  const { blocks = [] } = attributes;
   return (
     <Section
       className={clsx(styles.section, className)}
@@ -65,12 +91,12 @@ export default function GetStarted({ className }: GetStartedProps) {
           showTitle={false}
           showNumber={true}
           cardNumber="04"
-          cardTitle="Get started"
+          cardTitle={blocks[5].title}
         />
 
         <AnimatedText
           className={styles.smallText}
-          text={['What can The INFIN do for you?']}
+          text={[`${blocks[5].question}`]}
           delay={0.5}
         />
 
@@ -88,7 +114,7 @@ export default function GetStarted({ className }: GetStartedProps) {
           appearance="primary"
           onClick={() => router.push('/contact')}
         >
-          Schedule a live demo
+          {blocks[5].button[0].label}
         </Button>
 
         <div ref={targetBottom} />

@@ -6,9 +6,23 @@ import AnimatedText from '../molecules/AnimatedText';
 import Logo from '../atoms/Logo';
 import Link from 'next/link';
 
-interface FooterProps {}
+interface IHomeData {
+  attributes?: {
+    blocks: {
+      question: string;
+      title: string;
+      button: {
+        label: string;
+        href: string;
+      }[];
+    }[];
+  };
+}
 
-export default function Footer({}: FooterProps) {
+interface FooterProps {
+  data?: [IHomeData] | undefined;
+}
+export default function Footer({ data }: FooterProps) {
   return (
     <footer className={styles.footer}>
       <div className={styles.topBlock}>

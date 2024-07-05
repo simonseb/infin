@@ -12,11 +12,39 @@ import { useRouter } from 'next/navigation';
 import ImageWithButton from '../../molecules/ImageWithButton';
 import CardDescription from '@/components/molecules/CardDescription';
 
-interface IndividualsProps extends CardProps { }
+interface IHomeData {
+  attributes?: {
+    title: string;
+    Description: string;
+    blocks: {
+      title: string;
+      content: string;
+      topleft: string;
+      topright: string;
+      bottomleft: string;
+      bottomright: string;
+    }[];
+  };
+}
 
-export default function Individuals({ className }: IndividualsProps) {
+interface IndividualsProps extends CardProps {
+  data?: [IHomeData] | undefined;
+}
+
+export default function Individuals({ className, data }: IndividualsProps) {
   const router = useRouter();
 
+  if (!data) {
+    return null;
+  }
+
+  const { attributes } = data[0];
+
+  if (!attributes) {
+    return null;
+  }
+
+  const { blocks = [] } = attributes;
   return (
     <Section
       className={clsx(styles.section, className)}
@@ -45,23 +73,15 @@ export default function Individuals({ className }: IndividualsProps) {
           text={['Fairness and Objective', 'Data for Individuals']}
           className={styles.title}
         /> */}
-        <h3 className={styles.title}>
-          Fairness and Objective, Data for Individuals
-        </h3>
+        <h3 className={styles.title}>{blocks[3].title}</h3>
 
         <CardDescription
           titleTop="For Business"
-          textMain="For employees, lack of recognition, lack of advancement, and toxic
-              work culture are among the top reasons for leaving a company.
-              Wouldn’t it be empowering to have ownership of–and visibility
-              into–your contributions? Employees yearn to get recognized by
-              their peers and be rewarded based on their value to the team.
-              Ultimately, individuals own their profile on The INFIN and can
-              bring their reputations with them, wherever they work."
-          textTopLeft="Get recognition for your contributions"
-          textBottomLeft="Own your reputation regardless of place of employment"
-          textTopRight="Better navigate your career"
-          textBottomRight="Let your opinion be heard in a safe, constructive way"
+          textMain={blocks[3].content}
+          textTopLeft={blocks[3].topleft}
+          textBottomLeft={blocks[3].bottomleft}
+          textTopRight={blocks[3].topright}
+          textBottomRight={blocks[3].bottomright}
         />
       </div>
     </Section>

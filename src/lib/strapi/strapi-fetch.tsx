@@ -1,6 +1,10 @@
-import { StrapiResponse } from 'strapi-sdk-js'
-import { strapi } from './strapi-client'
-import { StrapiButtonFields, StrapiImageFields, StrapiVideoFields } from './strapi-types'
+import { StrapiResponse } from 'strapi-sdk-js';
+import { strapi } from './strapi-client';
+import {
+  StrapiButtonFields,
+  StrapiImageFields,
+  StrapiVideoFields,
+} from './strapi-types';
 
 // get layout
 export async function getLayout() {
@@ -17,9 +21,9 @@ export async function getLayout() {
       },
       footerVideo: StrapiVideoFields,
     },
-  })
+  });
 
-  return responseHandler(resp)
+  return responseHandler(resp);
 }
 // get contact
 export async function getContact() {
@@ -29,11 +33,21 @@ export async function getContact() {
         populate: '*',
       },
     },
-  })
+  });
 
-  return responseHandler(resp)
+  return responseHandler(resp);
 }
 
+export async function getHome() {
+  const resp = await strapi.find('homes', {
+    populate: {
+      blocks: {
+        populate: '*',
+      },
+    },
+  });
+  return resp;
+}
 // get page by slug
 export async function getPage(slug: string) {
   const resp = await strapi.findOne('pages', slug, {
@@ -77,9 +91,9 @@ export async function getPage(slug: string) {
         },
       },
     },
-  })
+  });
 
-  return responseHandler(resp)
+  return responseHandler(resp);
 }
 
 // get services by slug
@@ -107,9 +121,9 @@ export async function getServices(slug: string) {
         },
       },
     },
-  })
+  });
 
-  return responseHandler(resp)
+  return responseHandler(resp);
 }
 
 // get project by slug
@@ -133,9 +147,9 @@ export async function getProject(slug: string) {
         },
       },
     },
-  })
+  });
 
-  return responseHandler(resp)
+  return responseHandler(resp);
 }
 
 // get project by slug
@@ -165,18 +179,18 @@ export async function getPost(slug: string) {
         },
       },
     },
-  })
+  });
 
-  return responseHandler(resp)
+  return responseHandler(resp);
 }
 
 // get projects by slug
 export async function getProjects(params?: any) {
-  let filters: any = []
+  let filters: any = [];
 
   if (params) {
     for (const [key, value] of Object.entries(params)) {
-      const paramsArray = (value as string).split(',')
+      const paramsArray = (value as string).split(',');
 
       paramsArray.forEach((prm) => {
         filters.push({
@@ -185,8 +199,8 @@ export async function getProjects(params?: any) {
               $eq: prm,
             },
           },
-        })
-      })
+        });
+      });
     }
   }
 
@@ -201,18 +215,18 @@ export async function getProjects(params?: any) {
         populate: '*F',
       },
     },
-  })
+  });
 
-  return responseHandler(resp)
+  return responseHandler(resp);
 }
 
 // get posts by slug
 export async function getPosts(params?: any) {
-  let filters: any = []
+  let filters: any = [];
 
   if (params) {
     for (const [key, value] of Object.entries(params)) {
-      const paramsArray = (value as string).split(',')
+      const paramsArray = (value as string).split(',');
 
       paramsArray.forEach((prm) => {
         filters.push({
@@ -221,8 +235,8 @@ export async function getPosts(params?: any) {
               $eq: prm,
             },
           },
-        })
-      })
+        });
+      });
     }
   }
 
@@ -237,9 +251,9 @@ export async function getPosts(params?: any) {
         populate: '*',
       },
     },
-  })
+  });
 
-  return responseHandler(resp)
+  return responseHandler(resp);
 }
 
 // get projects categories
@@ -249,9 +263,9 @@ export async function getProjectCategories() {
     populate: {
       projects: '*',
     },
-  })
+  });
 
-  return responseHandler(resp)
+  return responseHandler(resp);
 }
 
 // get categories
@@ -261,18 +275,18 @@ export async function getCategories() {
     populate: {
       posts: '*',
     },
-  })
+  });
 
-  return responseHandler(resp)
+  return responseHandler(resp);
 }
 
 // get page nav color
 export async function getNavColor(slug: string) {
   const resp = await strapi.findOne('pages', slug, {
     fields: ['id', 'navcolor'],
-  })
+  });
 
-  return responseHandler(resp)
+  return responseHandler(resp);
 }
 
 // get seo by slug
@@ -284,15 +298,15 @@ export async function getSEO(slug: string) {
         populate: '*',
       },
     },
-  })
+  });
 
-  return responseHandler(resp)
+  return responseHandler(resp);
 }
 
 // handle response data
 function responseHandler(resp: StrapiResponse<any>) {
-  const { data, meta } = resp
-  const isArray = Array.isArray(data)
+  const { data, meta } = resp;
+  const isArray = Array.isArray(data);
 
   const newData = [data].reduce(
     (prev, curr) => {
@@ -305,32 +319,35 @@ function responseHandler(resp: StrapiResponse<any>) {
               ...currNext.attributes,
             },
           ],
-          []
-        )
+          [],
+        );
       } else {
         return {
           id: curr.id,
           ...curr.attributes,
-        }
+        };
       }
     },
-    isArray ? [] : {}
-  )
+    isArray ? [] : {},
+  );
 
   if (newData?.blocks) {
-    const newBlocks = newData?.blocks?.reduce((prev: any, curr: any, index: number) => {
-      const { __component: component, ...rest } = curr
+    const newBlocks = newData?.blocks?.reduce(
+      (prev: any, curr: any, index: number) => {
+        const { __component: component, ...rest } = curr;
 
-      return {
-        ...prev,
-        [`${index}:${component.split('.')[1]}`]: {
-          ...rest,
-        },
-      }
-    }, {})
+        return {
+          ...prev,
+          [`${index}:${component.split('.')[1]}`]: {
+            ...rest,
+          },
+        };
+      },
+      {},
+    );
 
-    newData.blocks = newBlocks
+    newData.blocks = newBlocks;
   }
 
-  return { data: newData || null, meta: meta || null }
+  return { data: newData || null, meta: meta || null };
 }

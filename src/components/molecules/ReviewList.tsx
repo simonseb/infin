@@ -13,6 +13,7 @@ interface ReviewListProps
     HTMLDivElement
   > {
   reviews: IReview[];
+  // IReviewStrapi
 }
 
 export default function ReviewList({
@@ -20,7 +21,6 @@ export default function ReviewList({
   className,
   ...props
 }: ReviewListProps) {
-
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [isAnimating, setIsAnimating] = useState<boolean>(false);
   const [animationDirection, setAnimationDirection] = useState<string>('next');
@@ -28,44 +28,54 @@ export default function ReviewList({
   const totalPage = Math.ceil(reviews.length / reviewsPerPage);
 
   const goToPage = (page: number, direction: string) => {
-    if (page < 1 || page > totalPage || isAnimating)
-      return;
+    if (page < 1 || page > totalPage || isAnimating) return;
     setIsAnimating(true);
     setAnimationDirection(direction);
     setTimeout(() => {
       setCurrentPage(page);
       setIsAnimating(false);
     }, 500); // Duration of the slide animation
-  }
+  };
 
   const formatNumber = (num: number) => {
     return num.toString().padStart(2, '0');
-  }
+  };
 
   const startIndex = (currentPage - 1) * reviewsPerPage;
   const currentReviews = reviews.slice(startIndex, startIndex + reviewsPerPage);
 
   return (
     <div className={clsx(styles.reviews, className)} {...props}>
-      <ul className={clsx(styles.list, {
-        [styles.animatingNext]: isAnimating && animationDirection === 'next',
-        [styles.animatingPrev]: isAnimating && animationDirection === 'prev'
-      })}>
+      <ul
+        className={clsx(styles.list, {
+          [styles.animatingNext]: isAnimating && animationDirection === 'next',
+          [styles.animatingPrev]: isAnimating && animationDirection === 'prev',
+        })}
+      >
         {currentReviews.map((review) => (
           <ReviewItem key={review.name} {...review} />
         ))}
       </ul>
 
       <div className={styles.pagination}>
-        <button aria-label="button previous" className={styles.buttonLeft} onClick={() => goToPage(currentPage - 1, 'prev')}>
+        <button
+          aria-label="button previous"
+          className={styles.buttonLeft}
+          onClick={() => goToPage(currentPage - 1, 'prev')}
+        >
           <ArrowIcon />
         </button>
 
         <div>
-          {formatNumber(currentPage)} <span className={styles.span}>/ {formatNumber(totalPage)}</span>
+          {formatNumber(currentPage)}{' '}
+          <span className={styles.span}>/ {formatNumber(totalPage)}</span>
         </div>
 
-        <button aria-label="button next" className={styles.buttonRight} onClick={() => goToPage(currentPage + 1, 'next')}>
+        <button
+          aria-label="button next"
+          className={styles.buttonRight}
+          onClick={() => goToPage(currentPage + 1, 'next')}
+        >
           <ArrowIcon />
         </button>
       </div>

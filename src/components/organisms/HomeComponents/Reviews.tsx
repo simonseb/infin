@@ -60,9 +60,28 @@ export const reviews = [
   },
 ];
 
-interface ReviewsProps extends CardProps { }
+interface IHomeData {
+  attributes?: {
+    blocks: {
+      name: string;
+      descritpionTop: string;
+      descritpionBottom: string;
+      title: string;
+      descritpion: string;
+      article: {
+        name: string;
+        descritpion: string;
+        title: string;
+      }[];
+    }[];
+  };
+}
 
-export default function Reviews({ className }: ReviewsProps) {
+interface ReviewsProps extends CardProps {
+  data?: [IHomeData] | undefined;
+}
+
+export default function Reviews({ className, data }: ReviewsProps) {
   const targetMiddle = useRef(null);
   const targetBottom = useRef(null);
 
@@ -80,6 +99,17 @@ export default function Reviews({ className }: ReviewsProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isInViewTargetBottom, isInViewTargetMiddle]);
 
+  if (!data) {
+    return null;
+  }
+
+  const { attributes } = data[0];
+
+  if (!attributes) {
+    return null;
+  }
+
+  const { blocks = [] } = attributes;
   return (
     <Section
       className={clsx(styles.section, className)}
@@ -116,20 +146,11 @@ export default function Reviews({ className }: ReviewsProps) {
         </motion.div>
 
         <div className={styles.description} ref={targetMiddle}>
-          <p>
-            The INFIN’s data is an objective, flexible, dynamic, and real-time
-            alternative to the limited and speculative information normally
-            available to employers and individuals.
-          </p>
+          <p>{blocks[4].descritpionTop}</p>
 
           <Divider className={styles.hr} />
 
-          <p>
-            The old maxim of “knowledge is power” applies here for both
-            employers and employees. Don’t let individual performance and
-            recognition be lost in the cloud of office politics. The INFIN gives
-            a voice to each individual and a fuller picture to the employer.
-          </p>
+          <p>{blocks[4].descritpionBottom}</p>
         </div>
       </div>
 
