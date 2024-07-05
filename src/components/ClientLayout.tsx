@@ -60,14 +60,14 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
     <>
       <WelcomeAnimation setShowAllDom={setShowAllDom} />
       {showAllDom && (
-        <div id="wrapper" ref={wrapperRef}>
-          <div id="content" ref={contentRef}>
-            <div
-              className={styles.layout}
-              style={{ backgroundColor: backgroundColor() }}
-            >
-              <div className={styles.container}>
-                <Header />
+        <div
+          className={styles.layout}
+          style={{ backgroundColor: backgroundColor() }}
+        >
+          <div className={styles.container}>
+            <Header />
+            <div id="wrapper" ref={wrapperRef}>
+              <div id="content" ref={contentRef}>
                 {children}
               </div>
             </div>
