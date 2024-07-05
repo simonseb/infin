@@ -9,9 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@gsap/react": "^2.1.1",
+    "@studio-freight/lenis": "^1.0.42",
     "clsx": "^2.1.0",
     "framer-motion": "^11.1.7",
     "gsap": "^3.12.5",
+    "gsap-trial": "^3.12.5",
     "next": "14.2.2",
     "react": "^18",
     "react-dom": "^18",
@@ -25,6 +28,7 @@
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",
+    "@types/gsap": "^3.0.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

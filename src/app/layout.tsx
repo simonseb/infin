@@ -44,9 +44,11 @@ export default function RootLayout({
       <body className={neueHaasGrotesk.className}>
         <link rel="icon" href="/images/icon.webp" sizes="any" />
         <AppContextProvider>
-          <ClientLayout>{children}</ClientLayout>
+          <ClientLayout>
+            {children}
+          </ClientLayout>
         </AppContextProvider>
       </body>
-    </html>
+    </html >
   );
 }

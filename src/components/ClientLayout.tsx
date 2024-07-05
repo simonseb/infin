@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import styles from '../styles/components/ClientLayout.module.scss';
 
 import Header from './organisms/Header';
@@ -9,20 +9,27 @@ import WelcomeAnimation from './organisms/WelcomeAnimation';
 import { AppContext, IAppContext } from '@/context/app.context';
 import { usePathname } from 'next/navigation';
 import { colors } from '@/lib/constants';
+import gsap from "gsap-trial";
+import ScrollTrigger from "gsap-trial/ScrollTrigger";
+import ScrollSmoother from "gsap-trial/ScrollSmoother";
+import { useLayoutEffect } from 'react';
 
-interface ClientLayotProps {
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+
+interface ClientLayoutProps {
   children: React.ReactNode;
 }
 
-export default function ClientLayout({ children }: ClientLayotProps) {
+export default function ClientLayout({ children }: ClientLayoutProps) {
   const { showAllDom, setShowAllDom } = useContext(AppContext) as IAppContext;
   const { light, dark, grey } = colors;
   const pathname = usePathname();
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   const backgroundColor = () => {
     switch (pathname) {
       case '/business':
-        return '#E8E8E8';
       case '/individuals':
         return '#E8E8E8';
       case '/contact':
@@ -38,17 +45,32 @@ export default function ClientLayout({ children }: ClientLayotProps) {
     }
   };
 
+  useLayoutEffect(() => {
+    if (wrapperRef.current && contentRef.current) {
+      ScrollSmoother.create({
+        wrapper: wrapperRef.current,
+        content: contentRef.current,
+        smooth: 1.35,
+        effects: true,
+      });
+    }
+  }, [showAllDom]);
+
   return (
     <>
       <WelcomeAnimation setShowAllDom={setShowAllDom} />
       {showAllDom && (
-        <div
-          className={styles.layout}
-          style={{ backgroundColor: backgroundColor() }}
-        >
-          <div className={styles.container}>
-            <Header />
-            {children}
+        <div id="wrapper" ref={wrapperRef}>
+          <div id="content" ref={contentRef}>
+            <div
+              className={styles.layout}
+              style={{ backgroundColor: backgroundColor() }}
+            >
+              <div className={styles.container}>
+                <Header />
+                {children}
+              </div>
+            </div>
           </div>
         </div>
       )}

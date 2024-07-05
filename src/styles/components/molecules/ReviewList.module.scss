@@ -7,12 +7,45 @@
   flex-direction: column;
   justify-content: space-between;
   margin-top: 51px;
+  position: relative;
+  overflow: hidden;
 }
 
 .list {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
   gap: 52px;
+  position: relative;
+  width: 100%;
+}
+
+.animatingNext {
+  animation: slideNext 0.5s forwards;
+}
+
+.animatingPrev {
+  animation: slidePrev 0.5s forwards;
+}
+
+@keyframes slideNext {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slidePrev {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 
 .pagination {
