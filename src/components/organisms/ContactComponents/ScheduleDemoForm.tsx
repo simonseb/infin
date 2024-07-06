@@ -43,7 +43,6 @@ export default function ScheduleDemoForm({
   const [error, setError] = useState<string>();
 
   const onSubmit = async (data: IScheduleDemoForm) => {
-    console.log(data);
     reset();
   };
 

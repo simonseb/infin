@@ -5,9 +5,9 @@ import BottomComponent from '@/components/BottomComponent';
 import LargeImage from '@/components/organisms/LargeImage';
 import Contact from '@/components/organisms/ContactComponents/Contact';
 
-interface ContactPageProps {}
+interface ContactPageProps { }
 
-export default async function ContactPage({}: ContactPageProps) {
+export default async function ContactPage({ }: ContactPageProps) {
   return (
     <div className={styles.page}>
       <main className={styles.main}>

@@ -2,6 +2,10 @@
 @import '../../../variables';
 @import '../../../functions';
 
+.page {
+  background-color: $dark;
+}
+
 .topBlock {
   @include container;
 

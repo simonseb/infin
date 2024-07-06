@@ -24,7 +24,6 @@ export default function Chart({}: ChartProps) {
   } = useForm<IFormData>();
 
   const onSubmit = (data: IFormData) => {
-    console.log(data);
     reset();
   };
 

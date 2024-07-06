@@ -19,9 +19,9 @@ import PlusIcon from '../../../public/icons/plus.svg';
 import Link from 'next/link';
 import { calcVwToPx } from '@/lib/helpers';
 
-interface HeaderProps {}
+interface HeaderProps { }
 
-export default function Header({}: HeaderProps) {
+export default function Header({ }: HeaderProps) {
   const { light, dark, accent } = colors;
 
   const router = useRouter();
@@ -128,6 +128,39 @@ export default function Header({}: HeaderProps) {
       ) {
         return accent;
       }
+    } else if (pathname === '/business') {
+      if (
+        activeSection?.includes('benefits')
+      ) {
+        return accent;
+      } else {
+        return dark;
+      }
+    } else if (pathname === '/individuals') {
+      if (
+        activeSection?.includes('benefits')
+      ) {
+        return accent;
+      } else {
+        return dark;
+      }
+    } else if (pathname === '/capitalism') {
+      if (
+        activeSection?.includes('blackcard')
+      ) {
+        return accent;
+      } else {
+        return dark;
+      }
+    } else if (pathname === '/marketing') {
+      if (
+        activeSection?.includes('what') ||
+        activeSection?.includes('webeginwith')
+      ) {
+        return accent;
+      } else {
+        return dark;
+      }
     } else if (pathname === '/contact') {
       return accent;
     } else {
@@ -140,6 +173,39 @@ export default function Header({}: HeaderProps) {
       if (
         activeSection?.includes('reviews') ||
         activeSection?.includes('home-image')
+      ) {
+        return light;
+      } else {
+        return dark;
+      }
+    } else if (pathname === '/business') {
+      if (
+        activeSection?.includes('benefits')
+      ) {
+        return light;
+      } else {
+        return dark;
+      }
+    } else if (pathname === '/individuals') {
+      if (
+        activeSection?.includes('benefits')
+      ) {
+        return light;
+      } else {
+        return dark;
+      }
+    } else if (pathname === '/capitalism') {
+      if (
+        activeSection?.includes('blackcard')
+      ) {
+        return light;
+      } else {
+        return dark;
+      }
+    } else if (pathname === '/marketing') {
+      if (
+        activeSection?.includes('what') ||
+        activeSection?.includes('webeginwith')
       ) {
         return light;
       } else {

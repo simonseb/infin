@@ -17,12 +17,10 @@ export default function Hero({ }: HeroProps) {
   const [cursorVisibility, setCursorVisibility] = useState<'block' | 'none'>('none');
 
   const handleMouseEnter = () => {
-    console.log('hero', 'block');
     setCursorVisibility('block');
   };
 
   const handleMouseLeave = () => {
-    console.log('hero', 'none');
     setCursorVisibility('none');
   };
 

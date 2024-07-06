@@ -7,9 +7,9 @@ import Benefits from '@/components/organisms/IndividualsComponents/Benefits';
 import Directing from '@/components/organisms/IndividualsComponents/Directing';
 import Chart from '@/components/organisms/IndividualsComponents/Chart';
 
-interface IndividualsPageProps {}
+interface IndividualsPageProps { }
 
-export default async function IndividualsPage({}: IndividualsPageProps) {
+export default async function IndividualsPage({ }: IndividualsPageProps) {
   return (
     <div className={styles.page}>
       <main className={styles.main}>

@@ -19,4 +19,8 @@ export type TypeActiveSection =
   | 'undefined'
   | 'home-image'
   | 'discover-image'
-  | 'capitalism-image';
+  | 'capitalism-image'
+  | 'benefits'
+  | 'blackcard'
+  | 'what'
+  | 'webeginwith';
