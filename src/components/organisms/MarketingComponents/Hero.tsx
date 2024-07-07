@@ -9,12 +9,25 @@ import { AppContext, IAppContext } from '@/context/app.context';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import Cursor from '@/components/atoms/Cursor';
+interface IMarketing {
+  attributes?: {
+    blocks: {
+      title: string;
+      question1: string;
+      question2: string;
+      answer: string;
+    }[];
+  };
+}
+interface HeroProps {
+  data?: IMarketing[] | undefined;
+}
 
-interface HeroProps { }
-
-export default function Hero({ }: HeroProps) {
+export default function Hero({ data }: HeroProps) {
   const router = useRouter();
-  const [cursorVisibility, setCursorVisibility] = useState<'block' | 'none'>('none');
+  const [cursorVisibility, setCursorVisibility] = useState<'block' | 'none'>(
+    'none',
+  );
 
   const handleMouseEnter = () => {
     console.log('hero', 'block');
@@ -25,19 +38,31 @@ export default function Hero({ }: HeroProps) {
     console.log('hero', 'none');
     setCursorVisibility('none');
   };
+  if (!data) {
+    return null;
+  }
 
+  const { attributes } = data[0];
+
+  if (!attributes) {
+    return null;
+  }
+
+  const { blocks = [] } = attributes;
   return (
-    <Section type="ghost" className={styles.section}
+    <Section
+      type="ghost"
+      className={styles.section}
       onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}>
-      <div id='home_wrapper' className={styles.wrapper} >
+      onMouseLeave={handleMouseLeave}
+    >
+      <div id="home_wrapper" className={styles.wrapper}>
         {/* <Cursor cursorDisplay={cursorVisibility} className={styles.whitePluses} /> */}
         <div className={styles.topBlock}>
           <div className={styles.titleBox}>
             <div className={styles.tag}>Marketing Efforts</div>
             <h2 className={styles.title}>
-              <span>Unlock Your Organization&apos;s Full Potential with </span>The
-              INFIN
+              <span>{blocks[0].title}</span>
             </h2>
           </div>
 
@@ -63,18 +88,9 @@ export default function Hero({ }: HeroProps) {
           </Button>
 
           <div className={styles.textBox}>
-            <p className={styles.text}>
-              Which employees have the best (and worst) ROI? <br />
-              Is compensation actually aligned with business outcomes?
-            </p>
+            <p className={styles.text}>{blocks[0].question1}</p>
 
-            <p className={styles.bottomText}>
-              As it happens, your team has the answers. By using The INFIN you can
-              get honest and accurate insights, turning them into concrete and
-              actionable data points. The results will be two-fold: a clear
-              picture of individual value within your organization, and granular
-              data of your ROI on labor spend.
-            </p>
+            <p className={styles.bottomText}>{blocks[0].answer}</p>
           </div>
         </div>
       </div>

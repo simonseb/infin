@@ -1,19 +1,35 @@
 import React from 'react';
 import styles from '../../../styles/components/organisms/Business/Discover.module.scss';
 import { Section } from '@/components/atoms/Section';
+interface IBusinessData {
+  attributes?: {
+    blocks: {
+      video: {
+        descritpion: string;
+        title: string;
+      };
+    }[];
+  };
+}
+interface DiscoverProps {
+  data?: [IBusinessData] | undefined;
+}
 
-interface DiscoverProps {}
+export default function Discover({ data }: DiscoverProps) {
+  if (!data) {
+    return null;
+  }
+  const { attributes } = data[0];
 
-export default function Discover({}: DiscoverProps) {
+  if (!attributes) {
+    return null;
+  }
+
+  const { blocks = [] } = attributes;
   return (
     <Section type="ghost" className={styles.discover}>
-      <h3 className={styles.title}>
-        Discover performance trends on all levels
-      </h3>
-      <p className={styles.text}>
-        From individual to business unit to the whole company, you’ll gain
-        insights into performance over time and can optimize accordingly.{' '}
-      </p>
+      <h3 className={styles.title}>{blocks[3].video.title}</h3>
+      <p className={styles.text}>{blocks[3].video.descritpion} </p>
     </Section>
   );
 }

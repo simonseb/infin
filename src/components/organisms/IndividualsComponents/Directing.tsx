@@ -10,11 +10,34 @@ import Image from 'next/image';
 import { Button } from '@/components/atoms/Button';
 import { useRouter } from 'next/navigation';
 
-interface DirectingProps {}
+interface IDividualData {
+  attributes?: {
+    blocks: {
+      title: string;
+      descritpionOne: string;
+      descritpionTwo: string;
+      organizationTitle: string;
+      organizationContent: string;
+    }[];
+  };
+}
+interface DirectingProps {
+  data?: [IDividualData] | undefined;
+}
 
-export default function Directing({}: DirectingProps) {
+export default function Directing({ data }: DirectingProps) {
   const router = useRouter();
+  if (!data) {
+    return null;
+  }
 
+  const { attributes } = data[0];
+
+  if (!attributes) {
+    return null;
+  }
+
+  const { blocks = [] } = attributes;
   return (
     <Section type="filled" className={styles.directing}>
       <div className={styles.imageBox}>
@@ -35,11 +58,11 @@ export default function Directing({}: DirectingProps) {
 
         <h3 className={styles.title}>
           <span className={styles.titleAccent}>It’s time for you</span>{' '}
-          <br className={styles.br} /> to be seen, appreciated, and rewarded for
-          your contributions.
+          <br className={styles.br} />
+          {blocks[4].descritpionOne}
           <br />
           <br />
-          And if not, you can take your profile to someplace that will.
+          {blocks[4].descritpionTwo}
         </h3>
 
         <Button

@@ -5,24 +5,8 @@ import ThinksebIcon from '../../../public/icons/thinkseb.svg';
 import AnimatedText from '../molecules/AnimatedText';
 import Logo from '../atoms/Logo';
 import Link from 'next/link';
-
-interface IHomeData {
-  attributes?: {
-    blocks: {
-      question: string;
-      title: string;
-      button: {
-        label: string;
-        href: string;
-      }[];
-    }[];
-  };
-}
-
-interface FooterProps {
-  data?: [IHomeData] | undefined;
-}
-export default function Footer({ data }: FooterProps) {
+interface FooterProps {}
+export default function Footer({}: FooterProps) {
   return (
     <footer className={styles.footer}>
       <div className={styles.topBlock}>

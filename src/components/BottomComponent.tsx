@@ -23,7 +23,7 @@ interface IHomeData {
 
 interface BottomComponentProps {
   className?: string;
-  data?: [IHomeData] | undefined;
+  data?: IHomeData[] | undefined;
 }
 
 export default function BottomComponent({
@@ -32,7 +32,9 @@ export default function BottomComponent({
   ...props
 }: BottomComponentProps) {
   const pathname = usePathname();
-
+  if (!data) {
+    return null;
+  }
   return (
     <div className={clsx(styles.wrapper, className)} {...props}>
       {pathname !== '/contact' && <GetStarted data={data} />}

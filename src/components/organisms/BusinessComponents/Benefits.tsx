@@ -10,11 +10,46 @@ import useCheckIsMobile from '@/hooks/useCheckIsMobile';
 import { Section } from '../../atoms/Section';
 import { CardTitle } from '../../molecules/CardTitle';
 
-interface BenefitsProps {}
+interface IBusinessData {
+  attributes?: {
+    blocks: {
+      title: string;
+      text: string;
+      descritpions: {
+        title: string;
+        descritpion: string;
+      }[];
+      button: {
+        label: string;
+        href: string;
+      }[];
+      article: {
+        name: string;
+        descritpion: string;
+        title: string;
+      }[];
+      descritpiontop: string;
+      descritpionBottom: string;
+    }[];
+  };
+}
+interface BenefitsProps {
+  data?: [IBusinessData] | undefined;
+}
 
-export default function Benefits({}: BenefitsProps) {
+export default function Benefits({ data }: BenefitsProps) {
   const { isMobile, isTablet } = useCheckIsMobile();
+  if (!data) {
+    return null;
+  }
 
+  const { attributes } = data[0];
+
+  if (!attributes) {
+    return null;
+  }
+
+  const { blocks = [] } = attributes;
   return (
     <Section type="filled" className={styles.benefits}>
       <div className={styles.leftBlock}>
@@ -33,55 +68,12 @@ export default function Benefits({}: BenefitsProps) {
       </div>
 
       <ul className={styles.list}>
-        <li className={styles.listItem}>
-          <h4 className={styles.smallTitle}>
-            Improve team dynamics and company culture
-          </h4>
-          <p className={styles.text}>
-            The incentives of the system are extremely pro-social: You become
-            valuable through serving others. The somewhat ironic benefit of
-            using a peer-ranking system is that each individual will tend to
-            have more appreciation for their peers as a result of ranking them.
-            Plus, better understanding of one’s own value helps morale.
-          </p>
-        </li>
-
-        <li className={styles.listItem}>
-          <h4 className={styles.smallTitle}>
-            Align your labor <br /> spend with your business goals
-          </h4>
-          <p className={styles.text}>
-            Remember Moneyball? With The INFIN, you may just find out that your
-            lowest-paid employees are getting you the highest ROI. Find out if
-            you’re investing in the right people.
-          </p>
-        </li>
-
-        <li className={styles.listItem}>
-          <h4 className={styles.smallTitle}>
-            Find true leadership and build on it
-          </h4>
-          <p className={styles.text}>
-            Who knew that Cathy from accounting was the glue holding the office
-            together? Or that Jim the janitor is the king of initiative. Or that
-            Sarah, with her impressive sales numbers, actually undermines
-            everyone else in the organization.  In team-focused environments,
-            it’s hard to identify true leaders. Yet doing so builds strong,
-            enduring companies.
-          </p>
-        </li>
-
-        <li className={styles.listItem}>
-          <h4 className={styles.smallTitle}>
-            Automatically distribute bonuses and compensation pools
-          </h4>
-          <p className={styles.text}>
-            Set the pool amount and let the team allocate it amongst themselves.
-            Get rid of the sideways glances come bonus distribution time. Each
-            employee will have a realistic picture of their value, recognition
-            for their contribution, and helpful feedback for improvement.
-          </p>
-        </li>
+        {blocks[2].descritpions.map((item, index) => (
+          <li className={styles.listItem} key={index}>
+            <h4 className={styles.smallTitle}>{item.title}</h4>
+            <p className={styles.text}>{item.descritpion}</p>
+          </li>
+        ))}
       </ul>
       {isTablet ? (
         <PlusesIconMobile className={styles.plusesIconMobile} />

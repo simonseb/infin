@@ -6,69 +6,68 @@ import styles from '../../../styles/components/organisms/Marketing/WeBeginWith.m
 import { Section } from '@/components/atoms/Section';
 import { Button } from '@/components/atoms/Button';
 import { useRouter } from 'next/navigation';
+interface IMarketing {
+  attributes?: {
+    blocks: {
+      title: string;
+      descBtn: string;
+      quesiton: string;
+      list: {
+        name: string;
+      }[];
+      descritpionOne: string;
+      descritpionTwo: string;
+      descritpionThree: string;
+      descritpionFour: string;
+    }[];
+  };
+}
+interface WeBeginWithProps {
+  data?: IMarketing[] | undefined;
+}
 
-interface WeBeginWithProps {}
-
-export default function WeBeginWith({}: WeBeginWithProps) {
+export default function WeBeginWith({ data }: WeBeginWithProps) {
   const router = useRouter();
+  if (!data) {
+    return null;
+  }
 
+  const { attributes } = data[0];
+
+  if (!attributes) {
+    return null;
+  }
+
+  const { blocks = [] } = attributes;
   return (
     <Section type="ghost" className={styles.section}>
       <p className={styles.underTitle}>Align incentives with impact</p>
 
-      <h2 className={styles.title}>
-        We begin with a facilitated roll out of The INFIN for the{' '}
-        <span>leadership team.</span>
-      </h2>
+      <h2 className={styles.title}>{blocks[4].title}</h2>
 
       <div className={styles.wrapper}>
         <p className={styles.bigText}>
-          Once enough data points have been gathered, we can proceed to data
-          interpretation and coaching for team performance. This gives a flavor
-          of the full experience to the executives, so they are able to better
-          engage with a broader roll-out.
+          {blocks[4].descritpionOne}
           <br />
           <br />
-          We will also collaborate on developing a compensation & incentive
-          program that reflects actual value distribution.
+          {blocks[4].descritpionTwo}
           <br />
           <br />
-          This will be followed by the development of a communication plan and a
-          facilitated roll-out to the broader organization, with multi-phase
-          support.
+          {blocks[4].descritpionThree}
           <br />
           <br />
-          Because of the beta, you will be receiving significantly more support
-          and customization than a typical consulting engagement. For example,
-          feature requests and program updates can be implemented quickly and
-          seamlessly, often with daily releases.
+          {blocks[4].descritpionFour}
         </p>
 
         <div className={styles.listBox}>
-          <p className={styles.listTitle}>
-            For the duration of the engagement, you will be personally supported
-            in your operational effectiveness with:
-          </p>
+          <p className={styles.listTitle}>{blocks[4].quesiton}</p>
 
           <ul className={styles.list}>
-            <li className={styles.listItem}>Robust data analystics.</li>
-            <li className={styles.listItem}>
-              Personalized coaching and recommendations.
-            </li>
-            <li className={styles.listItem}>
-              Ongoing utilization support based on The INFIN data and your
-              company&apos;s specific needs.
-            </li>
-            <li className={styles.listItem}>
-              Custom financial perfomance analytics.
-            </li>
-            <li className={styles.listItem}>
-              Identification of productivity epicenters and voids.
-            </li>
-            <li className={styles.listItem}>Cost saving recommendations.</li>
-            <li className={styles.listItem}>
-              Actionable productivity enchancement measures.
-            </li>
+            {blocks[4].list.map((item, index) => (
+              <li className={styles.listItem} key={index}>
+                {item.name}
+              </li>
+            ))}
           </ul>
         </div>
       </div>
@@ -82,10 +81,7 @@ export default function WeBeginWith({}: WeBeginWithProps) {
           Schedule a call
         </Button>
 
-        <p className={styles.buttonText}>
-          If you would like to be one of the beta clients of this service,
-          please schedule a discovery call.
-        </p>
+        <p className={styles.buttonText}>{blocks[4].descBtn}</p>
       </div>
     </Section>
   );

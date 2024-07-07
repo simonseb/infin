@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import styles from '../../../styles/components/organisms/Home/WhyChoose.module.scss';
 
 import Image from 'next/image';
@@ -8,13 +8,10 @@ import PlusesIcon from '../../../../public/icons/plus-group.svg';
 import PlusesSmallIcon from '../../../../public/icons/pluses-group-small.svg';
 
 import AnimatedLineText from '../../molecules/AnimatedLineText';
-
 import { Section } from '../../atoms/Section';
 import { Divider } from '../../atoms/Divider';
 import { useScroll, useTransform, motion } from 'framer-motion';
 import useCheckIsMobile from '@/hooks/useCheckIsMobile';
-
-interface WhyChooseProps {}
 
 interface IHomeData {
   attributes?: {
@@ -32,7 +29,7 @@ interface IHomeData {
 }
 
 interface WhyChooseProps {
-  data?: [IHomeData] | undefined; // Allow undefined
+  data?: IHomeData[] | undefined;
 }
 
 export default function WhyChoose({ data }: WhyChooseProps) {
@@ -123,11 +120,7 @@ export default function WhyChoose({ data }: WhyChooseProps) {
         whileInView={{ opacity: 1 }}
         transition={{ duration: 2, delay: 0.5 }}
       >
-        {isTablet ? (
-          <PlusesSmallIcon className={styles.pluses} />
-        ) : (
-          <PlusesIcon className={styles.pluses} />
-        )}
+        {isTablet ? <PlusesSmallIcon /> : <PlusesIcon />}
       </motion.div>
     </Section>
   );

@@ -8,14 +8,26 @@ import { Input } from '@/components/atoms/Input';
 import { Button } from '@/components/atoms/Button';
 import { Divider } from '@/components/atoms/Divider';
 import { useForm } from 'react-hook-form';
-
-interface ChartProps {}
+interface IDividualData {
+  attributes?: {
+    blocks: {
+      title: string;
+      descritpionOne: string;
+      descritpionTwo: string;
+      organizationTitle: string;
+      organizationContent: string;
+    }[];
+  };
+}
+interface ChartProps {
+  data?: [IDividualData] | undefined;
+}
 
 interface IFormData {
   amount: string;
 }
 
-export default function Chart({}: ChartProps) {
+export default function Chart({ data }: ChartProps) {
   const {
     register,
     handleSubmit,
@@ -31,6 +43,18 @@ export default function Chart({}: ChartProps) {
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
   const [error, setError] = useState<string>();
 
+  if (!data) {
+    return null;
+  }
+
+  const { attributes } = data[0];
+
+  if (!attributes) {
+    return null;
+  }
+
+  const { blocks = [] } = attributes;
+
   return (
     <Section type="ghost" className={styles.section}>
       <div className={styles.topBlock}>
@@ -38,23 +62,18 @@ export default function Chart({}: ChartProps) {
           The INFIN <br /> gets you seen
         </h3>
         <p className={styles.description}>
-          Few things are more demotivating than not being seen for all the good
-          things you do. With The INFIN’s data, your work contributions will be
-          transparent, with all the recognition that follows.
+          {blocks[3].descritpionOne}
           <br />
           <br />
-          It’s crazy that the employment reputation system hasn’t changed much
-          in over a century: resumes, HR decisions made on limited data…. The
-          INFIN puts the power firmly in the hands of the people. It’s in your
-          hands.
+          {blocks[3].descritpionTwo}
         </p>
       </div>
 
       <div className={styles.bottomBlock}>
         <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.container}>
-            <h4 className={styles.formTitle}>Organization Bonus Pool</h4>
-            <p className={styles.smallText}>Total organization Bonus Pool</p>
+            <h4 className={styles.formTitle}>{blocks[3].organizationTitle}</h4>
+            <p className={styles.smallText}>{blocks[3].organizationContent}</p>
 
             <Divider className={styles.hr} />
 

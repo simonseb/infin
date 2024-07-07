@@ -78,7 +78,7 @@ interface IHomeData {
 }
 
 interface ReviewsProps extends CardProps {
-  data?: [IHomeData] | undefined;
+  data?: IHomeData[] | undefined;
 }
 
 export default function Reviews({ className, data }: ReviewsProps) {

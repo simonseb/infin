@@ -31,7 +31,7 @@ interface IHomeData {
 }
 
 interface BusinessProps extends CardProps {
-  data?: [IHomeData] | undefined;
+  data?: IHomeData[] | undefined;
 }
 export default function Business({ className, data }: BusinessProps) {
   const router = useRouter();

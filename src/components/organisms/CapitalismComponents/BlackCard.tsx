@@ -5,15 +5,35 @@ import PlusIcon from '../../../../public/icons/plus.svg';
 
 import { Section } from '@/components/atoms/Section';
 
-interface BlackCardProps {}
+interface ICapitalism {
+  attributes?: {
+    blocks: {
+      title: string;
+      descritpion: string;
+      content: string;
+      rightContent: string;
+      bottomContent: string;
+    }[];
+  };
+}
+interface BlackCardProps {
+  data?: ICapitalism[] | undefined;
+}
+export default function BlackCard({ data }: BlackCardProps) {
+  if (!data) {
+    return null;
+  }
 
-export default function BlackCard({}: BlackCardProps) {
+  const { attributes } = data[0];
+
+  if (!attributes) {
+    return null;
+  }
+
+  const { blocks = [] } = attributes;
   return (
     <Section type="filled" className={styles.section}>
-      <h2 className={styles.title}>
-        The INFIN is one of the key tools to help the world move from Capitalism
-        1.0 to <br className={styles.br} /> <span>Capitalism 2.0</span>
-      </h2>
+      <h2 className={styles.title}>{blocks[5].title}</h2>
 
       <div className={styles.bottomBlock}>
         <div className={styles.pluses}>
@@ -22,11 +42,7 @@ export default function BlackCard({}: BlackCardProps) {
           <PlusIcon className={styles.plusIcon} />
         </div>
 
-        <p className={styles.text}>
-          It’s built specifically to empower each individual to meaningfully
-          participate in both the production process and in the distribution of
-          the fruits of that labor.
-        </p>
+        <p className={styles.text}>{blocks[5].descritpion}</p>
       </div>
     </Section>
   );

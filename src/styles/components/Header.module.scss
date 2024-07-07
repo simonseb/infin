@@ -10,7 +10,7 @@
 
   width: 100%;
   max-width: 1440px;
-  backdrop-filter: blur(30px);
+  backdrop-filter: blur(3px);
 }
 
 .topBlock {
@@ -37,7 +37,6 @@
   display: grid;
   grid-template-columns: repeat(5, auto);
   grid-template-rows: repeat(1, auto);
-  align-items: center;
 
   padding-bottom: 6px;
 
@@ -104,7 +103,7 @@
     max-width: 100%;
   }
   .topBlock {
-    padding: vw(20);
+    padding: vw(30) vw(30) 0 vw(30);
   }
   .logo {
     max-width: vw(514);

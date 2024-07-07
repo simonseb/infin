@@ -1,15 +1,83 @@
+'use client';
+import React, { useState, useEffect } from 'react';
 import styles from '../../styles/components/organisms/Individuals/IndividualsPage.module.scss';
-
 import LargeHero from '@/components/organisms/LargeHero';
 import BottomComponent from '@/components/BottomComponent';
 import HowWorks from '@/components/organisms/IndividualsComponents/HowWorks';
 import Benefits from '@/components/organisms/IndividualsComponents/Benefits';
 import Directing from '@/components/organisms/IndividualsComponents/Directing';
 import Chart from '@/components/organisms/IndividualsComponents/Chart';
-
+import { getIndividual } from '@/lib/strapi/strapi-fetch';
 interface IndividualsPageProps {}
 
-export default async function IndividualsPage({}: IndividualsPageProps) {
+interface IDividualData {
+  attributes?: {
+    blocks: {
+      title: string;
+      text: string;
+      descritpion: string;
+      descritpions: {
+        title: string;
+        descritpion: string;
+      }[];
+      button: {
+        label: string;
+        href: string;
+      }[];
+      article: {
+        name: string;
+        descritpion: string;
+        title: string;
+      }[];
+      descritpionOne: string;
+      descritpionTwo: string;
+      video: {
+        descritpion: string;
+        title: string;
+      };
+      image: {
+        data: {
+          attributes: {
+            url: string;
+          };
+        };
+      };
+      step: {
+        content: string;
+        stepNumber: string;
+      }[];
+      organizationTitle: string;
+      organizationContent: string;
+    }[];
+  };
+}
+export default function IndividualsPage({}: IndividualsPageProps) {
+  const [data, setData] = useState<[IDividualData]>();
+
+  const getData = async () => {
+    try {
+      const res = await getIndividual();
+      if (res) {
+        setData(res.data as [IDividualData]);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+  if (!data) {
+    return null;
+  }
+  const { attributes } = data[0];
+
+  if (!attributes) {
+    return null;
+  }
+
+  const { blocks = [] } = attributes;
   return (
     <div className={styles.page}>
       <main className={styles.main}>
@@ -17,20 +85,20 @@ export default async function IndividualsPage({}: IndividualsPageProps) {
           className={styles.hero}
           pluses
           imageText
-          text="Do you feel like you’re"
+          text={blocks[0].text || ''}
           titleFirstRow="Not appreciated"
           titleSecondRow="at work?"
           bottomTextAccent="You’re probably right."
-          bottomTextFirst="Bosses don’t see enough of your work to truly appreciate your contributions (let alone bosses of bosses). Your colleagues all smile at you, but is what they say behind your back holding up your career advancement? Or, quite the opposite — you have the respect and admiration of the entire team but it never reaches management (especially when it’s time to give out those year-end bonuses). "
-          bottomTextSecond="Isn’t it time to take control of all this? With The INFIN, every employee provides honest and constructive  ⎯  and anonymous  ⎯  feedback to each other in a dynamic way that shows who’s the hero (and who’s the slacker) of the office. You can finally build your reputation with the help of those who know you best. And take it anywhere you work. It’s like a team-reviewed performance resume that actually matters. "
+          bottomTextFirst={blocks[0].descritpionOne || ''}
+          bottomTextSecond={blocks[0].descritpionTwo || ''}
           imageSrc="/images/Individuals/individuals-hero.png"
           imageMobileSrc="/images/Individuals/individuals-hero.png"
           imageAlt="man portrait"
         />
-        <HowWorks />
-        <Benefits />
-        <Chart />
-        <Directing />
+        <HowWorks data={data} />
+        <Benefits data={data} />
+        <Chart data={data} />
+        <Directing data={data} />
       </main>
 
       <BottomComponent className={styles.bottomComponent} />

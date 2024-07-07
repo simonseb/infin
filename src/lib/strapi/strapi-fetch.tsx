@@ -48,6 +48,50 @@ export async function getHome() {
   });
   return resp;
 }
+
+export async function getBusiness() {
+  const resp = await strapi.find('businesses', {
+    populate: {
+      blocks: {
+        populate: '*',
+      },
+    },
+  });
+  return resp;
+}
+
+export async function getIndividual() {
+  const resp = await strapi.find('individuals', {
+    populate: {
+      blocks: {
+        populate: '*',
+      },
+    },
+  });
+  return resp;
+}
+
+export async function getCapitalism() {
+  const resp = await strapi.find('capitalisms', {
+    populate: {
+      blocks: {
+        populate: '*',
+      },
+    },
+  });
+  return resp;
+}
+
+export async function getMarketing() {
+  const resp = await strapi.find('marketings', {
+    populate: {
+      blocks: {
+        populate: '*',
+      },
+    },
+  });
+  return resp;
+}
 // get page by slug
 export async function getPage(slug: string) {
   const resp = await strapi.findOne('pages', slug, {

@@ -37,7 +37,7 @@ interface IHomeData {
 }
 
 interface GetStartedProps extends CardProps {
-  data?: [IHomeData] | undefined;
+  data?: IHomeData[] | undefined;
 }
 
 export default function GetStarted({ className, data }: GetStartedProps) {

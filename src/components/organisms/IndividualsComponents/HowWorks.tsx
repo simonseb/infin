@@ -3,16 +3,38 @@ import styles from '../../../styles/components/organisms/Individuals/HowWorks.mo
 
 import PlusIcon from '/public/icons/plus.svg';
 import { Section } from '@/components/atoms/Section';
+interface IDividualData {
+  attributes?: {
+    blocks: {
+      title: string;
+      step: {
+        content: string;
+        stepNumber: string;
+      }[];
+    }[];
+  };
+}
 
-interface HowWorksProps {}
+interface HowWorksProps {
+  data?: [IDividualData] | undefined;
+}
 
-export default function HowWorks({}: HowWorksProps) {
+export default function HowWorks({ data }: HowWorksProps) {
+  if (!data) {
+    return null;
+  }
+
+  const { attributes } = data[0];
+
+  if (!attributes) {
+    return null;
+  }
+
+  const { blocks = [] } = attributes;
   return (
     <Section type="filled" className={styles.section}>
       <div className={styles.topBlock}>
-        <p className={styles.smallText}>
-          Reputation management is easy with The INFIN
-        </p>
+        <p className={styles.smallText}>{blocks[0].title || ''}</p>
 
         <h3 className={styles.title}>
           <p>How The INFIN </p>
@@ -21,33 +43,15 @@ export default function HowWorks({}: HowWorksProps) {
       </div>
 
       <ul className={styles.list}>
-        <li className={styles.listItem}>
-          <div className={styles.listItemNumber}>
-            01
-            <hr className={styles.hr} />
-          </div>
-          <p className={styles.listItemText}>
-            You rate other employees and they rank you, regularly updating for
-            good and poor work experiences with them.
-          </p>
-        </li>
-
-        <li className={styles.listItem}>
-          <div className={styles.listItemNumber}>02</div>
-          <p className={styles.listItemText}>
-            The algorithm turns this data into dynamic rankings that you can see
-            updated in real-time, giving you valuable feedback and advice on how
-            to increase your value
-          </p>
-        </li>
-
-        <li className={styles.listItem}>
-          <div className={styles.listItemNumber}>03</div>
-          <p className={styles.listItemText}>
-            Team-reviewed individual contribution can be tracked over time, and
-            appropriately applied to compensation practices.
-          </p>
-        </li>
+        {blocks[1].step.map((item, index) => (
+          <li className={styles.listItem} key={index}>
+            <div className={styles.listItemNumber}>
+              0{item.stepNumber}
+              <hr className={styles.hr} />
+            </div>
+            <p className={styles.listItemText}>{item.content}</p>
+          </li>
+        ))}
       </ul>
       <PlusIcon className={styles.plusIcon} />
     </Section>

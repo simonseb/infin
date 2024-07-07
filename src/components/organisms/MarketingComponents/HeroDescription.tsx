@@ -4,38 +4,49 @@ import styles from '../../../styles/components/organisms/Marketing/HeroDescripti
 import { Section } from '@/components/atoms/Section';
 import { Button } from '@/components/atoms/Button';
 
-interface HeroDescriptionProps {}
+interface IMarketing {
+  attributes?: {
+    blocks: {
+      title: string;
+      descritpion: string;
+      question: string;
+      list: {
+        name: string;
+      }[];
+    }[];
+  };
+}
+interface HeroDescriptionProps {
+  data?: IMarketing[] | undefined;
+}
+export default function HeroDescription({ data }: HeroDescriptionProps) {
+  if (!data) {
+    return null;
+  }
 
-export default function HeroDescription({}: HeroDescriptionProps) {
+  const { attributes } = data[0];
+
+  if (!attributes) {
+    return null;
+  }
+
+  const { blocks = [] } = attributes;
   return (
     <Section type="filled" className={styles.section}>
-      <h3 className={styles.title}>
-        Beta access to a wholly-managed implementation of The INFIN in your
-        organization is now available. We will personally coach both you and
-        your employees through its findings.
-      </h3>
+      <h3 className={styles.title}>{blocks[1].title}</h3>
 
       <div className={styles.bottomBlock}>
         <div className={styles.listBox}>
-          <p className={styles.listTitle}>
-            From this personalized engagement, you can discover:
-          </p>
+          <p className={styles.listTitle}>{blocks[1].question}</p>
 
           <ul className={styles.list}>
-            <li>How labor investments are impacting shareholder value.</li>
-            <li>Who is contributing the most value.</li>
-            <li>Who is underperforming.</li>
-            <li>
-              How to best distribute bonuses, compensation, and other resources.
-            </li>
+            {blocks[1].list.map((item, index) => (
+              <li key={index}>{item.name}</li>
+            ))}
           </ul>
         </div>
 
-        <p className={styles.rightText}>
-          The initial gathering and processing of data will be followed by a
-          hands-on consultation on how to use it for optimizing resource
-          allocation and other HR/operational considerations.
-        </p>
+        <p className={styles.rightText}>{blocks[1].descritpion}</p>
       </div>
 
       <Button className={styles.button} appearance="primary">

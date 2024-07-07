@@ -43,22 +43,25 @@ interface IHomeData {
 }
 
 export default function HomePage({}: HomePageProps) {
-  const [data, setData] = useState<[IHomeData]>();
+  const [data, setData] = useState<IHomeData[]>();
 
   const getData = async () => {
-    const res = await getHome();
-    if (res) {
-      const response = res.data;
-      setData(res.data as [IHomeData]);
+    try {
+      const res = await getHome();
+      if (res) {
+        setData(res.data as IHomeData[]);
+      }
+    } catch (err) {
+      console.log(err);
     }
   };
 
   useEffect(() => {
     getData();
-    // window.addEventListener('scroll', handleScroll);
-    // return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
+  if (!data) {
+    return null;
+  }
   return (
     <div className={styles.page}>
       <main className={styles.main}>

@@ -8,10 +8,22 @@ import { AppContext, IAppContext } from '@/context/app.context';
 import PlusesSmall from '/public/icons/pluses-small.svg';
 import PlusesIcon from '/public/icons/plus.svg';
 import Cursor from '@/components/atoms/Cursor';
+interface IMarketing {
+  attributes?: {
+    blocks: {
+      title: string;
+      step: {
+        content: string;
+        stepNumber: string;
+      }[];
+    }[];
+  };
+}
+interface ExpectedProps {
+  data?: IMarketing[] | undefined;
+}
 
-interface ExpectedProps { }
-
-export default function Expected({ }: ExpectedProps) {
+export default function Expected({ data }: ExpectedProps) {
   const [cursorVisibility, setCursorVisibility] = useState<'block' | 'none'>(
     'none',
   );
@@ -25,6 +37,18 @@ export default function Expected({ }: ExpectedProps) {
     console.log('expected', 'none');
     setCursorVisibility('none');
   };
+
+  if (!data) {
+    return null;
+  }
+
+  const { attributes } = data[0];
+
+  if (!attributes) {
+    return null;
+  }
+
+  const { blocks = [] } = attributes;
   return (
     <Section
       id="expected"
@@ -39,56 +63,17 @@ export default function Expected({ }: ExpectedProps) {
           <p className={styles.smallText}>Expected outcomes</p>
 
           <div className={styles.titleBox}>
-            <p className={styles.bigText}>
-              At the end of the consultancy, you should expect actionable
-              insight into improving your organization’s bottom line as well as
-              its return on human capital. Specifically, together we can use the
-              data to help you with:
-            </p>
+            <p className={styles.bigText}>{blocks[3].title}</p>
           </div>
         </div>
 
         <ul className={styles.list}>
-          <li className={styles.listItem}>
-            <div className={styles.listNumber}>01</div>
-            <p className={styles.listText}>
-              Aligning your labor spend with your business goals by investing in
-              the right people at the right time.
-            </p>
-          </li>
-
-          <li className={styles.listItem}>
-            <div className={styles.listNumber}>02</div>
-            <p className={styles.listText}>
-              Better distribution of bonuses and compensation pools with each
-              employee having a realistic picture of their value, recognition
-              for their contribution, and helpful feedback for improvement.
-            </p>
-          </li>
-
-          <li className={styles.listItem}>
-            <div className={styles.listNumber}>03</div>
-            <p className={styles.listText}>
-              Improved team dynamics and company culture, with a deeper
-              appreciation for each other among team members.
-            </p>
-          </li>
-
-          <li className={styles.listItem}>
-            <div className={styles.listNumber}>04</div>
-            <p className={styles.listText}>
-              Recognition of true leadership <br className={styles.listBr} />{' '}
-              (not just by title) within the organization and building around
-              them.
-            </p>
-          </li>
-
-          <li className={styles.listItem}>
-            <div className={styles.listNumber}>05</div>
-            <p className={styles.listText}>
-              A clear picture of performance trends on all levels.
-            </p>
-          </li>
+          {blocks[3].step.map((item, index) => (
+            <li className={styles.listItem} key={index}>
+              <div className={styles.listNumber}>0{item.stepNumber}</div>
+              <p className={styles.listText}>{item.content}</p>
+            </li>
+          ))}
         </ul>
         <PlusesIcon className={styles.plusIcon} />
       </div>

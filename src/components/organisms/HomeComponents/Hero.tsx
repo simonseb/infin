@@ -29,7 +29,7 @@ interface IHomeData {
 }
 
 interface HeroProps {
-  data?: [IHomeData] | undefined; // Allow undefined
+  data?: IHomeData[] | undefined; // Allow undefined
 }
 
 export default function Hero({ data }: HeroProps) {

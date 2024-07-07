@@ -28,7 +28,7 @@ interface IHomeData {
 }
 
 interface IndividualsProps extends CardProps {
-  data?: [IHomeData] | undefined;
+  data?: IHomeData[] | undefined;
 }
 
 export default function Individuals({ className, data }: IndividualsProps) {

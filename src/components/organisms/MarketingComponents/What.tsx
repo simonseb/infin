@@ -9,10 +9,33 @@ import Image from 'next/image';
 import PlusIcon from '../../../../public/icons/plus.svg';
 import PlusesGroup from '../../../../public/icons/plus-group.svg';
 import { motion } from 'framer-motion';
+interface IMarketing {
+  attributes?: {
+    blocks: {
+      title: string;
+      question: string;
+      descritpionOne: string;
+      descritpionTwo: string;
+      descritpionThree: string;
+    }[];
+  };
+}
+interface WhatProps {
+  data?: IMarketing[] | undefined;
+}
 
-interface WhatProps { }
+export default function What({ data }: WhatProps) {
+  if (!data) {
+    return null;
+  }
 
-export default function What({ }: WhatProps) {
+  const { attributes } = data[0];
+
+  if (!attributes) {
+    return null;
+  }
+
+  const { blocks = [] } = attributes;
   return (
     <Section type="ghost" className={styles.section}>
       <div className={styles.leftBlock}>
@@ -35,34 +58,24 @@ export default function What({ }: WhatProps) {
           <div className={styles.pluses}>
             <PlusIcon className={clsx(styles.plusIcon, styles.topPlus)} />
             <PlusIcon className={clsx(styles.plusIcon, styles.leftPlus)} />
-            <PlusIcon className={clsx(styles.plusIcon, styles.bottomRightPlus)} />
+            <PlusIcon
+              className={clsx(styles.plusIcon, styles.bottomRightPlus)}
+            />
           </div>
         </motion.div>
       </div>
 
       <div className={styles.rightBlock}>
-        <h3 className={styles.title}>
-          What is <br />
-          <span>The INFIN?</span>
-        </h3>
+        <h3 className={styles.title}>{blocks[2].question}</h3>
 
         <p className={styles.bigText}>
-          The INFIN is a way for employees to continuously and dynamically rate
-          each other based on their experience of on-the-job performance. This
-          helps management understand individual contributions at every level
-          without spending hours on 360 reviews.
+          {blocks[2].descritpionOne}
           <br />
           <br />
-          The algorithm behind The INFIN automatically adjusts the weight of
-          each employee’s “vote” based on how others rank them. The highest
-          performers have the greatest say.
+          {blocks[2].descritpionTwo}
           <br />
           <br />
-          Your expert consultant will then translate the data from The INFIN to
-          specific operational efficiency improvements you can make. It’s a
-          turnkey approach to improving your operations while at the same time
-          bringing your employees into the process, recognizing both their
-          contributions and their insights.
+          {blocks[2].descritpionThree}
         </p>
       </div>
       <motion.div

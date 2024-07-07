@@ -1,43 +1,96 @@
+'use client';
+import React, { useState, useEffect } from 'react';
 import styles from '../../styles/components/organisms/Business/BusinessPage.module.scss';
-
 import LargeHero from '@/components/organisms/LargeHero';
 import BottomComponent from '@/components/BottomComponent';
 import Benefits from '@/components/organisms/BusinessComponents/Benefits';
 import Discover from '@/components/organisms/BusinessComponents/Discover';
 import DiscoverImage from '@/components/organisms/BusinessComponents/DiscoverImage';
 import Directing from '@/components/organisms/BusinessComponents/Directing';
+import { getBusiness } from '@/lib/strapi/strapi-fetch';
 
+interface IBusinessData {
+  attributes?: {
+    title: string;
+    Description: string;
+    blocks: {
+      title: string;
+      text: string;
+      descritpion: string;
+      descritpions: {
+        title: string;
+        descritpion: string;
+      }[];
+      button: {
+        label: string;
+        href: string;
+      }[];
+      article: {
+        name: string;
+        descritpion: string;
+        title: string;
+      }[];
+      descritpiontop: string;
+      descritpionBottom: string;
+      video: {
+        descritpion: string;
+        title: string;
+      };
+      image: {
+        data: {
+          attributes: {
+            url: string;
+          };
+        };
+      };
+    }[];
+  };
+}
 interface BusinessPageProps {}
 
-export default async function BusinessPage({}: BusinessPageProps) {
+export default function BusinessPage({}: BusinessPageProps) {
+  const [data, setData] = useState<[IBusinessData]>();
+
+  const getData = async () => {
+    const res = await getBusiness();
+    if (res) {
+      setData(res.data as [IBusinessData]);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+  if (!data) {
+    return null;
+  }
+  const { attributes } = data[0];
+
+  if (!attributes) {
+    return null;
+  }
+
+  const { blocks = [] } = attributes;
   return (
     <div className={styles.page}>
       <main className={styles.main}>
         <div className={styles.topBlock}>
           <LargeHero
-            text="The INFIN is a finance tool, yet helps with both the bottom line
-              and your People Ops. Imagine how much you could improve your
-              business if you:"
+            text={blocks[0].text || ''}
             titleFirstRow="Learn the ROI"
             titleSecondRow="of each employee"
             bottomTextAccent="It’s an open secret of any workplace:"
-            bottomTextFirst="the team knows who is carrying the team, carrying their weight, and
-              being carried.. The INFIN lets employees continuously and dynamically
-              observe and rank each other based on job performance and personal
-              interaction. And it gets better."
-            bottomTextSecond="The algorithm behind The INFIN automatically adjusts the weight of each
-              employee’s “vote” based on how others rank them. As a result, you get an
-              accurate picture of which employees are driving your success and of the
-              strengths and weaknesses of each employee."
-            imageSrc="/images/Business/hero.jpg"
+            bottomTextFirst={blocks[1].descritpiontop || ''}
+            bottomTextSecond={blocks[1].descritpionBottom || ''}
+            imageSrc="/images/Business/hero-mobile.png"
             imageMobileSrc="/images/Business/hero-mobile.png"
             imageAlt="girl is doing presentation"
           />
-          <Benefits />
+          <Benefits data={data} />
         </div>
 
         <div className={styles.bottomBlock}>
-          <Discover />
+          <Discover data={data} />
           <DiscoverImage />
           <Directing />
         </div>

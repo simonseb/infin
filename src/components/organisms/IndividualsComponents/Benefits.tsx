@@ -9,12 +9,34 @@ import PlusesIconMobile from '../../../../public/icons/benefits-pluses-mobile.sv
 import { Section } from '../../atoms/Section';
 import { CardTitle } from '../../molecules/CardTitle';
 import useCheckIsMobile from '@/hooks/useCheckIsMobile';
+interface IDividualData {
+  attributes?: {
+    blocks: {
+      title: string;
+      descritpions: {
+        title: string;
+        descritpion: string;
+      }[];
+    }[];
+  };
+}
+interface BenefitsProps {
+  data?: [IDividualData] | undefined;
+}
 
-interface BenefitsProps {}
-
-export default function Benefits({}: BenefitsProps) {
+export default function Benefits({ data }: BenefitsProps) {
   const { isMobile, isTablet } = useCheckIsMobile();
+  if (!data) {
+    return null;
+  }
 
+  const { attributes } = data[0];
+
+  if (!attributes) {
+    return null;
+  }
+
+  const { blocks = [] } = attributes;
   return (
     <Section type="filled" className={styles.benefits}>
       <div className={styles.leftBlock}>
@@ -33,50 +55,12 @@ export default function Benefits({}: BenefitsProps) {
       </div>
 
       <ul className={styles.list}>
-        <li className={styles.listItem}>
-          <h4 className={styles.smallTitle}>Gives you a powerful voice</h4>
-          <p className={styles.text}>
-            If five different managers are making you write TPS reports and
-            someone keeps stealing your stapler, you have the voice in
-            confidentially rating them, as you do with those performing their
-            job brilliantly.
-          </p>
-        </li>
-
-        <li className={styles.listItem}>
-          <h4 className={styles.smallTitle}>Cuts through office politics</h4>
-          <p className={styles.text}>
-            Imagine your bonus being determined by your value rather than by
-            guesswork about which part of the team’s success was due to your
-            work. Get the boss to see how much you contribute to the company.
-            Your reputation is supported by data, which is more objective and
-            dynamic in showing your true worth. 
-          </p>
-        </li>
-
-        <li className={styles.listItem}>
-          <h4 className={styles.smallTitle}>
-            Puts you in control of your career 
-          </h4>
-          <p className={styles.text}>
-            Not only does your personal profile act as a resume of your value,
-            but it also lets you see the blindspots and improve them for faster
-            advancement. And it certainly doesn’t hurt to show your boss your
-            top ranking come promotion time. In essence, your profile can help
-            you earn more and make a greater impact.
-          </p>
-        </li>
-
-        <li className={styles.listItem}>
-          <h4 className={styles.smallTitle}>
-            Creates a more considerate office environment
-          </h4>
-          <p className={styles.text}>
-            Who knew that having a bit of power over your coworkers would make
-            them nicer to you? You may also notice your task request being
-            ignored a whole lot less. Cooperation is a wonderful thing.
-          </p>
-        </li>
+        {blocks[2].descritpions.map((item, index) => (
+          <li className={styles.listItem} key={index}>
+            <h4 className={styles.smallTitle}>{item.title}</h4>
+            <p className={styles.text}>{item.descritpion}</p>
+          </li>
+        ))}
       </ul>
       {isTablet ? (
         <PlusesIconMobile className={styles.plusesIconMobile} />
