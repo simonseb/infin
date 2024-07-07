@@ -8,7 +8,7 @@ import Benefits from '@/components/organisms/IndividualsComponents/Benefits';
 import Directing from '@/components/organisms/IndividualsComponents/Directing';
 import Chart from '@/components/organisms/IndividualsComponents/Chart';
 import { getIndividual } from '@/lib/strapi/strapi-fetch';
-interface IndividualsPageProps {}
+interface IndividualsPageProps { }
 
 interface IDividualData {
   attributes?: {
@@ -51,7 +51,7 @@ interface IDividualData {
     }[];
   };
 }
-export default function IndividualsPage({}: IndividualsPageProps) {
+export default function IndividualsPage({ }: IndividualsPageProps) {
   const [data, setData] = useState<[IDividualData]>();
 
   const getData = async () => {

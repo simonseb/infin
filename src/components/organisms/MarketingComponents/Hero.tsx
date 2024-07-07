@@ -30,12 +30,10 @@ export default function Hero({ data }: HeroProps) {
   );
 
   const handleMouseEnter = () => {
-    console.log('hero', 'block');
     setCursorVisibility('block');
   };
 
   const handleMouseLeave = () => {
-    console.log('hero', 'none');
     setCursorVisibility('none');
   };
   if (!data) {

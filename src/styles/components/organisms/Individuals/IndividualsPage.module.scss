@@ -2,12 +2,16 @@
 @import '../../../variables';
 @import '../../../functions';
 
+.page {
+  background-color: $grey;
+}
+
 .main {
   @include container;
-
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+  position: relative;
+  // display: flex;
+  // flex-direction: column;
+  // gap: 12px;
 }
 
 .bottomComponent {

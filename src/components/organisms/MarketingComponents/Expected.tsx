@@ -29,12 +29,10 @@ export default function Expected({ data }: ExpectedProps) {
   );
 
   const handleMouseEnter = () => {
-    console.log('expected', 'block');
     setCursorVisibility('block');
   };
 
   const handleMouseLeave = () => {
-    console.log('expected', 'none');
     setCursorVisibility('none');
   };
 

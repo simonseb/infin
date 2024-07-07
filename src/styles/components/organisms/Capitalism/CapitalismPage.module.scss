@@ -2,9 +2,13 @@
 @import '../../../variables';
 @import '../../../functions';
 
+.page {
+  background-color: $grey;
+}
+
 .main {
   @include container;
-
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 12px;

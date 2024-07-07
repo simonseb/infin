@@ -1,11 +1,15 @@
+'use client';
+
 import React from 'react';
 import styles from '../../../styles/components/organisms/Contact/Hero.module.scss';
-
 import { Section } from '@/components/atoms/Section';
 
-interface HeroProps {}
+interface HeroProps { }
 
-export default function Hero({}: HeroProps) {
+export default function Hero({ }: HeroProps) {
+
+
+
   return (
     <Section className={styles.hero} type="ghost">
       <p className={styles.smallText}>Contact us</p>
