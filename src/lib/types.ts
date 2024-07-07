@@ -23,4 +23,5 @@ export type TypeActiveSection =
   | 'benefits'
   | 'blackcard'
   | 'what'
-  | 'webeginwith';
+  | 'webeginwith'
+  | 'contact';

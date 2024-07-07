@@ -162,7 +162,13 @@ export default function Header({ }: HeaderProps) {
         return dark;
       }
     } else if (pathname === '/contact') {
-      return accent;
+      if (
+        activeSection?.includes('contact')
+      ) {
+        return dark;
+      } else {
+        return accent;
+      }
     } else {
       return dark;
     }
@@ -212,7 +218,14 @@ export default function Header({ }: HeaderProps) {
         return dark;
       }
     } else if (pathname === '/contact') {
-      return light;
+      console.log('pathname', pathname, activeSection);
+      if (
+        activeSection?.includes('contact')
+      ) {
+        return dark;
+      } else {
+        return light;
+      }
     } else {
       return dark;
     }

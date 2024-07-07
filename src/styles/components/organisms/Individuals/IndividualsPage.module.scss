@@ -8,7 +8,7 @@
 
 .main {
   @include container;
-  display: relative;
+  position: relative;
   // display: flex;
   // flex-direction: column;
   // gap: 12px;
