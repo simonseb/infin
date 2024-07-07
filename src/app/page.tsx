@@ -10,8 +10,7 @@ import Reviews from '@/components/organisms/HomeComponents/Reviews';
 import BottomComponent from '@/components/BottomComponent';
 import LargeImage from '@/components/organisms/LargeImage';
 import { getHome } from '@/lib/strapi/strapi-fetch';
-
-interface HomePageProps {}
+interface HomePageProps { }
 
 interface IHomeData {
   attributes?: {
@@ -42,7 +41,7 @@ interface IHomeData {
   };
 }
 
-export default function HomePage({}: HomePageProps) {
+export default function HomePage({ }: HomePageProps) {
   const [data, setData] = useState<IHomeData[]>();
 
   const getData = async () => {
@@ -82,7 +81,7 @@ export default function HomePage({}: HomePageProps) {
         </div>
       </main>
 
-      <BottomComponent data={data} />
+      <BottomComponent />
       <div id="space" style={{ height: 0, zIndex: 0 }}></div>
     </div>
   );

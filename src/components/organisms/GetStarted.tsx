@@ -40,7 +40,7 @@ interface GetStartedProps extends CardProps {
   data?: IHomeData[] | undefined;
 }
 
-export default function GetStarted({ className, data }: GetStartedProps) {
+export default function GetStarted({ className }: GetStartedProps) {
   const { setActiveSection, removeActiveSection } = useContext(
     AppContext,
   ) as IAppContext;
@@ -68,17 +68,6 @@ export default function GetStarted({ className, data }: GetStartedProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isInViewTargetBottom, isInViewTargetMiddle]);
 
-  if (!data) {
-    return null;
-  }
-
-  const { attributes } = data[0];
-
-  if (!attributes) {
-    return null;
-  }
-
-  const { blocks = [] } = attributes;
   return (
     <Section
       className={clsx(styles.section, className)}
@@ -91,12 +80,12 @@ export default function GetStarted({ className, data }: GetStartedProps) {
           showTitle={false}
           showNumber={true}
           cardNumber="04"
-          cardTitle={blocks[5].title}
+          cardTitle={'GET STARTED'}
         />
 
         <AnimatedText
           className={styles.smallText}
-          text={[`${blocks[5].question}`]}
+          text={'What can The INFIN do for you?'}
           delay={0.5}
         />
 
@@ -114,7 +103,7 @@ export default function GetStarted({ className, data }: GetStartedProps) {
           appearance="primary"
           onClick={() => router.push('/contact')}
         >
-          {blocks[5].button[0].label}
+          SCHEDULE A LIVE DEMO
         </Button>
 
         <div ref={targetBottom} />
