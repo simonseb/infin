@@ -218,7 +218,6 @@ export default function Header({ }: HeaderProps) {
         return dark;
       }
     } else if (pathname === '/contact') {
-      console.log('pathname', pathname, activeSection);
       if (
         activeSection?.includes('contact')
       ) {

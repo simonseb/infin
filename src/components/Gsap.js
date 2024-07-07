@@ -18,7 +18,6 @@ export default class Gsap {
   }
   // from-to motion animation
   animationfromTo({ section, from, to }) {
-    console.log({ section, from, to });
     gsap.fromTo(section, from, to);
   }
 }
