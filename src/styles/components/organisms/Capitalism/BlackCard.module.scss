@@ -3,8 +3,8 @@
 @import '../../../functions';
 
 .blackSection {
-  padding-top: 80px;
-  padding-bottom: 80px;
+  padding-top: 80px !important;
+  padding-bottom: 80px !important;
 
   background-color: $dark;
 }
@@ -49,8 +49,8 @@
 
 @media screen and (min-width: $largeScreen) {
   .blackSection {
-    padding-top: sizeVW(80);
-    padding-bottom: sizeVW(80);
+    padding-top: sizeVW(80) !important;
+    padding-bottom: sizeVW(80) !important;
   }
 
   .title {
