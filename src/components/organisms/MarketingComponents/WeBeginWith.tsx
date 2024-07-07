@@ -104,18 +104,17 @@ export default function WeBeginWith({ data }: WeBeginWithProps) {
               ))}
             </ul>
           </div>
+        </div>
+        <div className={styles.buttonBox}>
+          <Button
+            className={styles.button}
+            appearance="accent"
+            onClick={() => router.push('/contact')}
+          >
+            Schedule a call
+          </Button>
 
-          <div className={styles.buttonBox}>
-            <Button
-              className={styles.button}
-              appearance="accent"
-              onClick={() => router.push('/contact')}
-            >
-              Schedule a call
-            </Button>
-
-            <p className={styles.buttonText}>{blocks[4].descBtn}</p>
-          </div>
+          <p className={styles.buttonText}>{blocks[4].descBtn}</p>
         </div>
       </Section>
     </div>

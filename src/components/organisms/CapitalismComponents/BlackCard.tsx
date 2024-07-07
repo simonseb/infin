@@ -73,7 +73,7 @@ export default function BlackCard({ data }: BlackCardProps) {
 
   const { blocks = [] } = attributes;
   return (
-    <div>
+    <div ref={target}>
       <Section type="filled" className={styles.section}>
         <h2 className={styles.title}>{blocks[5].title}</h2>
 
