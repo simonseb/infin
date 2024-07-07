@@ -18,11 +18,7 @@ export default function BlackCard({ }: BlackCardProps) {
   const { isInView } = useTargetInView(target);
   const isInViewRef = useRef(isInView);
 
-  useEffect(() => {
-    isInViewRef.current = isInView;
-  }, [isInView]);
-
-  const handleScroll = () => {
+  const triggerSection = () => {
     if (target.current) {
       const boundRect = (target.current as HTMLElement).getBoundingClientRect();
       const headerBoundRect = document.getElementsByTagName('header').item(0)?.getBoundingClientRect();
@@ -32,6 +28,15 @@ export default function BlackCard({ }: BlackCardProps) {
         removeActiveSection('blackcard');
       }
     }
+  }
+
+  useEffect(() => {
+    isInViewRef.current = isInView;
+    triggerSection();
+  }, [isInView]);
+
+  const handleScroll = () => {
+    triggerSection();
   }
 
   useEffect(() => {

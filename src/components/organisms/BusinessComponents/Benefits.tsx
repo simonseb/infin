@@ -25,9 +25,10 @@ export default function Benefits({ }: BenefitsProps) {
 
   useEffect(() => {
     isInViewRef.current = isInView;
+    triggerSection();
   }, [isInView]);
 
-  const handleScroll = () => {
+  const triggerSection = () => {
     if (target.current) {
       const boundRect = (target.current as HTMLElement).getBoundingClientRect();
       const headerBoundRect = document.getElementsByTagName('header').item(0)?.getBoundingClientRect();
@@ -37,6 +38,10 @@ export default function Benefits({ }: BenefitsProps) {
         removeActiveSection('benefits');
       }
     }
+  }
+
+  const handleScroll = () => {
+    triggerSection();
   }
 
   useEffect(() => {
