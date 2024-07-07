@@ -42,6 +42,9 @@ const nextConfig = {
 
     return config;
   },
+  env: {
+    STRAPI_URL: 'https://dependable-creativity-a1557309a6.strapiapp.com/',
+  },
 };
 
 export default nextConfig;
