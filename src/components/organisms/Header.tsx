@@ -85,6 +85,13 @@ export default function Header({ }: HeaderProps) {
       large: { gridColumn: 5 },
     };
   };
+  const variantsNav: Variants = {
+    short: {
+      paddingTop: 18
+    },
+    large: {
+    },
+  };
 
   const handleMenuOpen = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -306,7 +313,7 @@ export default function Header({ }: HeaderProps) {
             />
           </motion.div>
 
-          <nav className={styles.nav}>
+          <motion.nav className={styles.nav} variants={variantsNav}>
             <motion.div
               variants={variantsLink(1)}
               transition={{
@@ -314,9 +321,10 @@ export default function Header({ }: HeaderProps) {
                 delay: isInView ? 0.5 : 0.1,
               }}
             >
-              <Link href="/" className={styles.link}>
+              <Link href="/" className={styles.link} style={{ color: calculateLinksColor() }}>
                 <motion.span
                   animate={{ color: calculateLinksColor() }}
+
                   transition={{ duration: 0.5 }}
                 >
                   Home
@@ -328,7 +336,7 @@ export default function Header({ }: HeaderProps) {
               variants={variantsLink(2)}
               transition={{ duration: 0, delay: isInView ? 0.4 : 0.2 }}
             >
-              <Link href="/business" className={styles.link}>
+              <Link href="/business" className={styles.link} style={{ color: calculateLinksColor() }}>
                 <motion.span
                   animate={{ color: calculateLinksColor() }}
                   transition={{ duration: 0.5 }}
@@ -342,7 +350,7 @@ export default function Header({ }: HeaderProps) {
               variants={variantsLink(3)}
               transition={{ duration: 0, delay: 0.3 }}
             >
-              <Link href="/individuals" className={styles.link}>
+              <Link href="/individuals" className={styles.link} style={{ color: calculateLinksColor() }}>
                 <motion.span
                   animate={{ color: calculateLinksColor() }}
                   transition={{ duration: 0.5 }}
@@ -356,7 +364,7 @@ export default function Header({ }: HeaderProps) {
               variants={variantsLink(4)}
               transition={{ duration: 0, delay: isInView ? 0.2 : 0.4 }}
             >
-              <Link href="/capitalism" className={styles.link}>
+              <Link href="/capitalism" className={styles.link} style={{ color: calculateLinksColor() }}>
                 <motion.span
                   animate={{ color: calculateLinksColor() }}
                   transition={{ duration: 0.5 }}
@@ -370,7 +378,7 @@ export default function Header({ }: HeaderProps) {
               variants={variantsLink(5)}
               transition={{ duration: 0, delay: isInView ? 0.1 : 0.5 }}
             >
-              <Link href="/marketing" className={styles.link}>
+              <Link href="/marketing" className={styles.link} style={{ color: calculateLinksColor() }}>
                 <motion.span
                   animate={{ color: calculateLinksColor() }}
                   transition={{ duration: 0.6 }}
@@ -379,7 +387,7 @@ export default function Header({ }: HeaderProps) {
                 </motion.span>
               </Link>
             </motion.div>
-          </nav>
+          </motion.nav>
 
           <motion.button
             className={clsx(styles.button, {
