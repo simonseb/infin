@@ -8,9 +8,9 @@ import LargeImage from '../LargeImage';
 import Avatar from '@/components/molecules/Avatar';
 import Socials from '@/components/molecules/Socials';
 
-interface DescriptionProps {}
+interface DescriptionProps { }
 
-export default function Description({}: DescriptionProps) {
+export default function Description({ }: DescriptionProps) {
   return (
     <Section type="ghost" className={styles.section}>
       <div className={styles.container}>
@@ -37,7 +37,7 @@ export default function Description({}: DescriptionProps) {
           mobileImage="/images/Blog/description-mobile.png"
           desctopImage="/images/Blog/description.png"
           alt="work meeting"
-          scale={false}
+          scale={true}
         />
 
         <p className={styles.caption}>“Image caption goes here”</p>

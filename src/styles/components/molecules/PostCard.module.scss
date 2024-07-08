@@ -9,6 +9,12 @@
   height: auto;
 }
 
+.wrapper {
+  position: relative;
+  border-radius: 30px;
+  overflow: hidden;
+}
+
 .title {
   margin-bottom: 12px;
 
@@ -28,6 +34,19 @@
 
 .avatar {
   color: $light;
+}
+
+.imageContainer {
+  position: relative;
+  margin-left: auto;
+
+  min-width: 223px;
+  width: 100%;
+  height: 300px;
+  margin-bottom: 30px;
+
+  border-radius: 20px;
+  overflow: hidden;
 }
 
 @media screen and (min-width: $largeScreen) {

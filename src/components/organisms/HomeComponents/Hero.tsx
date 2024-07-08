@@ -61,16 +61,16 @@ export default function Hero({ }: HeroProps) {
             once
           />
 
-          <motion.div
+          {/* <motion.div
             initial={{ scale: 0.75, y: 100 }}
             animate={{ scale: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 1.5 }}
             className={styles.titleBox}
-          >
-            <h2 className={styles.mainTitle}>
-              To know your true value, Help others understand theirs.
-            </h2>
-          </motion.div>
+          > */}
+          <h2 className={styles.mainTitle}>
+            To know your true value, Help others understand theirs.
+          </h2>
+          {/* </motion.div> */}
 
           <Button
             className={styles.button}
