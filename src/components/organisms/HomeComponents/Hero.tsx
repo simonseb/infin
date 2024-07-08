@@ -94,14 +94,14 @@ export default function Hero({ data }: HeroProps) {
               once
             />
 
-            <motion.div
+            {/* <motion.div
               initial={{ scale: 0.75, y: 100 }}
               animate={{ scale: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 1.5 }}
               className={styles.titleBox}
-            >
-              <h2 className={styles.mainTitle}>{blocks[0].descritpion}</h2>
-            </motion.div>
+            > */}
+            <h2 className={styles.mainTitle}>{blocks[0].descritpion}</h2>
+            {/* </motion.div> */}
 
             <Button
               className={styles.button}
