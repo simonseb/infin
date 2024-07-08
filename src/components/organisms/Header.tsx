@@ -46,16 +46,16 @@ export default function Header({ }: HeaderProps) {
     short: {
       backgroundColor: isMenuOpen ? '#121212' : '#1212120',
       transition: { duration: 0.1 },
-      height: 70,
+      height: 'vw(90)',
       display: 'flex',
       alignItems: 'center',
-      paddingTop: isTablet ? 20 : 0
+      paddingTop: isTablet ? 20 : 10
     },
     large: {
-      height: 120,
+      height: 'vw(140)',
       display: 'flex',
       alignItems: 'flex-end',
-      paddingTop: isTablet ? 20 : 0
+      paddingTop: isTablet ? 20 : 10
     }
   };
 
