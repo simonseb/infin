@@ -46,7 +46,11 @@ export default function Header({ }: HeaderProps) {
     short: {
       backgroundColor: isMenuOpen ? '#121212' : '#1212120',
       transition: { duration: 0.1 },
+      height: '78px',
     },
+    large: {
+      height: '120px',
+    }
   };
 
   const variantsMobileMenu: Variants = {
@@ -313,8 +317,9 @@ export default function Header({ }: HeaderProps) {
                 delay: isInView ? 0.5 : 0.1,
               }}
             >
-              <Link href="/" className={styles.link}>
+              <Link href="/">
                 <motion.span
+                  className={styles.link}
                   animate={{ color: calculateLinksColor() }}
                   transition={{ duration: 0.5 }}
                 >
@@ -327,8 +332,9 @@ export default function Header({ }: HeaderProps) {
               variants={variantsLink(2)}
               transition={{ duration: 0, delay: isInView ? 0.4 : 0.2 }}
             >
-              <Link href="/business" className={styles.link}>
+              <Link href="/business" >
                 <motion.span
+                  className={styles.link}
                   animate={{ color: calculateLinksColor() }}
                   transition={{ duration: 0.5 }}
                 >
@@ -338,12 +344,12 @@ export default function Header({ }: HeaderProps) {
             </motion.div>
 
             <motion.div
-              className={styles.link}
               variants={variantsLink(3)}
               transition={{ duration: 0, delay: 0.3 }}
             >
-              <Link href="/individuals" className={styles.link}>
+              <Link href="/individuals" >
                 <motion.span
+                  className={styles.link}
                   animate={{ color: calculateLinksColor() }}
                   transition={{ duration: 0.5 }}
                 >
@@ -356,8 +362,9 @@ export default function Header({ }: HeaderProps) {
               variants={variantsLink(4)}
               transition={{ duration: 0, delay: isInView ? 0.2 : 0.4 }}
             >
-              <Link href="/capitalism" className={styles.link}>
+              <Link href="/capitalism">
                 <motion.span
+                  className={styles.link}
                   animate={{ color: calculateLinksColor() }}
                   transition={{ duration: 0.5 }}
                 >
@@ -367,12 +374,12 @@ export default function Header({ }: HeaderProps) {
             </motion.div>
 
             <motion.div
-              className={styles.link}
               variants={variantsLink(5)}
               transition={{ duration: 0, delay: isInView ? 0.1 : 0.5 }}
             >
-              <Link href="/marketing" className={styles.link}>
+              <Link href="/marketing" >
                 <motion.span
+                  className={styles.link}
                   animate={{ color: calculateLinksColor() }}
                   transition={{ duration: 0.6 }}
                 >
@@ -388,7 +395,7 @@ export default function Header({ }: HeaderProps) {
               //   activeSection?.includes('reviews') ||
               //   activeSection?.includes('home-image') === true,
               // [styles.buttonDarkDark]: activeSection?.includes('getstarted'),
-              [styles.buttonHidden]: pathname === '/contact',
+              // [styles.buttonHidden]: pathname === '/contact',
             })}
             animate={{ backgroundColor: calculateContactColor() }}
             variants={variantsButton}
