@@ -83,19 +83,21 @@ export default function GetStarted({ className }: GetStartedProps) {
           cardTitle={'GET STARTED'}
         />
 
-        <AnimatedText
+        {/* <AnimatedText
           className={styles.smallText}
           text={'What can The INFIN do for you?'}
-          delay={0.5}
-        />
+          once
+        /> */}
+        <p className={styles.smallText}>What can The INFIN do for you?</p>
 
         <div ref={targetMiddle} className={styles.targetMiddle}>
-          <AnimatedLineText
+          {/* <AnimatedLineText
             className={styles.mainTitle}
             el="h1"
             text={['get started']}
             once
-          />
+          /> */}
+          <h1 className={styles.mainTitle}>get started</h1>
         </div>
 
         <Button
