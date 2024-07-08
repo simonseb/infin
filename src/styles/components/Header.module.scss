@@ -15,10 +15,8 @@
 
 .topBlock {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding: 30px 30px 0 30px;
 }
 
 .logo {
@@ -96,8 +94,8 @@
   &:hover,
   &:focus {
     background-color: $dark !important;
-    color: $light;
-    border-color: transparent;
+    color: $light !important;
+    border-color: $light;
   }
 }
 
@@ -124,9 +122,7 @@
     max-width: 100%;
   }
   .topBlock {
-    // padding: vw(30) vw(30) 0 vw(30);
-    display: flex;
-    align-items: center;
+    padding: vw(30) vw(30) 0 vw(30);
   }
   .logo {
     max-width: vw(514);
@@ -150,7 +146,7 @@
   }
 
   .topBlock {
-    // padding: 16px 16px 0 16px;
+    padding: 16px 16px 0 16px;
   }
 
   .nav {

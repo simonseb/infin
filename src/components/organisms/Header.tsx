@@ -46,11 +46,7 @@ export default function Header({ }: HeaderProps) {
     short: {
       backgroundColor: isMenuOpen ? '#121212' : '#1212120',
       transition: { duration: 0.1 },
-      height: '78px',
     },
-    large: {
-      height: '120px',
-    }
   };
 
   const variantsMobileMenu: Variants = {
@@ -239,53 +235,53 @@ export default function Header({ }: HeaderProps) {
       if (
         activeSection?.includes('reviews')
       ) {
-        return accent;
+        return { backgroundColor: accent, color: 'white' };
       } else {
-        return 'transparent';
+        return { backgroundColor: 'transparent', color: 'black' };
       }
     } else if (pathname === '/business') {
       if (
         activeSection?.includes('benefits')
       ) {
-        return accent;
+        return { backgroundColor: accent, color: 'white' };
       } else {
-        return 'transparent';
+        return { backgroundColor: 'transparent', color: 'black' };
       }
     } else if (pathname === '/individuals') {
       if (
         activeSection?.includes('benefits')
       ) {
-        return accent;
+        return { backgroundColor: accent, color: 'white' };
       } else {
-        return 'transparent';
+        return { backgroundColor: 'transparent', color: 'black' };
       }
     } else if (pathname === '/capitalism') {
       if (
         activeSection?.includes('blackcard')
       ) {
-        return accent;
+        return { backgroundColor: accent, color: 'white' };
       } else {
-        return 'transparent';
+        return { backgroundColor: 'transparent', color: 'black' };
       }
     } else if (pathname === '/marketing') {
       if (
         activeSection?.includes('what') ||
         activeSection?.includes('webeginwith')
       ) {
-        return accent;
+        return { backgroundColor: accent, color: 'white' };
       } else {
-        return 'transparent';
+        return { backgroundColor: 'transparent', color: 'black' };
       }
     } else if (pathname === '/contact') {
       if (
         activeSection?.includes('contact')
       ) {
-        return 'transparent';
+        return { backgroundColor: 'transparent', color: 'black' };
       } else {
-        return accent;
+        return { backgroundColor: accent, color: 'white' };
       }
     } else {
-      return 'transparent';
+      return { backgroundColor: 'transparent', color: 'black' };
     }
   }
   return (
@@ -397,7 +393,7 @@ export default function Header({ }: HeaderProps) {
               // [styles.buttonDarkDark]: activeSection?.includes('getstarted'),
               // [styles.buttonHidden]: pathname === '/contact',
             })}
-            animate={{ backgroundColor: calculateContactColor() }}
+            animate={{ ...calculateContactColor() }}
             variants={variantsButton}
             transition={{ duration: 0.2 }}
             onClick={onToContactClick}
