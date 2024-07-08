@@ -92,7 +92,8 @@
 
   &:hover,
   &:focus {
-    background-color: $accent;
+    background-color: $dark !important;
+    color: $light;
     border-color: transparent;
   }
 }

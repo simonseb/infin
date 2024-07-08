@@ -128,8 +128,47 @@ export default function Header({ }: HeaderProps) {
       ) {
         return accent;
       }
+    } else if (pathname === '/business') {
+      if (
+        activeSection?.includes('benefits')
+      ) {
+        return accent;
+      } else {
+        return dark;
+      }
+    } else if (pathname === '/individuals') {
+      if (
+        activeSection?.includes('benefits')
+      ) {
+        return accent;
+      } else {
+        return dark;
+      }
+    } else if (pathname === '/capitalism') {
+      if (
+        activeSection?.includes('blackcard')
+      ) {
+        return accent;
+      } else {
+        return dark;
+      }
+    } else if (pathname === '/marketing') {
+      if (
+        activeSection?.includes('what') ||
+        activeSection?.includes('webeginwith')
+      ) {
+        return accent;
+      } else {
+        return dark;
+      }
     } else if (pathname === '/contact') {
-      return accent;
+      if (
+        activeSection?.includes('contact')
+      ) {
+        return dark;
+      } else {
+        return accent;
+      }
     } else {
       return dark;
     }
@@ -145,12 +184,106 @@ export default function Header({ }: HeaderProps) {
       } else {
         return dark;
       }
+    } else if (pathname === '/business') {
+      if (
+        activeSection?.includes('benefits')
+      ) {
+        return light;
+      } else {
+        return dark;
+      }
+    } else if (pathname === '/individuals') {
+      if (
+        activeSection?.includes('benefits')
+      ) {
+        return light;
+      } else {
+        return dark;
+      }
+    } else if (pathname === '/capitalism') {
+      if (
+        activeSection?.includes('blackcard')
+      ) {
+        return light;
+      } else {
+        return dark;
+      }
+    } else if (pathname === '/marketing') {
+      if (
+        activeSection?.includes('what') ||
+        activeSection?.includes('webeginwith')
+      ) {
+        return light;
+      } else {
+        return dark;
+      }
     } else if (pathname === '/contact') {
-      return light;
+      if (
+        activeSection?.includes('contact')
+      ) {
+        return dark;
+      } else {
+        return light;
+      }
     } else {
       return dark;
     }
   };
+
+  const calculateContactColor = () => {
+    if (pathname === '/') {
+      if (
+        activeSection?.includes('reviews')
+      ) {
+        return accent;
+      } else {
+        return 'transparent';
+      }
+    } else if (pathname === '/business') {
+      if (
+        activeSection?.includes('benefits')
+      ) {
+        return accent;
+      } else {
+        return 'transparent';
+      }
+    } else if (pathname === '/individuals') {
+      if (
+        activeSection?.includes('benefits')
+      ) {
+        return accent;
+      } else {
+        return 'transparent';
+      }
+    } else if (pathname === '/capitalism') {
+      if (
+        activeSection?.includes('blackcard')
+      ) {
+        return accent;
+      } else {
+        return 'transparent';
+      }
+    } else if (pathname === '/marketing') {
+      if (
+        activeSection?.includes('what') ||
+        activeSection?.includes('webeginwith')
+      ) {
+        return accent;
+      } else {
+        return 'transparent';
+      }
+    } else if (pathname === '/contact') {
+      if (
+        activeSection?.includes('contact')
+      ) {
+        return 'transparent';
+      } else {
+        return accent;
+      }
+    } else {
+      return 'transparent';
+    }
+  }
 
   return (
     <>
@@ -256,6 +389,7 @@ export default function Header({ }: HeaderProps) {
               // [styles.buttonDarkDark]: activeSection?.includes('getstarted'),
               [styles.buttonHidden]: pathname === '/contact',
             })}
+            animate={{ backgroundColor: calculateContactColor() }}
             variants={variantsButton}
             transition={{ duration: 0.2 }}
             onClick={onToContactClick}
