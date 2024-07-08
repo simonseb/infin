@@ -16,7 +16,9 @@
 .topBlock {
   display: flex;
   justify-content: space-between;
-  padding: 30px 30px 0 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+  // padding: 30px 30px 0 30px;
 }
 
 .logo {
@@ -31,13 +33,13 @@
 
 .nav {
   @include p3;
-  padding-left: 32px;
+  // padding-left: 32px;
 
   display: grid;
   grid-template-columns: repeat(5, auto);
   grid-template-rows: repeat(1, auto);
 
-  padding-bottom: 6px;
+  // padding-bottom: 6px;
 
   & :nth-child(1),
   & :nth-child(2),
@@ -81,7 +83,7 @@
 .button {
   @include main-button;
 
-  margin-right: 46px;
+  // margin-right: 46px;
   width: 177px;
   height: 90px;
 
@@ -121,17 +123,17 @@
     max-width: 100%;
   }
   .topBlock {
-    padding: vw(30) vw(30) 0 vw(30);
+    // padding: vw(30) vw(30) 0 vw(30);
   }
   .logo {
     max-width: vw(514);
   }
   .nav {
-    padding-left: vw(32);
-    padding-bottom: vw(6);
+    // padding-left: vw(32);
+    // padding-bottom: vw(6);
   }
   .button {
-    margin-right: vw(46);
+    // margin-right: vw(46);
     width: vw(177);
     height: vw(90);
 
@@ -145,7 +147,7 @@
   }
 
   .topBlock {
-    padding: 16px 16px 0 16px;
+    // padding: 16px 16px 0 16px;
   }
 
   .nav {

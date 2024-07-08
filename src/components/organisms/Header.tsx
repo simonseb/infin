@@ -4,7 +4,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import styles from '../../styles/components/Header.module.scss';
 import clsx from 'clsx';
 
-import { Variants, motion } from 'framer-motion';
+import { Variants, motion, px } from 'framer-motion';
 import { AppContext, IAppContext } from '@/context/app.context';
 import { Button } from '../atoms/Button';
 import { colors } from '@/lib/constants';
@@ -46,7 +46,17 @@ export default function Header({ }: HeaderProps) {
     short: {
       backgroundColor: isMenuOpen ? '#121212' : '#1212120',
       transition: { duration: 0.1 },
+      height: 70,
+      display: 'flex',
+      alignItems: 'center',
+      paddingTop: isTablet ? 20 : 0
     },
+    large: {
+      height: 120,
+      display: 'flex',
+      alignItems: 'flex-end',
+      paddingTop: isTablet ? 20 : 0
+    }
   };
 
   const variantsMobileMenu: Variants = {
@@ -58,10 +68,11 @@ export default function Header({ }: HeaderProps) {
 
   const variantsLogo: Variants = {
     short: {
-      maxWidth: viewport > 1440 ? calcVwToPx(285) : 285,
+      maxWidth: viewport > 1440 ? calcVwToPx(160) : 160,
     },
     large: {
-      maxWidth: viewport > 1440 ? calcVwToPx(514) : 514,
+      // maxWidth: viewport > 1440 ? 514 : 514,
+      maxWidth: 514,
     },
   };
 
@@ -87,7 +98,6 @@ export default function Header({ }: HeaderProps) {
   };
   const variantsNav: Variants = {
     short: {
-      paddingTop: 18
     },
     large: {
     },
