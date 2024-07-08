@@ -5,8 +5,8 @@
 .section {
   position: relative;
   background-color: $light;
-  padding-top: 80px;
-  padding-bottom: 80px;
+  padding-top: 80px !important;
+  padding-bottom: 80px !important;
 }
 
 .topBlock {
@@ -108,8 +108,8 @@
 
 @media screen and (min-width: $largeScreen) {
   .section {
-    padding-top: vw(80);
-    padding-bottom: vw(80);
+    padding-top: vw(80) !important;
+    padding-bottom: vw(80) !important;
   }
 
   .pluses {
@@ -204,8 +204,8 @@
 
 @media screen and (max-width: $maxMobile) {
   .section {
-    padding-top: 20px;
-    padding-bottom: 48px;
+    padding-top: 20px !important;
+    padding-bottom: 48px !important;
   }
   .bigText {
     max-width: 323px;
