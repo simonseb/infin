@@ -206,7 +206,6 @@ export default function Header({ }: HeaderProps) {
             </motion.div>
 
             <motion.div
-              className={styles.link}
               variants={variantsLink(3)}
               transition={{ duration: 0, delay: 0.3 }}
             >
@@ -235,7 +234,6 @@ export default function Header({ }: HeaderProps) {
             </motion.div>
 
             <motion.div
-              className={styles.link}
               variants={variantsLink(5)}
               transition={{ duration: 0, delay: isInView ? 0.1 : 0.5 }}
             >
