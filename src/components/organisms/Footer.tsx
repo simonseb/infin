@@ -5,8 +5,8 @@ import ThinksebIcon from '../../../public/icons/thinkseb.svg';
 import AnimatedText from '../molecules/AnimatedText';
 import Logo from '../atoms/Logo';
 import Link from 'next/link';
-interface FooterProps {}
-export default function Footer({}: FooterProps) {
+interface FooterProps { }
+export default function Footer({ }: FooterProps) {
   return (
     <footer className={styles.footer}>
       <div className={styles.topBlock}>
@@ -52,24 +52,24 @@ export default function Footer({}: FooterProps) {
               target="_blank"
               rel="noopener noreferrer"
             >
-              421-273-0427
+              +1 (719) 789-7979
             </Link>
             <Link
-              href="mailto:info@theinfin.com"
+              href="mailto:info@TheINFIN.com"
               target="_blank"
               rel="noopener noreferrer"
             >
-              info@theinfin.com
+              info@TheINFIN.com
             </Link>
           </li>
 
           <li className={styles.listItem}>
             <h4 className={styles.title}>Social Media</h4>
 
-            <a href="">LinkedIn</a>
-            <a href="">Instagram</a>
-            <a href="">Facebook</a>
-            <a href="">X</a>
+            <a href="https://linkedin.com">LinkedIn</a>
+            <a href="https://www.instagram.com">Instagram</a>
+            <a href="https://www.facebook.com">Facebook</a>
+            <a href="https://twitter.com">X</a>
           </li>
         </ul>
       </div>
