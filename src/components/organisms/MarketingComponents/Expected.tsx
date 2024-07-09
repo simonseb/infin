@@ -8,6 +8,7 @@ import { AppContext, IAppContext } from '@/context/app.context';
 import PlusesSmall from '/public/icons/pluses-small.svg';
 import PlusesIcon from '/public/icons/plus.svg';
 import Cursor from '@/components/atoms/Cursor';
+import HowWorks from '../IndividualsComponents/HowWorks';
 interface IMarketing {
   attributes?: {
     blocks: {
@@ -68,7 +69,12 @@ export default function Expected({ data }: ExpectedProps) {
         <ul className={styles.list}>
           {blocks[3].step.map((item, index) => (
             <li className={styles.listItem} key={index}>
-              <div className={styles.listNumber}>0{item.stepNumber}</div>
+              <div
+                className={styles.firstListNumber}
+                style={{ color: index !== 0 ? 'black' : '#ffcd00' }}
+              >
+                0{item.stepNumber}
+              </div>
               <p className={styles.listText}>{item.content}</p>
             </li>
           ))}

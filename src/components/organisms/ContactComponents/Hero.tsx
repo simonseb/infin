@@ -4,12 +4,9 @@ import React from 'react';
 import styles from '../../../styles/components/organisms/Contact/Hero.module.scss';
 import { Section } from '@/components/atoms/Section';
 
-interface HeroProps { }
+interface HeroProps {}
 
-export default function Hero({ }: HeroProps) {
-
-
-
+export default function Hero({}: HeroProps) {
   return (
     <Section className={styles.hero} type="ghost">
       <p className={styles.smallText}>Contact us</p>
@@ -39,7 +36,7 @@ export default function Hero({ }: HeroProps) {
 
             <div className={styles.addressValues}>
               <p>info@TheINFIN.com</p>
-              <p>+1 (719) 789-797900</p>
+              <p>+1 (719) 789-7979</p>
               <p>100 Fillmore Street, 5th Floor</p>
               <p>Denver</p>
               <p>Colorado</p>

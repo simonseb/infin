@@ -22,7 +22,6 @@ interface BlackCardProps {
   data?: ICapitalism[] | undefined;
 }
 export default function BlackCard({ data }: BlackCardProps) {
-
   const { setActiveSection, removeActiveSection } = useContext(
     AppContext,
   ) as IAppContext;
@@ -34,14 +33,21 @@ export default function BlackCard({ data }: BlackCardProps) {
   const triggerSection = () => {
     if (target.current) {
       const boundRect = (target.current as HTMLElement).getBoundingClientRect();
-      const headerBoundRect = document.getElementsByTagName('header').item(0)?.getBoundingClientRect();
-      if (isInViewRef.current && headerBoundRect && boundRect.y < headerBoundRect.bottom) {
-        setActiveSection('blackcard')
+      const headerBoundRect = document
+        .getElementsByTagName('header')
+        .item(0)
+        ?.getBoundingClientRect();
+      if (
+        isInViewRef.current &&
+        headerBoundRect &&
+        boundRect.y < headerBoundRect.bottom
+      ) {
+        setActiveSection('blackcard');
       } else {
         removeActiveSection('blackcard');
       }
     }
-  }
+  };
 
   useEffect(() => {
     isInViewRef.current = isInView;
@@ -50,15 +56,15 @@ export default function BlackCard({ data }: BlackCardProps) {
 
   const handleScroll = () => {
     triggerSection();
-  }
+  };
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("scrollend", handleScroll);
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scrollend', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('scrollend', handleScroll);
-    }
+    };
   }, []);
 
   if (!data) {
@@ -83,17 +89,10 @@ export default function BlackCard({ data }: BlackCardProps) {
             <PlusIcon className={styles.plusIcon} />
             <PlusIcon className={styles.plusIcon} />
           </div>
-
-          <p className={styles.text}>
-            It’s built specifically to empower each individual to meaningfully
-            participate in both the production process and in the distribution of
-            the fruits of that labor.
-          </p>
         </div>
 
         <p className={styles.text}>{blocks[5].descritpion}</p>
-
-      </Section >
-    </div >
+      </Section>
+    </div>
   );
 }

@@ -10,6 +10,7 @@ import Image from 'next/image';
 import PlusIcon from '../../../../public/icons/plus.svg';
 import PlusesGroup from '../../../../public/icons/plus-group.svg';
 import { motion } from 'framer-motion';
+import { mapRange } from 'gsap';
 interface IMarketing {
   attributes?: {
     blocks: {
@@ -39,12 +40,12 @@ export default function What({ data }: WhatProps) {
   }, [isInView]);
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("scrollend", handleScroll);
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scrollend', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('scrollend', handleScroll);
-    }
+    };
   }, []);
 
   if (!data) {
@@ -62,32 +63,38 @@ export default function What({ data }: WhatProps) {
   const handleScroll = () => {
     if (target.current) {
       const boundRect = (target.current as HTMLElement).getBoundingClientRect();
-      const headerBoundRect = document.getElementsByTagName('header').item(0)?.getBoundingClientRect();
-      if (isInViewRef.current && headerBoundRect && boundRect.y < headerBoundRect.bottom) {
-        setActiveSection('what')
+      const headerBoundRect = document
+        .getElementsByTagName('header')
+        .item(0)
+        ?.getBoundingClientRect();
+      if (
+        isInViewRef.current &&
+        headerBoundRect &&
+        boundRect.y < headerBoundRect.bottom
+      ) {
+        setActiveSection('what');
       } else {
         removeActiveSection('what');
       }
     }
-  }
-
-
+  };
 
   return (
     <div ref={target}>
       <Section type="ghost" className={styles.section}>
         <div className={styles.leftBlock}>
           <p className={styles.smallText}>Designed for real meritocracy</p>
-
-          <Image
+          {/* <Image
             className={styles.image}
             src="/images/Marketing/infin.png"
             alt="Infin logo"
             width={321}
             height={310}
             quality={100}
-          />
-
+          /> */}
+          <h3 className={styles.title} style={{ marginTop: '200px' }}>
+            N^IF
+          </h3>
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -96,7 +103,9 @@ export default function What({ data }: WhatProps) {
             <div className={styles.pluses}>
               <PlusIcon className={clsx(styles.plusIcon, styles.topPlus)} />
               <PlusIcon className={clsx(styles.plusIcon, styles.leftPlus)} />
-              <PlusIcon className={clsx(styles.plusIcon, styles.bottomRightPlus)} />
+              <PlusIcon
+                className={clsx(styles.plusIcon, styles.bottomRightPlus)}
+              />
             </div>
           </motion.div>
         </div>
@@ -120,7 +129,7 @@ export default function What({ data }: WhatProps) {
         >
           <PlusesGroup className={styles.plusesGroup} />
         </motion.div>
-      </Section >
-    </div >
+      </Section>
+    </div>
   );
 }

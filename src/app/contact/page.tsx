@@ -1,6 +1,6 @@
 'use client';
 
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import styles from '../../styles/components/organisms/Contact/ContactPage.module.scss';
 import { AppContext, IAppContext } from '@/context/app.context';
@@ -12,18 +12,24 @@ import Contact from '@/components/organisms/ContactComponents/Contact';
 interface ContactPageProps { }
 
 export default function ContactPage({ }: ContactPageProps) {
+  const [loading, setLoading] = useState(false);
   const { setActiveSection, removeActiveSection, activeSection } = useContext(
     AppContext,
   ) as IAppContext;
 
   useEffect(() => {
     setTimeout(() => {
-      window.scrollTo(0, 0);
-      setTimeout(() => {
-        removeActiveSection("contact");
-      }, 500)
-    }, 100)
+      setLoading(true);
+    }, 200)
   }, []);
+
+  if (loading === false) {
+    return <div className={styles.page}>
+      <main className={styles.main}>
+        <div style={{ height: '100vh' }}></div>
+      </main>
+    </div>
+  }
 
   return (
     <div className={styles.page}>

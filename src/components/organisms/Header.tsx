@@ -19,9 +19,9 @@ import PlusIcon from '../../../public/icons/plus.svg';
 import Link from 'next/link';
 import { calcVwToPx } from '@/lib/helpers';
 
-interface HeaderProps { }
+interface HeaderProps {}
 
-export default function Header({ }: HeaderProps) {
+export default function Header({}: HeaderProps) {
   const { light, dark, accent } = colors;
 
   const router = useRouter();
@@ -49,14 +49,14 @@ export default function Header({ }: HeaderProps) {
       height: 'vw(90)',
       display: 'flex',
       alignItems: 'center',
-      paddingTop: isTablet ? 20 : 10
+      paddingTop: isTablet ? 20 : 10,
     },
     large: {
       height: 'vw(140)',
       display: 'flex',
       alignItems: 'flex-end',
-      paddingTop: isTablet ? 20 : 10
-    }
+      paddingTop: isTablet ? 20 : 10,
+    },
   };
 
   const variantsMobileMenu: Variants = {
@@ -97,10 +97,8 @@ export default function Header({ }: HeaderProps) {
     };
   };
   const variantsNav: Variants = {
-    short: {
-    },
-    large: {
-    },
+    short: {},
+    large: {},
   };
 
   const handleMenuOpen = () => {
@@ -146,25 +144,19 @@ export default function Header({ }: HeaderProps) {
         return accent;
       }
     } else if (pathname === '/business') {
-      if (
-        activeSection?.includes('benefits')
-      ) {
+      if (activeSection?.includes('benefits')) {
         return accent;
       } else {
         return dark;
       }
     } else if (pathname === '/individuals') {
-      if (
-        activeSection?.includes('benefits')
-      ) {
+      if (activeSection?.includes('benefits')) {
         return accent;
       } else {
         return dark;
       }
     } else if (pathname === '/capitalism') {
-      if (
-        activeSection?.includes('blackcard')
-      ) {
+      if (activeSection?.includes('blackcard')) {
         return accent;
       } else {
         return dark;
@@ -179,9 +171,7 @@ export default function Header({ }: HeaderProps) {
         return dark;
       }
     } else if (pathname === '/contact') {
-      if (
-        activeSection?.includes('contact')
-      ) {
+      if (activeSection?.includes('contact')) {
         return dark;
       } else {
         return accent;
@@ -202,25 +192,19 @@ export default function Header({ }: HeaderProps) {
         return dark;
       }
     } else if (pathname === '/business') {
-      if (
-        activeSection?.includes('benefits')
-      ) {
+      if (activeSection?.includes('benefits')) {
         return light;
       } else {
         return dark;
       }
     } else if (pathname === '/individuals') {
-      if (
-        activeSection?.includes('benefits')
-      ) {
+      if (activeSection?.includes('benefits')) {
         return light;
       } else {
         return dark;
       }
     } else if (pathname === '/capitalism') {
-      if (
-        activeSection?.includes('blackcard')
-      ) {
+      if (activeSection?.includes('blackcard')) {
         return light;
       } else {
         return dark;
@@ -235,9 +219,7 @@ export default function Header({ }: HeaderProps) {
         return dark;
       }
     } else if (pathname === '/contact') {
-      if (
-        activeSection?.includes('contact')
-      ) {
+      if (activeSection?.includes('contact')) {
         return dark;
       } else {
         return light;
@@ -249,33 +231,25 @@ export default function Header({ }: HeaderProps) {
 
   const calculateContactColor = () => {
     if (pathname === '/') {
-      if (
-        activeSection?.includes('reviews')
-      ) {
+      if (activeSection?.includes('reviews')) {
         return accent;
       } else {
         return 'transparent';
       }
     } else if (pathname === '/business') {
-      if (
-        activeSection?.includes('benefits')
-      ) {
+      if (activeSection?.includes('benefits')) {
         return accent;
       } else {
         return 'transparent';
       }
     } else if (pathname === '/individuals') {
-      if (
-        activeSection?.includes('benefits')
-      ) {
+      if (activeSection?.includes('benefits')) {
         return accent;
       } else {
         return 'transparent';
       }
     } else if (pathname === '/capitalism') {
-      if (
-        activeSection?.includes('blackcard')
-      ) {
+      if (activeSection?.includes('blackcard')) {
         return accent;
       } else {
         return 'transparent';
@@ -290,9 +264,7 @@ export default function Header({ }: HeaderProps) {
         return 'transparent';
       }
     } else if (pathname === '/contact') {
-      if (
-        activeSection?.includes('contact')
-      ) {
+      if (activeSection?.includes('contact')) {
         return 'transparent';
       } else {
         return accent;
@@ -300,7 +272,7 @@ export default function Header({ }: HeaderProps) {
     } else {
       return 'transparent';
     }
-  }
+  };
 
   return (
     <>
@@ -331,10 +303,13 @@ export default function Header({ }: HeaderProps) {
                 delay: isInView ? 0.5 : 0.1,
               }}
             >
-              <Link href="/" className={styles.link} style={{ color: calculateLinksColor() }}>
+              <Link
+                href="/"
+                className={styles.link}
+                style={{ color: calculateLinksColor() }}
+              >
                 <motion.span
                   animate={{ color: calculateLinksColor() }}
-
                   transition={{ duration: 0.5 }}
                 >
                   Home
@@ -346,12 +321,16 @@ export default function Header({ }: HeaderProps) {
               variants={variantsLink(2)}
               transition={{ duration: 0, delay: isInView ? 0.4 : 0.2 }}
             >
-              <Link href="/business" className={styles.link} style={{ color: calculateLinksColor() }}>
+              <Link
+                href="/business"
+                className={styles.link}
+                style={{ color: calculateLinksColor() }}
+              >
                 <motion.span
                   animate={{ color: calculateLinksColor() }}
                   transition={{ duration: 0.5 }}
                 >
-                  For Businesses
+                  For Business
                 </motion.span>
               </Link>
             </motion.div>
@@ -360,7 +339,11 @@ export default function Header({ }: HeaderProps) {
               variants={variantsLink(3)}
               transition={{ duration: 0, delay: 0.3 }}
             >
-              <Link href="/individuals" className={styles.link} style={{ color: calculateLinksColor() }}>
+              <Link
+                href="/individuals"
+                className={styles.link}
+                style={{ color: calculateLinksColor() }}
+              >
                 <motion.span
                   animate={{ color: calculateLinksColor() }}
                   transition={{ duration: 0.5 }}
@@ -374,7 +357,11 @@ export default function Header({ }: HeaderProps) {
               variants={variantsLink(4)}
               transition={{ duration: 0, delay: isInView ? 0.2 : 0.4 }}
             >
-              <Link href="/capitalism" className={styles.link} style={{ color: calculateLinksColor() }}>
+              <Link
+                href="/capitalism"
+                className={styles.link}
+                style={{ color: calculateLinksColor() }}
+              >
                 <motion.span
                   animate={{ color: calculateLinksColor() }}
                   transition={{ duration: 0.5 }}
@@ -388,7 +375,11 @@ export default function Header({ }: HeaderProps) {
               variants={variantsLink(5)}
               transition={{ duration: 0, delay: isInView ? 0.1 : 0.5 }}
             >
-              <Link href="/marketing" className={styles.link} style={{ color: calculateLinksColor() }}>
+              <Link
+                href="/marketing"
+                className={styles.link}
+                style={{ color: calculateLinksColor() }}
+              >
                 <motion.span
                   animate={{ color: calculateLinksColor() }}
                   transition={{ duration: 0.6 }}
@@ -449,7 +440,7 @@ export default function Header({ }: HeaderProps) {
                     className={styles.mobileLink}
                     onClick={handleCloseMenu}
                   >
-                    For Businesses
+                    For Business
                   </Link>
 
                   <Link

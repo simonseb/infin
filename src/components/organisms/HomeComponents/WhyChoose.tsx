@@ -60,7 +60,7 @@ export default function WhyChoose({ data }: WhyChooseProps) {
       <AnimatedLineText
         className={styles.title}
         el="h3"
-        text={['Why choose', 'the INFIN?']}
+        text={['Why choose', 'The INFIN?']}
         once
       />
 

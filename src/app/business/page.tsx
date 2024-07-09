@@ -46,9 +46,9 @@ interface IBusinessData {
     }[];
   };
 }
-interface BusinessPageProps { }
+interface BusinessPageProps {}
 
-export default function BusinessPage({ }: BusinessPageProps) {
+export default function BusinessPage({}: BusinessPageProps) {
   const [data, setData] = useState<[IBusinessData]>();
 
   const getData = async () => {

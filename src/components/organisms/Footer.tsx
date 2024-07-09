@@ -22,7 +22,7 @@ export default function Footer({}: FooterProps) {
             <h4 className={styles.title}>Pages</h4>
 
             <Link href="/">Home</Link>
-            <Link href="/business">For Businesses</Link>
+            <Link href="/business">For Business</Link>
             <Link href="/individuals">For Individuals</Link>
             <Link href="/blog">Blog</Link>
             <Link href="/marketing">Marketing&nbsp;Efforts</Link>
