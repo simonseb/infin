@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useState } from 'react';
 import Hero from '@/components/organisms/BlogComponents/Hero';
 import styles from '../../styles/components/organisms/Blog/BlogPage.module.scss';
