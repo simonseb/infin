@@ -1,11 +1,14 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
 import styles from '../../styles/components/Footer.module.scss';
-
 import ThinksebIcon from '../../../public/icons/thinkseb.svg';
 import AnimatedText from '../molecules/AnimatedText';
 import Logo from '../atoms/Logo';
 import Link from 'next/link';
+import Gsap from '../Gsap';
 import { getFooter } from '@/lib/strapi/strapi-fetch';
+
 interface IFooterData {
   attributes?: {
     Pages: {
@@ -31,8 +34,9 @@ interface IFooterData {
     }[];
   };
 }
-interface FooterProps {}
-export default function Footer({}: FooterProps) {
+interface FooterProps { }
+
+export default function Footer({ }: FooterProps) {
   const [dataList, setDataList] = useState<IFooterData[]>();
   const getData = async () => {
     try {
@@ -65,6 +69,7 @@ export default function Footer({}: FooterProps) {
     individuals = [],
     social = [],
   } = attributes;
+
   return (
     <footer className={styles.footer}>
       <div className={styles.topBlock}>
@@ -87,12 +92,14 @@ export default function Footer({}: FooterProps) {
 
           <li className={styles.listItem}>
             <h4 className={styles.title}>Business page</h4>
-            {business.map((item, index) => (
-              <a href={item.url} key={index}>
-                {item.title}
-              </a>
-            ))}
-          </li>
+            {
+              business.map((item, index) => (
+                <a href={item.url} key={index} onClick={() => Gsap.prototype.scrollToSection(item)}>
+                  {item.title}
+                </a>
+              ))
+            }
+          </li >
 
           <li className={styles.listItem}>
             <h4 className={styles.title}>For Individuals</h4>
@@ -122,8 +129,8 @@ export default function Footer({}: FooterProps) {
               </a>
             ))}
           </li>
-        </ul>
-      </div>
+        </ul >
+      </div >
 
       <Link
         href="https://www.linkedin.com/company/thinkseb"
@@ -139,6 +146,6 @@ export default function Footer({}: FooterProps) {
       </Link>
 
       <Logo className={styles.logo} />
-    </footer>
+    </footer >
   );
 }
