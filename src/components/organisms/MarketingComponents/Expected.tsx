@@ -41,15 +41,7 @@ export default function Expected({ data }: ExpectedProps) {
     setCursorVisibility('none');
   };
 
-  if (!data) {
-    return null;
-  }
 
-  const { attributes } = data[0];
-
-  if (!attributes) {
-    return null;
-  }
 
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
@@ -111,6 +103,15 @@ export default function Expected({ data }: ExpectedProps) {
     );
   }, []);
 
+  if (!data) {
+    return null;
+  }
+
+  const { attributes } = data[0];
+
+  if (!attributes) {
+    return null;
+  }
   const { blocks = [] } = attributes;
   return (
     <Section
