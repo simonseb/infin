@@ -16,7 +16,7 @@ export default function Directing({}: DirectingProps) {
   const router = useRouter();
 
   return (
-    <Section type="filled" className={styles.directing}>
+    <Section type="filled" className={styles.directing} id="data">
       <div className={styles.imageContainer}>
         <Image
           className={styles.image}

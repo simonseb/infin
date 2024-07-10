@@ -85,6 +85,7 @@ export default function BusinessPage({}: BusinessPageProps) {
             imageSrc="/images/Business/hero-mobile.png"
             imageMobileSrc="/images/Business/hero-mobile.png"
             imageAlt="girl is doing presentation"
+            id="howToWork"
           />
           <Benefits data={data} />
         </div>

@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import styles from '../../styles/components/Footer.module.scss';
 
@@ -5,8 +7,11 @@ import ThinksebIcon from '../../../public/icons/thinkseb.svg';
 import AnimatedText from '../molecules/AnimatedText';
 import Logo from '../atoms/Logo';
 import Link from 'next/link';
-interface FooterProps { }
-export default function Footer({ }: FooterProps) {
+
+import Gsap from '../Gsap';
+
+interface FooterProps {}
+export default function Footer({}: FooterProps) {
   return (
     <footer className={styles.footer}>
       <div className={styles.topBlock}>
@@ -31,9 +36,13 @@ export default function Footer({ }: FooterProps) {
           <li className={styles.listItem}>
             <h4 className={styles.title}>Business page</h4>
 
-            <a href="">Benefits</a>
-            <a href="">Performance</a>
-            <a href="">Data</a>
+            <a onClick={() => Gsap.prototype.scrollToSection('#howToWork')}>
+              How to work
+            </a>
+            <a onClick={() => Gsap.prototype.scrollToSection('#benefits')}>
+              Benefits
+            </a>
+            <a onClick={() => Gsap.prototype.scrollToSection('#data')}>Data</a>
           </li>
 
           <li className={styles.listItem}>

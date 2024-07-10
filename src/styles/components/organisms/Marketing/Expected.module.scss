@@ -82,12 +82,14 @@
   z-index: 2;
 }
 
-.firstListNumber {
-  border-bottom: 1px solid $darkOpacity;
-  font-size: 6.1111111111vw;
-  font-weight: 100;
+.listItemNumber {
+  font-size: 6.11111111111vw;
+  font-weight: 500;
   line-height: 100%;
-  z-index: 2;
+  letter-spacing: -0.88px;
+  text-transform: uppercase;
+
+  padding-bottom: 10px;
 }
 
 .listText {
