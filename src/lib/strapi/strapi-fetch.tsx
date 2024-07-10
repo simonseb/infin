@@ -92,6 +92,18 @@ export async function getMarketing() {
   });
   return resp;
 }
+export async function getHeader() {
+  const resp = await strapi.find('headers', {
+    populate: '*',
+  });
+  return resp;
+}
+export async function getFooter() {
+  const resp = await strapi.find('footers', {
+    populate: '*',
+  });
+  return resp;
+}
 // get page by slug
 export async function getPage(slug: string) {
   const resp = await strapi.findOne('pages', slug, {

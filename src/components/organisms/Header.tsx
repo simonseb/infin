@@ -18,10 +18,19 @@ import ButtonMenu from '../atoms/ButtonMenu';
 import PlusIcon from '../../../public/icons/plus.svg';
 import Link from 'next/link';
 import { calcVwToPx } from '@/lib/helpers';
-
+import { getHeader } from '@/lib/strapi/strapi-fetch';
+interface IHeaderData {
+  attributes?: {
+    data: {
+      url: string;
+      title: string;
+    }[];
+  };
+}
 interface HeaderProps {}
-
 export default function Header({}: HeaderProps) {
+  const [dataList, setDataList] = useState<IHeaderData[]>();
+
   const { light, dark, accent } = colors;
 
   const router = useRouter();
@@ -274,6 +283,31 @@ export default function Header({}: HeaderProps) {
     }
   };
 
+  const getData = async () => {
+    try {
+      const res = await getHeader();
+      if (res) {
+        setDataList(res.data as IHeaderData[]);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  if (!dataList) {
+    return null;
+  }
+  const { attributes } = dataList[0];
+
+  if (!attributes) {
+    return null;
+  }
+
+  const { data = [] } = attributes;
   return (
     <>
       <div ref={targetRef} />
@@ -304,7 +338,7 @@ export default function Header({}: HeaderProps) {
               }}
             >
               <Link
-                href="/"
+                href={data[0].url}
                 className={styles.link}
                 style={{ color: calculateLinksColor() }}
               >
@@ -312,7 +346,7 @@ export default function Header({}: HeaderProps) {
                   animate={{ color: calculateLinksColor() }}
                   transition={{ duration: 0.5 }}
                 >
-                  Home
+                  {data[0].title}
                 </motion.span>
               </Link>
             </motion.div>
@@ -322,7 +356,7 @@ export default function Header({}: HeaderProps) {
               transition={{ duration: 0, delay: isInView ? 0.4 : 0.2 }}
             >
               <Link
-                href="/business"
+                href={data[1].url}
                 className={styles.link}
                 style={{ color: calculateLinksColor() }}
               >
@@ -330,7 +364,7 @@ export default function Header({}: HeaderProps) {
                   animate={{ color: calculateLinksColor() }}
                   transition={{ duration: 0.5 }}
                 >
-                  For Business
+                  {data[1].title}
                 </motion.span>
               </Link>
             </motion.div>
@@ -340,7 +374,7 @@ export default function Header({}: HeaderProps) {
               transition={{ duration: 0, delay: 0.3 }}
             >
               <Link
-                href="/individuals"
+                href={data[2].url}
                 className={styles.link}
                 style={{ color: calculateLinksColor() }}
               >
@@ -348,7 +382,7 @@ export default function Header({}: HeaderProps) {
                   animate={{ color: calculateLinksColor() }}
                   transition={{ duration: 0.5 }}
                 >
-                  For Individuals
+                  {data[2].title}
                 </motion.span>
               </Link>
             </motion.div>
@@ -358,7 +392,7 @@ export default function Header({}: HeaderProps) {
               transition={{ duration: 0, delay: isInView ? 0.2 : 0.4 }}
             >
               <Link
-                href="/capitalism"
+                href={data[3].url}
                 className={styles.link}
                 style={{ color: calculateLinksColor() }}
               >
@@ -366,7 +400,7 @@ export default function Header({}: HeaderProps) {
                   animate={{ color: calculateLinksColor() }}
                   transition={{ duration: 0.5 }}
                 >
-                  Capitalism 2.0
+                  {data[3].title}
                 </motion.span>
               </Link>
             </motion.div>
@@ -376,7 +410,7 @@ export default function Header({}: HeaderProps) {
               transition={{ duration: 0, delay: isInView ? 0.1 : 0.5 }}
             >
               <Link
-                href="/marketing"
+                href={data[4].url}
                 className={styles.link}
                 style={{ color: calculateLinksColor() }}
               >
@@ -384,7 +418,7 @@ export default function Header({}: HeaderProps) {
                   animate={{ color: calculateLinksColor() }}
                   transition={{ duration: 0.6 }}
                 >
-                  Marketing Efforts
+                  {data[4].title}
                 </motion.span>
               </Link>
             </motion.div>
