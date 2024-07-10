@@ -29,15 +29,6 @@ export default function HowWorks({ data }: HowWorksProps) {
 
   const [screenWidth, setScreenWidth] = useState(innerWidth);
 
-  if (!data) {
-    return null;
-  }
-
-  const { attributes } = data[0];
-
-  if (!attributes) {
-    return null;
-  }
 
   useEffect(() => {
     window.addEventListener('resize', () => setScreenWidth(innerWidth));
@@ -96,6 +87,16 @@ export default function HowWorks({ data }: HowWorksProps) {
 
     return () => ctx.revert();
   });
+
+  if (!data) {
+    return null;
+  }
+
+  const { attributes } = data[0];
+
+  if (!attributes) {
+    return null;
+  }
 
   const { blocks = [] } = attributes;
   return (
