@@ -5,6 +5,9 @@ import PlusIcon from '/public/icons/plus.svg';
 import { Section } from '@/components/atoms/Section';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
+import { ScrollToPlugin } from 'gsap/all';
+
+gsap.registerPlugin(ScrollToPlugin)
 gsap.registerPlugin(ScrollTrigger);
 
 interface IDividualData {
