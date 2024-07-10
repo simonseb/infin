@@ -43,7 +43,7 @@ export default function Expected({ data }: ExpectedProps) {
 
 
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     let ctx = gsap.context(() => {
       let panels = gsap.utils.toArray('.panel');
       let underlines = gsap.utils.toArray('.underline');
