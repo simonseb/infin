@@ -64,7 +64,7 @@ export default function Individuals({ className, data }: IndividualsProps) {
           className={styles.cardTitle}
           showTitle={false}
           showNumber={true}
-          cardNumber="02"
+          cardNumber=""
           cardTitle="INDIVIDUALS"
         />
 

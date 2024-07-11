@@ -69,7 +69,7 @@ export default function Business({ className, data }: BusinessProps) {
           className={styles.cardTitle}
           showNumber={true}
           showTitle={false}
-          cardNumber="01"
+          cardNumber=""
         />
 
         {/* <AnimatedLineText

@@ -38,14 +38,21 @@ export default function Benefits({ data }: BenefitsProps) {
   const triggerSection = () => {
     if (target.current) {
       const boundRect = (target.current as HTMLElement).getBoundingClientRect();
-      const headerBoundRect = document.getElementsByTagName('header').item(0)?.getBoundingClientRect();
-      if (isInViewRef.current && headerBoundRect && boundRect.y < headerBoundRect.bottom) {
-        setActiveSection('benefits')
+      const headerBoundRect = document
+        .getElementsByTagName('header')
+        .item(0)
+        ?.getBoundingClientRect();
+      if (
+        isInViewRef.current &&
+        headerBoundRect &&
+        boundRect.y < headerBoundRect.bottom
+      ) {
+        setActiveSection('benefits');
       } else {
         removeActiveSection('benefits');
       }
     }
-  }
+  };
 
   useEffect(() => {
     isInViewRef.current = isInView;
@@ -54,15 +61,15 @@ export default function Benefits({ data }: BenefitsProps) {
 
   const handleScroll = () => {
     triggerSection();
-  }
+  };
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("scrollend", handleScroll);
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scrollend', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('scrollend', handleScroll);
-    }
+    };
   }, []);
 
   if (!data) {
@@ -84,7 +91,7 @@ export default function Benefits({ data }: BenefitsProps) {
             className={styles.cardTitle}
             showNumber={isMobile}
             showTitle={false}
-            cardNumber="03"
+            cardNumber=""
           />
 
           <h3 className={styles.title}>
@@ -102,14 +109,12 @@ export default function Benefits({ data }: BenefitsProps) {
             </li>
           ))}
         </ul>
-        {
-          isTablet ? (
-            <PlusesIconMobile className={styles.plusesIconMobile} />
-          ) : (
-            <PlusesIcon className={styles.plusesIcon} />
-          )
-        }
-      </Section >
+        {isTablet ? (
+          <PlusesIconMobile className={styles.plusesIconMobile} />
+        ) : (
+          <PlusesIcon className={styles.plusesIcon} />
+        )}
+      </Section>
     </div>
   );
 }

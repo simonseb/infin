@@ -121,7 +121,7 @@ export default function Reviews({ className, data }: ReviewsProps) {
           className={styles.cardTitle}
           showTitle={false}
           showNumber={true}
-          cardNumber="03"
+          cardNumber=""
           cardTitle="Reviews"
         />
 
