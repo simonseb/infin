@@ -92,7 +92,8 @@
 
 @media screen and (min-width: $largeScreen) {
   .hero {
-    padding-top: vw(190);
+    // padding-top: vw(190);
+    padding-top: sizeVW(75);
     padding-bottom: vw(160);
   }
 
