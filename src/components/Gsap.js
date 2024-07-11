@@ -1,5 +1,5 @@
 // connecting GSAP libraries
-import 'gsap';
+import { gsap } from 'gsap';
 import '../vendor/gsap/gsap.min.js';
 import '../vendor/gsap/ScrollTrigger/ScrollTrigger.min.js';
 import '../vendor/gsap/ScrollSmoother/ScrollSmoother.min.js';
