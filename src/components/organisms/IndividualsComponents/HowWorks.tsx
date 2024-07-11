@@ -45,7 +45,7 @@ export default function HowWorks({ data }: HowWorksProps) {
         ease: 'none',
         scrollTrigger: {
           trigger: steps.current,
-          pin: '.container',
+          pin: screenWidth <= 1080 ? true : '.container',
           scrub: 1,
           invalidateOnRefresh: true,
           anticipatePin: 1,
@@ -60,11 +60,11 @@ export default function HowWorks({ data }: HowWorksProps) {
                   ((steps.current?.clientWidth as number) - 80)) *
                 100;
               let num = 0;
-              if (left < 20) {
+              if (left < 30) {
                 num = 0;
-              } else if (left < 60 && left >= 20) {
+              } else if (left < 65) {
                 num = 1;
-              } else if (left >= 60) {
+              } else if (left < 100) {
                 num = 2;
               }
 
