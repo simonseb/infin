@@ -3,10 +3,6 @@ import 'gsap';
 import '../vendor/gsap/gsap.min.js';
 import '../vendor/gsap/ScrollTrigger/ScrollTrigger.min.js';
 import '../vendor/gsap/ScrollSmoother/ScrollSmoother.min.js';
-import { ScrollToPlugin } from 'gsap/all';
-import { gsap } from 'gsap';
-
-gsap.registerPlugin(ScrollToPlugin);
 
 export default class Gsap {
   constructor() {
