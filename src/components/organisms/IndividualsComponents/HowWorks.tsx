@@ -4,11 +4,6 @@ import styles from '../../../styles/components/organisms/Individuals/HowWorks.mo
 import PlusIcon from '/public/icons/plus.svg';
 import { Section } from '@/components/atoms/Section';
 import gsap from 'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger';
-import { ScrollToPlugin } from 'gsap/all';
-
-gsap.registerPlugin(ScrollToPlugin)
-gsap.registerPlugin(ScrollTrigger);
 
 interface IDividualData {
   attributes?: {
@@ -32,7 +27,6 @@ export default function HowWorks({ data }: HowWorksProps) {
 
   const [screenWidth, setScreenWidth] = useState(innerWidth);
 
-
   useEffect(() => {
     window.addEventListener('resize', () => setScreenWidth(innerWidth));
 
@@ -41,7 +35,7 @@ export default function HowWorks({ data }: HowWorksProps) {
     );
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     let ctx = gsap.context(() => {
       let panels = gsap.utils.toArray('.panel');
       let underlines = gsap.utils.toArray('.underline');
