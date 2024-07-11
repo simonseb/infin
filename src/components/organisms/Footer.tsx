@@ -34,9 +34,9 @@ interface IFooterData {
     }[];
   };
 }
-interface FooterProps { }
+interface FooterProps {}
 
-export default function Footer({ }: FooterProps) {
+export default function Footer({}: FooterProps) {
   const [dataList, setDataList] = useState<IFooterData[]>();
   const getData = async () => {
     try {
@@ -92,14 +92,15 @@ export default function Footer({ }: FooterProps) {
 
           <li className={styles.listItem}>
             <h4 className={styles.title}>Business page</h4>
-            {
-              business.map((item, index) => (
-                <a href={item.url} key={index} onClick={() => Gsap.prototype.scrollToSection(item)}>
-                  {item.title}
-                </a>
-              ))
-            }
-          </li >
+            {business.map((item, index) => (
+              <a
+                key={index}
+                onClick={() => Gsap.prototype.scrollToSection(item.url)}
+              >
+                {item.title}
+              </a>
+            ))}
+          </li>
 
           <li className={styles.listItem}>
             <h4 className={styles.title}>For Individuals</h4>
@@ -129,8 +130,8 @@ export default function Footer({ }: FooterProps) {
               </a>
             ))}
           </li>
-        </ul >
-      </div >
+        </ul>
+      </div>
 
       <Link
         href="https://www.linkedin.com/company/thinkseb"
@@ -146,6 +147,6 @@ export default function Footer({ }: FooterProps) {
       </Link>
 
       <Logo className={styles.logo} />
-    </footer >
+    </footer>
   );
 }
