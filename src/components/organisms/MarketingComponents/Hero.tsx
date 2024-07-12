@@ -5,10 +5,8 @@ import styles from '../../../styles/components/organisms/Marketing/Hero.module.s
 
 import { Section } from '@/components/atoms/Section';
 import { Button } from '@/components/atoms/Button';
-import { AppContext, IAppContext } from '@/context/app.context';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import Cursor from '@/components/atoms/Cursor';
 interface IMarketing {
   attributes?: {
     blocks: {

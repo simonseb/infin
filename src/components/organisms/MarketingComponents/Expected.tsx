@@ -51,7 +51,7 @@ export default function Expected({ data }: ExpectedProps) {
         ease: 'none',
         scrollTrigger: {
           trigger: steps.current,
-          pin: '.container',
+          pin: screenWidth <= 1080 ? true : '.container',
           scrub: 1,
           start: 'bottom bottom',
           end: () => '+=' + steps.current?.offsetWidth,
