@@ -65,6 +65,7 @@ export default function Hero({ data }: HeroProps) {
         type="ghost"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        style={{ display: 'flex', width: '100%', height: '100vh' }}
       >
         <div id="home_wrapper" className={styles.wrapper}>
           {/* <Cursor cursorDisplay={cursorVisibility} /> */}
@@ -85,7 +86,7 @@ export default function Hero({ data }: HeroProps) {
             </motion.div>
           </div>
 
-          <div className={styles.bottomBlock}>
+          <div className={styles.bottomBlock} style={{ marginTop: '150px' }}>
             <AnimatedText
               el="p"
               className={styles.description}

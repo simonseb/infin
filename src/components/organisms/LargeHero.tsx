@@ -45,7 +45,17 @@ export default function LargeHero({
   const router = useRouter();
 
   return (
-    <Section className={clsx(styles.hero, className)} type="ghost" {...props}>
+    <Section
+      className={clsx(styles.hero, className)}
+      type="ghost"
+      {...props}
+      style={{
+        display: 'flex',
+        width: '100%',
+        height: imageText ? '200vh' : '100vh',
+        flexDirection: 'column',
+      }}
+    >
       <div className={styles.topBlock}>
         <div className={styles.leftBlock}>
           <PlusIcon className={styles.plusIcon} />
@@ -89,7 +99,7 @@ export default function LargeHero({
             className={styles.button}
             appearance="primary"
             onClick={() => router.push('/contact')}
-            style={imageText ? {} : { marginTop: 0 }}
+            style={imageText ? { marginTop: '74px' } : { marginTop: 0 }}
           >
             Schedule a demo
           </Button>

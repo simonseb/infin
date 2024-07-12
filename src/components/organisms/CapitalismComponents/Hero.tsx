@@ -28,11 +28,22 @@ export default function Hero({ data }: HeroProps) {
 
   const { blocks = [] } = attributes;
   return (
-    <Section type="ghost" className={styles.section}>
-      <div className={styles.tag}>Capitalism 2.0</div>
+    <Section
+      type="ghost"
+      className={styles.section}
+      style={{
+        display: 'flex',
+        width: '100%',
+        height: '100vh',
+        flexDirection: 'column',
+      }}
+    >
+      <div>
+        <div className={styles.tag}>Capitalism 2.0</div>
+      </div>
       <h2 className={styles.title}>{blocks[0].title}</h2>
 
-      <div className={styles.bottomBlock}>
+      <div className={styles.bottomBlock} style={{ marginTop: '237px' }}>
         <p className={styles.bottomText}> {blocks[0].quesion}</p>
         <Button className={styles.button} appearance="primary">
           Schedule a demo
