@@ -52,7 +52,7 @@ export default function LargeHero({
       style={{
         display: 'flex',
         width: '100%',
-        height: imageText ? '200vh' : '100vh',
+        height: imageText ? '100vh' : '200vh',
         flexDirection: 'column',
       }}
     >
