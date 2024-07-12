@@ -89,6 +89,7 @@ export default function LargeHero({
             className={styles.button}
             appearance="primary"
             onClick={() => router.push('/contact')}
+            style={{ marginTop: 0 }}
           >
             Schedule a demo
           </Button>

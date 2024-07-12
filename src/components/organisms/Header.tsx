@@ -4,7 +4,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import styles from '../../styles/components/Header.module.scss';
 import clsx from 'clsx';
 
-import { Variants, motion } from 'framer-motion';
+import { Variants, motion, px } from 'framer-motion';
 import { AppContext, IAppContext } from '@/context/app.context';
 import { Button } from '../atoms/Button';
 import { colors } from '@/lib/constants';
@@ -18,10 +18,19 @@ import ButtonMenu from '../atoms/ButtonMenu';
 import PlusIcon from '../../../public/icons/plus.svg';
 import Link from 'next/link';
 import { calcVwToPx } from '@/lib/helpers';
-
+import { getHeader } from '@/lib/strapi/strapi-fetch';
+interface IHeaderData {
+  attributes?: {
+    data: {
+      url: string;
+      title: string;
+    }[];
+  };
+}
 interface HeaderProps {}
-
 export default function Header({}: HeaderProps) {
+  const [dataList, setDataList] = useState<IHeaderData[]>();
+
   const { light, dark, accent } = colors;
 
   const router = useRouter();
@@ -68,10 +77,11 @@ export default function Header({}: HeaderProps) {
 
   const variantsLogo: Variants = {
     short: {
-      maxWidth: viewport > 1440 ? calcVwToPx(285) : 285,
+      maxWidth: viewport > 1440 ? calcVwToPx(160) : 160,
     },
     large: {
-      maxWidth: viewport > 1440 ? calcVwToPx(514) : 514,
+      // maxWidth: viewport > 1440 ? 514 : 514,
+      maxWidth: 514,
     },
   };
 
@@ -94,6 +104,10 @@ export default function Header({}: HeaderProps) {
       },
       large: { gridColumn: 5 },
     };
+  };
+  const variantsNav: Variants = {
+    short: {},
+    large: {},
   };
 
   const handleMenuOpen = () => {
@@ -224,6 +238,76 @@ export default function Header({}: HeaderProps) {
     }
   };
 
+  const calculateContactColor = () => {
+    if (pathname === '/') {
+      if (activeSection?.includes('reviews')) {
+        return accent;
+      } else {
+        return 'transparent';
+      }
+    } else if (pathname === '/business') {
+      if (activeSection?.includes('benefits')) {
+        return accent;
+      } else {
+        return 'transparent';
+      }
+    } else if (pathname === '/individuals') {
+      if (activeSection?.includes('benefits')) {
+        return accent;
+      } else {
+        return 'transparent';
+      }
+    } else if (pathname === '/capitalism') {
+      if (activeSection?.includes('blackcard')) {
+        return accent;
+      } else {
+        return 'transparent';
+      }
+    } else if (pathname === '/marketing') {
+      if (
+        activeSection?.includes('what') ||
+        activeSection?.includes('webeginwith')
+      ) {
+        return accent;
+      } else {
+        return 'transparent';
+      }
+    } else if (pathname === '/contact') {
+      if (activeSection?.includes('contact')) {
+        return 'transparent';
+      } else {
+        return accent;
+      }
+    } else {
+      return 'transparent';
+    }
+  };
+
+  const getData = async () => {
+    try {
+      const res = await getHeader();
+      if (res) {
+        setDataList(res.data as IHeaderData[]);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  if (!dataList) {
+    return null;
+  }
+  const { attributes } = dataList[0];
+
+  if (!attributes) {
+    return null;
+  }
+
+  const { data = [] } = attributes;
   return (
     <>
       <div ref={targetRef} />
@@ -245,7 +329,7 @@ export default function Header({}: HeaderProps) {
             />
           </motion.div>
 
-          <nav className={styles.nav}>
+          <motion.nav className={styles.nav} variants={variantsNav}>
             <motion.div
               variants={variantsLink(1)}
               transition={{
@@ -253,12 +337,16 @@ export default function Header({}: HeaderProps) {
                 delay: isInView ? 0.5 : 0.1,
               }}
             >
-              <Link href="/" className={styles.link}>
+              <Link
+                href={data[0].url}
+                className={styles.link}
+                style={{ color: calculateLinksColor() }}
+              >
                 <motion.span
                   animate={{ color: calculateLinksColor() }}
                   transition={{ duration: 0.5 }}
                 >
-                  Home
+                  {data[0].title}
                 </motion.span>
               </Link>
             </motion.div>
@@ -267,27 +355,34 @@ export default function Header({}: HeaderProps) {
               variants={variantsLink(2)}
               transition={{ duration: 0, delay: isInView ? 0.4 : 0.2 }}
             >
-              <Link href="/business" className={styles.link}>
+              <Link
+                href={data[1].url}
+                className={styles.link}
+                style={{ color: calculateLinksColor() }}
+              >
                 <motion.span
                   animate={{ color: calculateLinksColor() }}
                   transition={{ duration: 0.5 }}
                 >
-                  For Businesses
+                  {data[1].title}
                 </motion.span>
               </Link>
             </motion.div>
 
             <motion.div
-              className={styles.link}
               variants={variantsLink(3)}
               transition={{ duration: 0, delay: 0.3 }}
             >
-              <Link href="/individuals" className={styles.link}>
+              <Link
+                href={data[2].url}
+                className={styles.link}
+                style={{ color: calculateLinksColor() }}
+              >
                 <motion.span
                   animate={{ color: calculateLinksColor() }}
                   transition={{ duration: 0.5 }}
                 >
-                  For Individuals
+                  {data[2].title}
                 </motion.span>
               </Link>
             </motion.div>
@@ -296,31 +391,38 @@ export default function Header({}: HeaderProps) {
               variants={variantsLink(4)}
               transition={{ duration: 0, delay: isInView ? 0.2 : 0.4 }}
             >
-              <Link href="/capitalism" className={styles.link}>
+              <Link
+                href={data[3].url}
+                className={styles.link}
+                style={{ color: calculateLinksColor() }}
+              >
                 <motion.span
                   animate={{ color: calculateLinksColor() }}
                   transition={{ duration: 0.5 }}
                 >
-                  Capitalism 2.0
+                  {data[3].title}
                 </motion.span>
               </Link>
             </motion.div>
 
             <motion.div
-              className={styles.link}
               variants={variantsLink(5)}
               transition={{ duration: 0, delay: isInView ? 0.1 : 0.5 }}
             >
-              <Link href="/marketing" className={styles.link}>
+              <Link
+                href={data[4].url}
+                className={styles.link}
+                style={{ color: calculateLinksColor() }}
+              >
                 <motion.span
                   animate={{ color: calculateLinksColor() }}
                   transition={{ duration: 0.6 }}
                 >
-                  Marketing Efforts
+                  {data[4].title}
                 </motion.span>
               </Link>
             </motion.div>
-          </nav>
+          </motion.nav>
 
           <motion.button
             className={clsx(styles.button, {
@@ -330,6 +432,7 @@ export default function Header({}: HeaderProps) {
               // [styles.buttonDarkDark]: activeSection?.includes('getstarted'),
               [styles.buttonHidden]: pathname === '/contact',
             })}
+            animate={{ backgroundColor: calculateContactColor() }}
             variants={variantsButton}
             transition={{ duration: 0.2 }}
             onClick={onToContactClick}
@@ -371,7 +474,7 @@ export default function Header({}: HeaderProps) {
                     className={styles.mobileLink}
                     onClick={handleCloseMenu}
                   >
-                    For Businesses
+                    For Business
                   </Link>
 
                   <Link
