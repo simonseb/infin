@@ -32,8 +32,9 @@ interface IHomeData {
 
 interface BusinessProps extends CardProps {
   data?: IHomeData[] | undefined;
+  style?: {};
 }
-export default function Business({ className, data }: BusinessProps) {
+export default function Business({ className, data, style }: BusinessProps) {
   const router = useRouter();
   const { setActiveSection, removeActiveSection } = useContext(
     AppContext,
@@ -63,6 +64,7 @@ export default function Business({ className, data }: BusinessProps) {
       className={clsx(styles.section, className)}
       type="filled"
       id="business"
+      style={{ ...style }}
     >
       <div className={styles.box} ref={target}>
         <CardTitle

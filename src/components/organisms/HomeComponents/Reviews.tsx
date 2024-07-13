@@ -79,9 +79,10 @@ interface IHomeData {
 
 interface ReviewsProps extends CardProps {
   data?: IHomeData[] | undefined;
+  style?: {};
 }
 
-export default function Reviews({ className, data }: ReviewsProps) {
+export default function Reviews({ className, data, style }: ReviewsProps) {
   const targetMiddle = useRef(null);
   const targetBottom = useRef(null);
 
@@ -115,6 +116,7 @@ export default function Reviews({ className, data }: ReviewsProps) {
       className={clsx(styles.section, className)}
       type="filled"
       id="reviews"
+      style={{ ...style }}
     >
       <div className={styles.firstBlock}>
         <CardTitle

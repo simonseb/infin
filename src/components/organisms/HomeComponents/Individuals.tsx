@@ -29,9 +29,14 @@ interface IHomeData {
 
 interface IndividualsProps extends CardProps {
   data?: IHomeData[] | undefined;
+  style?: {};
 }
 
-export default function Individuals({ className, data }: IndividualsProps) {
+export default function Individuals({
+  className,
+  data,
+  style,
+}: IndividualsProps) {
   const router = useRouter();
 
   if (!data) {
@@ -50,6 +55,7 @@ export default function Individuals({ className, data }: IndividualsProps) {
       className={clsx(styles.section, className)}
       type="filled"
       id="individuals"
+      style={{ ...style }}
     >
       <ImageWithButton
         className={styles.imageWithButton}

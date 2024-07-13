@@ -10,16 +10,18 @@ import clsx from 'clsx';
 
 interface BottomComponentProps {
   className?: string;
+  style?: {};
 }
 
 export default function BottomComponent({
   className,
+  style,
   ...props
 }: BottomComponentProps) {
   const pathname = usePathname();
 
   return (
-    <div className={clsx(styles.wrapper, className)} {...props}>
+    <div className={clsx(styles.wrapper, className)} {...props} style={style}>
       {pathname !== '/contact' && <GetStarted />}
       <Footer />
     </div>
