@@ -65,8 +65,13 @@ export default function Hero({ data }: HeroProps) {
         type="ghost"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        style={{ display: 'flex', width: '100%', height: '100vh' }}
       >
-        <div id="home_wrapper" className={styles.wrapper}>
+        <div
+          id="home_wrapper"
+          className={styles.wrapper}
+          style={{ width: '100%' }}
+        >
           {/* <Cursor cursorDisplay={cursorVisibility} /> */}
           <div className={styles.topBlock}>
             <p className={styles.smallText}>
@@ -85,7 +90,7 @@ export default function Hero({ data }: HeroProps) {
             </motion.div>
           </div>
 
-          <div className={styles.bottomBlock}>
+          <div className={styles.bottomBlock} style={{ marginTop: '150px' }}>
             <AnimatedText
               el="p"
               className={styles.description}
@@ -109,6 +114,7 @@ export default function Hero({ data }: HeroProps) {
               onClick={() =>
                 router.push(`${blocks[0].button[0].href}`, { scroll: false })
               }
+              style={{ marginRight: '0' }}
             >
               {blocks[0].button[0].label}
             </Button>

@@ -7,9 +7,6 @@ import { Section } from '@/components/atoms/Section';
 import PlusesIcon from '/public/icons/plus.svg';
 import Cursor from '@/components/atoms/Cursor';
 import gsap from 'gsap';
-import { ScrollToPlugin } from 'gsap/all';
-
-gsap.registerPlugin(ScrollToPlugin)
 
 interface IMarketing {
   attributes?: {
@@ -44,9 +41,7 @@ export default function Expected({ data }: ExpectedProps) {
     setCursorVisibility('none');
   };
 
-
-
-  useEffect(() => {
+  useLayoutEffect(() => {
     let ctx = gsap.context(() => {
       let panels = gsap.utils.toArray('.panel');
       let underlines = gsap.utils.toArray('.underline');
@@ -56,7 +51,7 @@ export default function Expected({ data }: ExpectedProps) {
         ease: 'none',
         scrollTrigger: {
           trigger: steps.current,
-          pin: '.container',
+          pin: screenWidth <= 1080 ? true : '.container',
           scrub: 1,
           start: 'bottom bottom',
           end: () => '+=' + steps.current?.offsetWidth,

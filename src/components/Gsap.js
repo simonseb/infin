@@ -1,12 +1,12 @@
 // connecting GSAP libraries
-import 'gsap';
+import { gsap } from 'gsap';
 import '../vendor/gsap/gsap.min.js';
 import '../vendor/gsap/ScrollTrigger/ScrollTrigger.min.js';
 import '../vendor/gsap/ScrollSmoother/ScrollSmoother.min.js';
-import { ScrollToPlugin } from 'gsap/all';
-import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import { ScrollToPlugin } from 'gsap/dist/ScrollToPlugin';
 
-gsap.registerPlugin(ScrollToPlugin);
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin); // (or in the top-level file in your React app)
 
 export default class Gsap {
   constructor() {
@@ -27,11 +27,15 @@ export default class Gsap {
 
   // scroll to the specific section of the page
   scrollToSection(id) {
-    gsap.to(window, 0.25, {
-      scrollTo: {
-        y: id,
-        autoKill: false,
-      },
-    });
+    const element = document.getElementById(id);
+
+    if (element) {
+      gsap.to(window, 0.25, {
+        scrollTo: {
+          y: '#' + id,
+          autoKill: false,
+        },
+      });
+    }
   }
 }

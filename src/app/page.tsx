@@ -1,7 +1,13 @@
 'use client';
 
 import styles from '../styles/components/organisms/Home/HomePage.module.scss';
-import { useEffect, useState } from 'react';
+import {
+  SetStateAction,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react';
 import Hero from '@/components/organisms/HomeComponents/Hero';
 import WhyChoose from '@/components/organisms/HomeComponents/WhyChoose';
 import Business from '@/components/organisms/HomeComponents/Business';
@@ -10,7 +16,12 @@ import Reviews from '@/components/organisms/HomeComponents/Reviews';
 import BottomComponent from '@/components/BottomComponent';
 import LargeImage from '@/components/organisms/LargeImage';
 import { getHome } from '@/lib/strapi/strapi-fetch';
-interface HomePageProps { }
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/all';
+import useCheckIsMobile from '@/hooks/useCheckIsMobile';
+gsap.registerPlugin(ScrollTrigger);
+
+interface HomePageProps {}
 
 interface IHomeData {
   attributes?: {
@@ -41,8 +52,13 @@ interface IHomeData {
   };
 }
 
-export default function HomePage({ }: HomePageProps) {
+export default function HomePage({}: HomePageProps) {
   const [data, setData] = useState<IHomeData[]>();
+  const [elementHeight, setElementHeight] = useState<number>(0);
+
+  const cardContainer = useRef<HTMLDivElement>(null);
+
+  const { isMobile, isTablet } = useCheckIsMobile();
 
   const getData = async () => {
     try {
@@ -55,12 +71,55 @@ export default function HomePage({ }: HomePageProps) {
     }
   };
 
+  useLayoutEffect(() => {
+    setElementHeight(
+      document.getElementById('business')?.parentElement
+        ?.offsetHeight as number,
+    );
+  }, []);
+
+  useEffect(() => {
+    setElementHeight(elementHeight);
+    if (cardContainer.current) {
+      cardContainer.current.style.marginTop = isMobile
+        ? `${-cardContainer.current.offsetHeight + elementHeight - 200}px`
+        : `${-cardContainer.current.offsetHeight + elementHeight + 200}px`;
+    }
+  }, [elementHeight]);
+
+  useEffect(() => {
+    const height =
+      (document.getElementById('business')?.clientHeight as number) - 30 || 900;
+    const cards = gsap.utils.toArray('.homeCard');
+
+    let ctx = gsap.context(() => {
+      gsap.from('.homeCard', {
+        y: (index) => height * (cards.length - (index + 1)),
+        duration: (index) => 0.6 / (index + 1),
+        transformOrigin: 'top center',
+        ease: 'none',
+        stagger: (index) => 0.3 * index,
+        scrollTrigger: {
+          trigger: '.homeCard',
+          start: 'top+=100px bottom',
+          end: 'bottom top',
+          endTrigger: '.cardList',
+          scrub: true,
+          pin: '.cardList',
+        },
+      });
+    });
+
+    return () => ctx.revert();
+  });
+
   useEffect(() => {
     getData();
   }, []);
   if (!data) {
     return null;
   }
+
   return (
     <div className={styles.page}>
       <main className={styles.main}>
@@ -72,12 +131,30 @@ export default function HomePage({ }: HomePageProps) {
           alt="presentation"
           scale
         />
-        <WhyChoose data={data} />
+        <WhyChoose data={data} setHeight={setElementHeight} />
 
-        <div className={styles.cardList}>
-          <Business data={data} />
-          <Individuals data={data} />
-          <Reviews data={data} />
+        <div
+          className={styles.cardList + ' cardList'}
+          ref={cardContainer}
+          style={{
+            position: 'relative',
+          }}
+        >
+          <Business
+            data={data}
+            className="homeCard"
+            style={{ position: 'relative', zIndex: '2' }}
+          />
+          <Individuals
+            data={data}
+            className="homeCard"
+            style={{ position: 'relative', zIndex: '3' }}
+          />
+          <Reviews
+            data={data}
+            className="homeCard"
+            style={{ position: 'relative', zIndex: '4' }}
+          />
         </div>
       </main>
 

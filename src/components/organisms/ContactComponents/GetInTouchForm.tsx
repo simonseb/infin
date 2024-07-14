@@ -1,4 +1,4 @@
-'use clien';
+'use client';
 
 import React, { DetailedHTMLProps, HTMLAttributes, useState } from 'react';
 import styles from '../../../styles/components/organisms/Contact/GetInTouchForm.module.scss';

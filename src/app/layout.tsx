@@ -8,6 +8,11 @@ import type { Viewport } from 'next';
 import { AppContextProvider } from '@/context/app.context';
 import ClientLayout from '@/components/ClientLayout';
 
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
 export const metadata: Metadata = {
   title: 'The Infin',
   description: 'The official landing page, built with Next.js',
@@ -44,11 +49,9 @@ export default function RootLayout({
       <body className={neueHaasGrotesk.className}>
         <link rel="icon" href="/images/icon.webp" sizes="any" />
         <AppContextProvider>
-          <ClientLayout>
-            {children}
-          </ClientLayout>
+          <ClientLayout>{children}</ClientLayout>
         </AppContextProvider>
       </body>
-    </html >
+    </html>
   );
 }

@@ -105,7 +105,7 @@ export default function Benefits({ data }: BenefitsProps) {
             className={styles.cardTitle}
             showNumber={isMobile}
             showTitle={false}
-            cardNumber="03"
+            cardNumber=""
           />
 
           <h3 className={styles.title}>

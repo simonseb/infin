@@ -30,9 +30,10 @@ interface IHomeData {
 
 interface WhyChooseProps {
   data?: IHomeData[] | undefined;
+  setHeight?: (height: number) => void;
 }
 
-export default function WhyChoose({ data }: WhyChooseProps) {
+export default function WhyChoose({ data, setHeight }: WhyChooseProps) {
   const { isTablet } = useCheckIsMobile();
   const containerRef = useRef(null);
 
@@ -56,72 +57,82 @@ export default function WhyChoose({ data }: WhyChooseProps) {
   const { blocks = [] } = attributes;
 
   return (
-    <Section className={styles.section} type="ghost">
-      <AnimatedLineText
-        className={styles.title}
-        el="h3"
-        text={['Why choose', 'The INFIN?']}
-        once
-      />
+    <div
+      ref={(el) => {
+        setHeight && setHeight(el?.clientHeight as number);
+      }}
+    >
+      <Section className={styles.section} type="ghost">
+        <AnimatedLineText
+          className={styles.title}
+          el="h3"
+          text={['Why choose', 'The INFIN?']}
+          once
+        />
 
-      <ul className={styles.cardList}>
-        <li ref={containerRef}>
-          <Divider className={styles.hr} />
+        <ul className={styles.cardList}>
+          <li ref={containerRef}>
+            <Divider className={styles.hr} />
 
-          <div className={styles.card}>
-            <h4 className={styles.smallTitle}>{blocks[1].article[0].name}</h4>
-            <div className={styles.rightBlock}>
-              <p className={styles.text}>{blocks[1].article[0].descritpion}</p>
+            <div className={styles.card}>
+              <h4 className={styles.smallTitle}>{blocks[1].article[0].name}</h4>
+              <div className={styles.rightBlock}>
+                <p className={styles.text}>
+                  {blocks[1].article[0].descritpion}
+                </p>
 
-              <div className={styles.imageContainer}>
-                <motion.div style={{ scale }}>
-                  <Image
-                    className={styles.image}
-                    src="/images/Home/boys.png"
-                    width={223}
-                    height={223}
-                    alt="image of people"
-                    loading="lazy"
-                  />
-                </motion.div>
+                <div className={styles.imageContainer}>
+                  <motion.div style={{ scale }}>
+                    <Image
+                      className={styles.image}
+                      src="/images/Home/boys.png"
+                      width={223}
+                      height={223}
+                      alt="image of people"
+                      loading="lazy"
+                    />
+                  </motion.div>
+                </div>
               </div>
             </div>
-          </div>
-        </li>
+          </li>
 
-        <li ref={containerRef}>
-          <Divider className={styles.hr} />
+          <li ref={containerRef}>
+            <Divider className={styles.hr} />
 
-          <div className={styles.card}>
-            <h4 className={styles.smallTitle}>{blocks[1].article[1].name}</h4>
-            <div className={styles.rightBlock}>
-              <p className={styles.text}>{blocks[1].article[1].descritpion}</p>
+            <div className={styles.card}>
+              <h4 className={styles.smallTitle}>{blocks[1].article[1].name}</h4>
+              <div className={styles.rightBlock}>
+                <p className={styles.text}>
+                  {blocks[1].article[1].descritpion}
+                </p>
 
-              <div className={styles.imageContainer}>
-                <motion.div style={{ scale }}>
-                  <Image
-                    className={styles.image}
-                    src="/images/Home/two-boys.jpg"
-                    width={223}
-                    height={223}
-                    alt="image of people"
-                    loading="lazy"
-                  />
-                </motion.div>
+                <div className={styles.imageContainer}>
+                  <motion.div style={{ scale }}>
+                    <Image
+                      className={styles.image}
+                      src="/images/Home/two-boys.jpg"
+                      width={223}
+                      height={223}
+                      alt="image of people"
+                      loading="lazy"
+                    />
+                  </motion.div>
+                </div>
               </div>
             </div>
-          </div>
-        </li>
-      </ul>
+          </li>
+        </ul>
 
-      <motion.div
-        className={styles.plusesContainer}
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 2, delay: 0.5 }}
-      >
-        {isTablet ? <PlusesSmallIcon /> : <PlusesIcon />}
-      </motion.div>
-    </Section>
+        <motion.div
+          className={styles.plusesContainer}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 2, delay: 0.5 }}
+        >
+          {isTablet ? <PlusesSmallIcon /> : <PlusesIcon />}
+        </motion.div>
+      </Section>
+    </div>
   );
 }

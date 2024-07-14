@@ -4,11 +4,6 @@ import styles from '../../../styles/components/organisms/Individuals/HowWorks.mo
 import PlusIcon from '/public/icons/plus.svg';
 import { Section } from '@/components/atoms/Section';
 import gsap from 'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger';
-import { ScrollToPlugin } from 'gsap/all';
-
-gsap.registerPlugin(ScrollToPlugin)
-gsap.registerPlugin(ScrollTrigger);
 
 interface IDividualData {
   attributes?: {
@@ -32,7 +27,6 @@ export default function HowWorks({ data }: HowWorksProps) {
 
   const [screenWidth, setScreenWidth] = useState(innerWidth);
 
-
   useEffect(() => {
     window.addEventListener('resize', () => setScreenWidth(innerWidth));
 
@@ -41,7 +35,7 @@ export default function HowWorks({ data }: HowWorksProps) {
     );
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     let ctx = gsap.context(() => {
       let panels = gsap.utils.toArray('.panel');
       let underlines = gsap.utils.toArray('.underline');
@@ -51,7 +45,7 @@ export default function HowWorks({ data }: HowWorksProps) {
         ease: 'none',
         scrollTrigger: {
           trigger: steps.current,
-          pin: '.container',
+          pin: screenWidth <= 1080 ? true : '.container',
           scrub: 1,
           invalidateOnRefresh: true,
           anticipatePin: 1,
@@ -66,11 +60,11 @@ export default function HowWorks({ data }: HowWorksProps) {
                   ((steps.current?.clientWidth as number) - 80)) *
                 100;
               let num = 0;
-              if (left < 20) {
+              if (left < 30) {
                 num = 0;
-              } else if (left < 60 && left >= 20) {
+              } else if (left < 65) {
                 num = 1;
-              } else if (left >= 60) {
+              } else if (left < 100) {
                 num = 2;
               }
 
