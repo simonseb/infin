@@ -1,7 +1,7 @@
 'use client';
 
 import styles from '../styles/components/organisms/Home/HomePage.module.scss';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Hero from '@/components/organisms/HomeComponents/Hero';
 import WhyChoose from '@/components/organisms/HomeComponents/WhyChoose';
 import Business from '@/components/organisms/HomeComponents/Business';
@@ -59,16 +59,24 @@ export default function HomePage({}: HomePageProps) {
     }
   };
 
+  const resize = () => {
+    const business = document.getElementById('business');
+    if (business) {
+      console.log(business.clientHeight);
+    }
+  };
+
   useEffect(() => {
-    const height = 700;
-    const time = 1;
-    const cardsWrappers: any = gsap.utils.toArray('.cardList');
+    resize();
+
+    window.addEventListener('resize', resize);
+  }, []);
+
+  useEffect(() => {
+    const height = 900;
     const cards = gsap.utils.toArray('.homeCard');
 
     let ctx = gsap.context(() => {
-      // cards.forEach((wrapper: any, i: any) => {
-      // const card: any = cards[i];
-
       gsap.from('.homeCard', {
         y: (index) => height * (cards.length - (index + 1)),
         duration: (index) => 0.6 / (index + 1),
@@ -77,18 +85,13 @@ export default function HomePage({}: HomePageProps) {
         stagger: (index) => 0.3 * index,
         scrollTrigger: {
           trigger: '.homeCard',
-          start: 'bottom bottom',
+          start: 'top+=200px bottom',
           end: 'bottom top',
-          // endTrigger: '.cardList',
+          endTrigger: '.cardList',
           scrub: true,
           pin: '.cardList',
-          // pinSpacing: false,
-          // markers: {
-          //   indent: 150 * i,
-          // },
         },
       });
-      // });
     });
 
     return () => ctx.revert();
@@ -116,12 +119,16 @@ export default function HomePage({}: HomePageProps) {
 
         <div
           className={styles.cardList + ' cardList'}
-          style={{ position: 'relative', marginTop: '-1450px' }}
+          style={{
+            position: 'relative',
+            marginTop: '-1730px',
+            // marginTop: '-1730px',
+          }}
         >
           <Business
             data={data}
             className="homeCard"
-            style={{ position: 'relative', zIndex: '4' }}
+            style={{ position: 'relative', zIndex: '2' }}
           />
           <Individuals
             data={data}
@@ -131,7 +138,7 @@ export default function HomePage({}: HomePageProps) {
           <Reviews
             data={data}
             className="homeCard"
-            style={{ position: 'relative', zIndex: '2' }}
+            style={{ position: 'relative', zIndex: '4' }}
           />
         </div>
       </main>
