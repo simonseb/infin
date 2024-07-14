@@ -60,40 +60,35 @@ export default function HomePage({}: HomePageProps) {
   };
 
   useEffect(() => {
-    const height = 800;
+    const height = 700;
     const time = 1;
     const cardsWrappers: any = gsap.utils.toArray('.cardList');
     const cards = gsap.utils.toArray('.homeCard');
 
     let ctx = gsap.context(() => {
-      cards.forEach((wrapper: any, i: any) => {
-        const card: any = cards[i];
-        let scale = 1,
-          rotation = 0;
-        if (i !== cards.length - 1) {
-          scale = 0.9 + 0.025 * i;
-          rotation = -10;
-        }
-        gsap.from(card, {
-          // scale: scale,
-          rotationX: rotation,
-          // transformOrigin: 'top center',
-          ease: 'none',
-          scrollTrigger: {
-            trigger: wrapper,
-            start: 'top top',
-            end: 'bottom bottom',
-            endTrigger: '.cardList',
-            scrub: true,
-            pin: wrapper,
-            // pinSpacing: false,
-            // markers: {
-            //   indent: 150 * i,
-            // },
-            id: i + 1,
-          },
-        });
+      // cards.forEach((wrapper: any, i: any) => {
+      // const card: any = cards[i];
+
+      gsap.from('.homeCard', {
+        y: (index) => height * (cards.length - (index + 1)),
+        duration: (index) => 0.6 / (index + 1),
+        transformOrigin: 'top center',
+        ease: 'none',
+        stagger: (index) => 0.3 * index,
+        scrollTrigger: {
+          trigger: '.homeCard',
+          start: 'bottom bottom',
+          end: 'bottom top',
+          // endTrigger: '.cardList',
+          scrub: true,
+          pin: '.cardList',
+          // pinSpacing: false,
+          // markers: {
+          //   indent: 150 * i,
+          // },
+        },
       });
+      // });
     });
 
     return () => ctx.revert();
@@ -121,12 +116,12 @@ export default function HomePage({}: HomePageProps) {
 
         <div
           className={styles.cardList + ' cardList'}
-          style={{ position: 'relative' }}
+          style={{ position: 'relative', marginTop: '-1450px' }}
         >
           <Business
             data={data}
             className="homeCard"
-            style={{ position: 'relative', zIndex: '2' }}
+            style={{ position: 'relative', zIndex: '4' }}
           />
           <Individuals
             data={data}
@@ -136,12 +131,12 @@ export default function HomePage({}: HomePageProps) {
           <Reviews
             data={data}
             className="homeCard"
-            style={{ position: 'relative', zIndex: '4' }}
+            style={{ position: 'relative', zIndex: '2' }}
           />
         </div>
       </main>
 
-      <BottomComponent style={{ marginTop: '270px' }} />
+      <BottomComponent />
       <div id="space" style={{ height: 0, zIndex: 0 }}></div>
     </div>
   );
