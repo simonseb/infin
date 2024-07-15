@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import styles from '../../styles/components/Footer.module.scss';
-import ThinksebIcon from '../../../public/icons/thinkseb.svg';
+import Image from 'next/image';
 import AnimatedText from '../molecules/AnimatedText';
 import Logo from '../atoms/Logo';
 import Link from 'next/link';
@@ -34,9 +34,9 @@ interface IFooterData {
     }[];
   };
 }
-interface FooterProps {}
+interface FooterProps { }
 
-export default function Footer({}: FooterProps) {
+export default function Footer({ }: FooterProps) {
   const [dataList, setDataList] = useState<IFooterData[]>();
   const getData = async () => {
     try {
@@ -94,6 +94,7 @@ export default function Footer({}: FooterProps) {
             <h4 className={styles.title}>Business page</h4>
             {business.map((item, index) => (
               <a
+                href={item.url}
                 key={index}
                 onClick={() => Gsap.prototype.scrollToSection(item.url)}
               >
@@ -139,7 +140,7 @@ export default function Footer({}: FooterProps) {
         rel="noopener noreferrer"
         className={styles.thinkseb}
       >
-        <ThinksebIcon />
+        <Image src="/icons/thinkseb.svg" alt="ddd" width={100} height={100} />
         <div className={styles.copyright}>
           <span className={styles.copyrightAccent}>© 2024 • Curated by </span>
           ThinkSeb

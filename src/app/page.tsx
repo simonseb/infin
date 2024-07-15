@@ -101,7 +101,7 @@ export default function HomePage({}: HomePageProps) {
         stagger: (index) => 0.3 * index,
         scrollTrigger: {
           trigger: '.homeCard',
-          start: 'top+=100px bottom',
+          start: 'top+=130px bottom',
           end: 'bottom top',
           endTrigger: '.cardList',
           scrub: true,

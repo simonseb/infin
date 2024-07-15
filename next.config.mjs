@@ -13,8 +13,12 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'www.datocms-assets.com',
+        hostname: 'dependable-creativity-a1557309a6.media.strapiapp.com',
       },
+      // {
+      //   protocol: 'http',
+      //   hostname: 'localhost'
+      // }
     ],
   },
   sassOptions: {

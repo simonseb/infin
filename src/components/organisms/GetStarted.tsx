@@ -129,13 +129,37 @@ export default function GetStarted({ className }: GetStartedProps) {
         >
           {isMobile ? (
             <>
-              <PlusesSmallIcon className={styles.plusesLeft} />
-              <PlusesSmallIcon className={styles.plusesRight} />
+              <Image
+                src="/icons/pluses-group-small.svg"
+                alt="ddd"
+                width={100}
+                height={100}
+                className={styles.plusesLeft}
+              />
+              <Image
+                src="/icons/pluses-group-small.svg"
+                alt="ddd"
+                width={100}
+                height={100}
+                className={styles.plusesLeft}
+              />
             </>
           ) : (
             <>
-              <PlusesIcon className={styles.plusesLeft} />
-              <PlusesIcon className={styles.plusesRight} />
+              <Image
+                src="/icons/plus-group.svg"
+                alt="ddd"
+                width={100}
+                height={100}
+                className={styles.plusesLeft}
+              />
+              <Image
+                src="/icons/plus-group.svg"
+                alt="ddd"
+                width={100}
+                height={100}
+                className={styles.plusesLeft}
+              />
             </>
           )}
         </motion.div>

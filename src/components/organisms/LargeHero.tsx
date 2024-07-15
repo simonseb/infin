@@ -9,7 +9,6 @@ import { Button } from '@/components/atoms/Button';
 import { useRouter } from 'next/navigation';
 
 import Image from 'next/image';
-import PlusIcon from '../../../public/icons/plus.svg';
 
 interface LargeHeroProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -58,7 +57,13 @@ export default function LargeHero({
     >
       <div className={styles.topBlock}>
         <div className={styles.leftBlock}>
-          <PlusIcon className={styles.plusIcon} />
+          <Image
+            className={styles.plusIcon}
+            src="/icons/plus.svg"
+            width={100}
+            height={100}
+            alt="plus.svg"
+          />
 
           <div className={styles.textBox}>
             <p className={styles.text}>{text}</p>

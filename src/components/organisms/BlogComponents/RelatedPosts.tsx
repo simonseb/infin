@@ -6,52 +6,49 @@ import { Button } from '@/components/atoms/Button';
 
 import PostCard from '@/components/molecules/PostCard';
 
-export interface IPost {
-  id: string;
-  imageSrc: string;
-  title: string;
-  description: string;
-  reviewerAvatar: string;
-  reviewerPosition: string;
-  reviewerName: string;
+interface IBlogData {
+  attributes?: {
+    blogs?: {
+      related_posts: {
+        id: string;
+        title: string;
+        publisher: string;
+        summary: string;
+        mainSection: {
+          data: {
+            attributes: {
+              url: string;
+            };
+          };
+        };
+        avata: {
+          data: {
+            attributes: {
+              url: string;
+            };
+          };
+        };
+      }[];
+    };
+  };
 }
 
-interface RelatedPostsProps {}
+interface RelatedPostsProps {
+  data?: IBlogData[];
+}
 
-const posts: IPost[] = [
-  {
-    id: '1',
-    imageSrc: '/images/Blog/1-post.png',
-    title: 'Blog title heading',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.',
-    reviewerAvatar: '/images/olivia.png',
-    reviewerPosition: 'Publisher',
-    reviewerName: 'Olivia Johnson',
-  },
-  {
-    id: '2',
-    imageSrc: '/images/Blog/2-post.png',
-    title: 'Blog title heading',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.',
-    reviewerAvatar: '/images/olivia.png',
-    reviewerPosition: 'Publisher',
-    reviewerName: 'Olivia Johnson',
-  },
-  {
-    id: '3',
-    imageSrc: '/images/Blog/3-post.png',
-    title: 'Blog title heading',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.',
-    reviewerAvatar: '/images/olivia.png',
-    reviewerPosition: 'Publisher',
-    reviewerName: 'Olivia Johnson',
-  },
-];
+export default function RelatedPosts({ data }: RelatedPostsProps) {
+  if (!data || data.length === 0) {
+    return null;
+  }
 
-export default function RelatedPosts({}: RelatedPostsProps) {
+  const { attributes } = data[0];
+
+  if (!attributes || !attributes.blogs || !attributes.blogs.related_posts) {
+    return null;
+  }
+
+  const { related_posts } = attributes.blogs;
   return (
     <Section type="filled" className={styles.section}>
       <div className={styles.topBlock}>
@@ -69,8 +66,8 @@ export default function RelatedPosts({}: RelatedPostsProps) {
       </div>
 
       <ul className={styles.postList}>
-        {posts.map((post) => (
-          <li key={post.id}>
+        {related_posts.map((post) => (
+          <li key={post.id + 'key'}>
             <PostCard {...post} />
           </li>
         ))}

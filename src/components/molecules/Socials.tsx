@@ -16,7 +16,7 @@ import LinkedinIcon from '../../../public/icons/linkedin.svg';
 import XIcon from '../../../public/icons/x.svg';
 import FacebookIcon from '../../../public/icons/facebook.svg';
 import { usePathname } from 'next/navigation';
-
+import Image from 'next/image';
 interface SocialsProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   className?: string;
@@ -35,7 +35,13 @@ export default function Socials({ className, ...props }: SocialsProps) {
   return (
     <div className={clsx(styles.socials, className)} {...props}>
       <div className={styles.link} onClick={copylink}>
-        <LinkIcon className={styles.icon} />
+        <Image
+          src="/icons/thinkseb.svg"
+          alt="ddd"
+          width={100}
+          height={100}
+          className={styles.icon}
+        />
       </div>
 
       <LinkedinShareButton
@@ -43,7 +49,13 @@ export default function Socials({ className, ...props }: SocialsProps) {
         url="https://the-infin-full.vercel.app/blog"
         title="The INFIN"
       >
-        <LinkedinIcon className={styles.icon} />
+        <Image
+          src="/icons/linkedin.svg"
+          alt="ddd"
+          width={100}
+          height={100}
+          className={styles.icon}
+        />
       </LinkedinShareButton>
 
       <TwitterShareButton
@@ -52,7 +64,13 @@ export default function Socials({ className, ...props }: SocialsProps) {
         hashtags={['theinfin']}
         className={styles.link}
       >
-        <XIcon className={styles.icon} />
+        <Image
+          src="/icons/x.svg"
+          alt="ddd"
+          width={100}
+          height={100}
+          className={styles.icon}
+        />
       </TwitterShareButton>
 
       <FacebookShareButton
@@ -60,7 +78,13 @@ export default function Socials({ className, ...props }: SocialsProps) {
         title="The INFIN"
         className={styles.link}
       >
-        <FacebookIcon className={styles.fbIcon} />
+        <Image
+          src="/icons/facebook.svg"
+          alt="ddd"
+          width={100}
+          height={100}
+          className={styles.fbIcon}
+        />
       </FacebookShareButton>
     </div>
   );

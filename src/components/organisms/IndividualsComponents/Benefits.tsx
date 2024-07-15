@@ -3,12 +3,11 @@
 import React, { useContext, useRef, useEffect } from 'react';
 import styles from '../../../styles/components/organisms/Individuals/Benefits.module.scss';
 import { AppContext, IAppContext } from '@/context/app.context';
-import PlusesIcon from '../../../../public/icons/benefits-pluses.svg';
-import PlusesIconMobile from '../../../../public/icons/benefits-pluses-mobile.svg';
 import useTargetInView from '@/hooks/useTargetInView';
 import { Section } from '../../atoms/Section';
 import { CardTitle } from '../../molecules/CardTitle';
 import useCheckIsMobile from '@/hooks/useCheckIsMobile';
+import Image from 'next/image';
 
 interface IDividualData {
   attributes?: {
@@ -110,9 +109,21 @@ export default function Benefits({ data }: BenefitsProps) {
           ))}
         </ul>
         {isTablet ? (
-          <PlusesIconMobile className={styles.plusesIconMobile} />
+          <Image
+            src="/icons/benefits-pluses-mobile.svg"
+            width={100}
+            height={100}
+            alt={'benefits'}
+            className={styles.plusesIconMobile}
+          />
         ) : (
-          <PlusesIcon className={styles.plusesIcon} />
+          <Image
+            src="/icons/benefits-pluses.svg"
+            width={100}
+            height={100}
+            alt={'benefits'}
+            className={styles.plusesIconMobile}
+          />
         )}
       </Section>
     </div>

@@ -5,19 +5,48 @@ import Socials from '@/components/molecules/Socials';
 import Avatar from '@/components/molecules/Avatar';
 
 import { Section } from '@/components/atoms/Section';
+interface IBlogData {
+  attributes?: {
+    blogs: {
+      main: {
+        lastest_date: string;
+        title: string;
+        publisher: string;
+        summary: string;
+        article: string;
+        avata: {
+          data: {
+            attributes: {
+              url: string;
+            };
+          };
+        };
+      };
+    };
+  };
+}
+interface HeroProps {
+  data?: IBlogData[] | undefined;
+}
 
-interface HeroProps {}
+export default function Hero({ data }: HeroProps) {
+  if (!data) {
+    return null;
+  }
 
-export default function Hero({}: HeroProps) {
+  const { attributes } = data[0];
+
+  if (!attributes) {
+    return null;
+  }
+
+  const { blogs } = attributes;
   return (
     <Section type="ghost" className={styles.section}>
       <div className={styles.topBlock}>
         <div>
-          <p className={styles.smallText}>11 Jan 2022 • 5 min read</p>
-          <h2 className={styles.title}>
-            The Power <br className={styles.br} /> of Peer Feedback with The
-            INFIN
-          </h2>
+          <p className={styles.smallText}>{blogs.main.lastest_date}</p>
+          <h2 className={styles.title}>{blogs.main.title}</h2>
         </div>
 
         <div className={styles.socialsBox}>
@@ -27,17 +56,13 @@ export default function Hero({}: HeroProps) {
 
       <div className={styles.bottomBlock}>
         <Avatar
-          imageSrc="/images/olivia.png"
+          imageSrc={blogs.main.avata.data.attributes.url}
           position="Publisher"
-          name="Olivia Johnson"
+          name={`${blogs.main.publisher}`}
           className={styles.reviewer}
         />
 
-        <p className={styles.bottomText}>
-          In today&apos;s dynamic workplace, recognizing and rewarding employees
-          for their contributions is crucial for fostering a positive work
-          culture and driving individual and organizational success.
-        </p>
+        <p className={styles.bottomText}>{blogs.main.summary}</p>
       </div>
     </Section>
   );

@@ -7,6 +7,7 @@ import useTargetInView from '@/hooks/useTargetInView';
 import PlusesIcon from '../../../../public/icons/benefits-pluses.svg';
 import PlusesIconMobile from '../../../../public/icons/benefits-pluses-mobile.svg';
 import useCheckIsMobile from '@/hooks/useCheckIsMobile';
+import Image from 'next/image';
 
 import { Section } from '../../atoms/Section';
 import { CardTitle } from '../../molecules/CardTitle';
@@ -124,9 +125,21 @@ export default function Benefits({ data }: BenefitsProps) {
           ))}
         </ul>
         {isTablet ? (
-          <PlusesIconMobile className={styles.plusesIconMobile} />
+          <Image
+            src="/icons/benefits-pluses-mobile.svg"
+            width={100}
+            height={100}
+            alt={'benefits'}
+            className={styles.plusesIconMobile}
+          />
         ) : (
-          <PlusesIcon className={styles.plusesIcon} />
+          <Image
+            src="/icons/benefits-pluses.svg"
+            width={100}
+            height={100}
+            alt={'benefits'}
+            className={styles.plusesIconMobile}
+          />
         )}
       </Section>
     </div>

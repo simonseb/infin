@@ -4,10 +4,12 @@ import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import styles from '../../../styles/components/organisms/Marketing/Expected.module.scss';
 
 import { Section } from '@/components/atoms/Section';
-import PlusesIcon from '/public/icons/plus.svg';
 import Cursor from '@/components/atoms/Cursor';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/all';
+import Image from 'next/image';
 
+gsap.registerPlugin(ScrollTrigger);
 interface IMarketing {
   attributes?: {
     blocks: {
@@ -165,7 +167,13 @@ export default function Expected({ data }: ExpectedProps) {
             </li>
           ))}
         </ul>
-        <PlusesIcon className={styles.plusIcon} />
+        <Image
+          src="/icons/plus.svg"
+          width={100}
+          height={100}
+          alt={'plusicon'}
+          className={styles.plusIcon}
+        />
       </div>
     </Section>
   );

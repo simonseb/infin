@@ -4,6 +4,7 @@ import styles from '../../styles/components/molecules/PlayButton.module.scss';
 import PlayIcon from '../../../public/icons/play.svg';
 import { Button } from '../atoms/Button';
 import clsx from 'clsx';
+import Image from 'next/image';
 
 interface PlayButtonProps {
   className: string;
@@ -25,7 +26,15 @@ export default function PlayButton({
     >
       <span className={styles.buttonText}>Play</span>
       <div className={styles.buttonCircle}>
-        <PlayIcon />
+        <Image
+          src="/icons/play.svg"
+          width={50}
+          height={50}
+          alt={'playbutton'}
+          className={styles.plusesIconMobile}
+          id="iconmobile"
+        />
+        {/* <PlayIcon /> */}
       </div>
     </Button>
   );

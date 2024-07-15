@@ -33,12 +33,20 @@
     width: 16px;
     height: 16px;
   }
+  img {
+    width: 16px;
+    height: 16px;
+  }
 }
 
 .button:hover .buttonCircle {
   background-color: $dark;
   svg {
     fill: $accent;
+  }
+  img {
+    fill: $accent;
+    filter: invert(100%);
   }
 }
 

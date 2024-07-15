@@ -10,8 +10,7 @@ import { CardTitle } from '../../molecules/CardTitle';
 import { CardProps } from '@/lib/types';
 import { motion } from 'framer-motion';
 import { AppContext, IAppContext } from '@/context/app.context';
-
-import PlusIcon from '../../../../public/icons/plus.svg';
+import Image from 'next/image';
 import ReviewList from '../../molecules/ReviewList';
 import useTargetInView from '@/hooks/useTargetInView';
 
@@ -142,9 +141,9 @@ export default function Reviews({ className, data, style }: ReviewsProps) {
           whileInView={{ opacity: 0.5 }}
           transition={{ duration: 2, delay: 0.5 }}
         >
-          <PlusIcon className={styles.plusIcon} />
-          <PlusIcon className={styles.plusIcon} />
-          <PlusIcon className={styles.plusIcon} />
+          <Image src="/icons/plus.svg" alt="ddd" width={100} height={100} />
+          <Image src="/icons/plus.svg" alt="ddd" width={100} height={100} />
+          <Image src="/icons/plus.svg" alt="ddd" width={100} height={100} />
         </motion.div>
 
         <div className={styles.description} ref={targetMiddle}>

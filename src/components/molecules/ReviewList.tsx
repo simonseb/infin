@@ -1,7 +1,7 @@
 import React, { DetailedHTMLProps, HtmlHTMLAttributes, useState } from 'react';
 import styles from '../../styles/components/molecules/ReviewList.module.scss';
 import clsx from 'clsx';
-
+import Image from 'next/image';
 import { IReview } from '@/lib/types';
 
 import ReviewItem from './ReviewItem';
@@ -63,7 +63,7 @@ export default function ReviewList({
           className={styles.buttonLeft}
           onClick={() => goToPage(currentPage - 1, 'prev')}
         >
-          <ArrowIcon />
+          <Image src="/icons/arrow.svg" alt="" width={100} height={100} />
         </button>
 
         <div>
@@ -76,7 +76,7 @@ export default function ReviewList({
           className={styles.buttonRight}
           onClick={() => goToPage(currentPage + 1, 'next')}
         >
-          <ArrowIcon />
+          <Image src="/icons/arrow.svg" alt="" width={100} height={100} />
         </button>
       </div>
     </div>

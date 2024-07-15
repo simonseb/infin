@@ -78,7 +78,7 @@ export default function LargeImage({
         ) : (
           <Image
             className={clsx(styles.image, classNameImage)}
-            src={desctopImage}
+            src={`${desctopImage}`}
             alt={alt}
             quality={100}
             width={1416}

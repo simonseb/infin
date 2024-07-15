@@ -11,25 +11,34 @@ import Avatar from './Avatar';
 interface PostCardProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   className?: string;
-  imageSrc: string;
+  mainSection: {
+    data: {
+      attributes: {
+        url: string;
+      };
+    };
+  };
   title: string;
-  description: string;
-  reviewerAvatar: string;
-  reviewerPosition: string;
-  reviewerName: string;
+  summary: string;
+  avata: {
+    data: {
+      attributes: {
+        url: string;
+      };
+    };
+  };
+  publisher: string;
 }
 
 export default function PostCard({
   className,
-  imageSrc,
+  mainSection,
   title,
-  description,
-  reviewerAvatar,
-  reviewerPosition,
-  reviewerName,
+  summary,
+  avata,
+  publisher,
   ...props
 }: PostCardProps) {
-
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -38,16 +47,18 @@ export default function PostCard({
 
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.5]);
 
-
   return (
-    <div className={clsx(styles.postCard, className)} {...props} ref={containerRef}>
+    <div
+      className={clsx(styles.postCard, className)}
+      {...props}
+      ref={containerRef}
+    >
       <div className={styles.imageContainer}>
-        <motion.div
-          style={{ scale }}
-        >
+        <motion.div style={{ scale }}>
           <Image
             className={styles.image}
-            src={imageSrc}
+            src={`https://dependable-creativity-a1557309a6.media.strapiapp.com/${mainSection.data.attributes.url}`}
+            // src={`http://localhost:1337${mainSection.data.attributes.url}`}
             alt={title}
             width={441}
             height={300}
@@ -55,13 +66,13 @@ export default function PostCard({
         </motion.div>
       </div>
       <h4 className={styles.title}>{title}</h4>
-      <p className={styles.description}>{description}</p>
+      <p className={styles.description}>{summary}</p>
 
       <Avatar
         className={styles.avatar}
-        imageSrc={reviewerAvatar}
-        position={reviewerPosition}
-        name={reviewerName}
+        imageSrc={avata.data.attributes.url}
+        position=""
+        name={publisher}
       />
     </div>
   );

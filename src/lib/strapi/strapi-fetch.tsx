@@ -92,12 +92,46 @@ export async function getMarketing() {
   });
   return resp;
 }
+
+export async function getBlog() {
+  const resp = await strapi.find('blogs', {
+    populate: {
+      blogs: {
+        populate: {
+          main: {
+            populate: {
+              mainSection: {
+                populate: '*',
+              },
+              avata: {
+                populate: '*',
+              },
+            },
+          },
+          related_posts: {
+            populate: {
+              mainSection: {
+                populate: '*',
+              },
+              avata: {
+                populate: '*',
+              },
+            },
+          },
+        },
+      },
+    },
+  });
+  return resp;
+}
+
 export async function getHeader() {
   const resp = await strapi.find('headers', {
     populate: '*',
   });
   return resp;
 }
+
 export async function getFooter() {
   const resp = await strapi.find('footers', {
     populate: '*',
@@ -208,7 +242,7 @@ export async function getProject(slug: string) {
   return responseHandler(resp);
 }
 
-// get project by slug
+// get post by slug
 export async function getPost(slug: string) {
   const resp = await strapi.findOne('posts', slug, {
     fields: ['id', 'title', 'slug', 'navColor', 'publishedAt'],

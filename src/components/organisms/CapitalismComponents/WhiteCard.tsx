@@ -1,9 +1,8 @@
 import React from 'react';
 import styles from '../../../styles/components/organisms/Capitalism/WhiteCard.module.scss';
 
-import PlusIcon from '../../../../public/icons/plus.svg';
-
 import { Section } from '@/components/atoms/Section';
+import Image from 'next/image';
 
 interface ICapitalism {
   attributes?: {
@@ -38,8 +37,13 @@ export default function WhiteCard({ data }: WhiteCardProps) {
       <div className={styles.rightBlock}>
         <div className={styles.titleBox}>
           <h3 className={styles.title}>{blocks[3].question}</h3>
-
-          <PlusIcon className={styles.plusIcon}></PlusIcon>
+          <Image
+            src="/icons/plus.svg"
+            width={100}
+            height={100}
+            alt={'plusicon'}
+            className={styles.plusIcon}
+          />
         </div>
 
         <p className={styles.text}>{blocks[3].answer}</p>

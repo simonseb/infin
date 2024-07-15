@@ -101,9 +101,25 @@ export default function What({ data }: WhatProps) {
             transition={{ duration: 2, delay: 0.5 }}
           >
             <div className={styles.pluses}>
-              <PlusIcon className={clsx(styles.plusIcon, styles.topPlus)} />
-              <PlusIcon className={clsx(styles.plusIcon, styles.leftPlus)} />
-              <PlusIcon
+              <Image
+                src="/icons/plus.svg"
+                width={100}
+                height={100}
+                alt={'plusicon'}
+                className={clsx(styles.plusIcon, styles.topPlus)}
+              />
+              <Image
+                src="/icons/plus.svg"
+                width={100}
+                height={100}
+                alt={'plusicon'}
+                className={clsx(styles.plusIcon, styles.leftPlus)}
+              />
+              <Image
+                src="/icons/plus.svg"
+                width={100}
+                height={100}
+                alt={'plusicon'}
                 className={clsx(styles.plusIcon, styles.bottomRightPlus)}
               />
             </div>
@@ -127,7 +143,13 @@ export default function What({ data }: WhatProps) {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 2, delay: 0.5 }}
         >
-          <PlusesGroup className={styles.plusesGroup} />
+          <Image
+            src="/icons/plus-group.svg"
+            width={100}
+            height={100}
+            alt={'plusgroup'}
+            className={styles.plusesGroup}
+          />
         </motion.div>
       </Section>
     </div>

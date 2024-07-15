@@ -130,7 +130,21 @@ export default function WhyChoose({ data, setHeight }: WhyChooseProps) {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 2, delay: 0.5 }}
         >
-          {isTablet ? <PlusesSmallIcon /> : <PlusesIcon />}
+          {isTablet ? (
+            <Image
+              src="/icons/pluses-group-small.svg"
+              alt="ddd"
+              width={100}
+              height={100}
+            />
+          ) : (
+            <Image
+              src="/icons/plus-group.svg"
+              alt="ddd"
+              width={100}
+              height={100}
+            />
+          )}
         </motion.div>
       </Section>
     </div>

@@ -1,9 +1,11 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import styles from '../../../styles/components/organisms/Individuals/HowWorks.module.scss';
 
-import PlusIcon from '/public/icons/plus.svg';
 import { Section } from '@/components/atoms/Section';
 import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+import Image from 'next/image';
+gsap.registerPlugin(ScrollTrigger);
 
 interface IDividualData {
   attributes?: {
@@ -140,7 +142,13 @@ export default function HowWorks({ data }: HowWorksProps) {
           </li>
         ))}
       </ul>
-      <PlusIcon className={styles.plusIcon} />
+      <Image
+        src="/icons/plus.svg"
+        width={100}
+        height={100}
+        alt={'plusicon'}
+        className={styles.plusIcon}
+      />
     </Section>
   );
 }

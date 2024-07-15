@@ -9,13 +9,13 @@ import useTargetInView from '@/hooks/useTargetInView';
 import ScheduleDemo from './ScheduleDemo';
 import GetInTouch from './GetInTouch';
 import Switcher from '@/components/molecules/Switcher';
-import PlusIcon from '../../../../public/icons/plus.svg';
 import ScheduleDemoForm from './ScheduleDemoForm';
 import GetInTouchForm from './GetInTouchForm';
+import Image from 'next/image';
 
-interface ContactProps { }
+interface ContactProps {}
 
-export default function Contact({ }: ContactProps) {
+export default function Contact({}: ContactProps) {
   const { setActiveSection, removeActiveSection } = useContext(
     AppContext,
   ) as IAppContext;
@@ -27,30 +27,37 @@ export default function Contact({ }: ContactProps) {
   const triggerSection = () => {
     if (target.current) {
       const boundRect = (target.current as HTMLElement).getBoundingClientRect();
-      const headerBoundRect = document.getElementsByTagName('header').item(0)?.getBoundingClientRect();
-      if (isInViewRef.current && headerBoundRect && boundRect.y < headerBoundRect.bottom) {
-        setActiveSection('contact')
+      const headerBoundRect = document
+        .getElementsByTagName('header')
+        .item(0)
+        ?.getBoundingClientRect();
+      if (
+        isInViewRef.current &&
+        headerBoundRect &&
+        boundRect.y < headerBoundRect.bottom
+      ) {
+        setActiveSection('contact');
       } else {
         removeActiveSection('contact');
       }
     }
-  }
+  };
   useEffect(() => {
     isInViewRef.current = isInView;
     triggerSection();
   }, [isInView]);
 
   const handleScroll = () => {
-    triggerSection()
-  }
+    triggerSection();
+  };
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("scrollend", handleScroll);
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scrollend', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('scrollend', handleScroll);
-    }
+    };
   }, []);
 
   const [isActiveSection, setIsActiveSection] = useState<'left' | 'right'>(
@@ -78,15 +85,29 @@ export default function Contact({ }: ContactProps) {
           {isActiveSection === 'left' ? <ScheduleDemo /> : <GetInTouch />}
 
           <div className={styles.separator}>
-            <PlusIcon className={styles.firstPlus} />
+            <Image
+              src="/icons/plus.svg"
+              width={100}
+              height={100}
+              alt={'firstPlus'}
+              className={styles.firstPlus}
+            />
             <hr className={styles.hr} />
-            <PlusIcon className={styles.secondPlus} />
+            <Image
+              src="/icons/plus.svg"
+              width={100}
+              height={100}
+              alt={'secondPlus'}
+              className={styles.secondPlus}
+            />
           </div>
 
           <div className={styles.formContainer}>
             <div className={styles.formBox}>
               <p className={styles.formTitle}>
-                {isActiveSection === 'left' ? 'Schedule a demo' : 'Get in touch'}
+                {isActiveSection === 'left'
+                  ? 'Schedule a demo'
+                  : 'Get in touch'}
               </p>
 
               {isActiveSection === 'left' ? (

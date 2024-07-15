@@ -19,11 +19,14 @@ export default function Avatar({
   imageSrc,
   ...props
 }: AvatarProps) {
+  const findURL = (value: string) => {
+    return value.split('/')[2];
+  };
   return (
     <div className={clsx(styles.avatar, className)} {...props}>
       <Image
         className={styles.image}
-        src={imageSrc}
+        src={`https://dependable-creativity-a1557309a6.media.strapiapp.com/${imageSrc}`}
         alt={name}
         width={52}
         height={52}

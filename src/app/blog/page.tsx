@@ -7,16 +7,86 @@ import BottomComponent from '@/components/BottomComponent';
 import LargeImage from '@/components/organisms/LargeImage';
 import Description from '@/components/organisms/BlogComponents/Description';
 import RelatedPosts from '@/components/organisms/BlogComponents/RelatedPosts';
+import { getBlog } from '@/lib/strapi/strapi-fetch';
 
+interface IBlogData {
+  attributes?: {
+    blogs: {
+      main: {
+        lastest_date: string;
+        title: string;
+        publisher: string;
+        summary: string;
+        article: string;
+        avata: {
+          data: {
+            attributes: {
+              url: string;
+            };
+          };
+        };
+        mainSection: {
+          data: {
+            attributes: {
+              url: string;
+            };
+          };
+        };
+      };
+      related_posts: {
+        id: string;
+        title: string;
+        publisher: string;
+        summary: string;
+        mainSection: {
+          data: {
+            attributes: {
+              url: string;
+            };
+          };
+        };
+        avata: {
+          data: {
+            attributes: {
+              url: string;
+            };
+          };
+        };
+      }[];
+    };
+  };
+}
 interface BlogPageProps {}
 
 export default function BlogPage({}: BlogPageProps) {
+  const [data, setData] = useState<IBlogData[]>();
+
   const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     setTimeout(() => {
       setLoading(true);
     }, 200);
   }, []);
+
+  const getData = async () => {
+    try {
+      const res = await getBlog();
+      if (res) {
+        setData(res.data as IBlogData[]);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  if (!data) {
+    return null;
+  }
 
   if (loading === false) {
     return (
@@ -31,16 +101,16 @@ export default function BlogPage({}: BlogPageProps) {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
-        <Hero />
+        <Hero data={data} />
         <LargeImage
           sectionName="home-image"
-          mobileImage="/images/Blog/blog-mobile.png"
-          desctopImage="/images/Blog/blog.png"
+          mobileImage=""
+          desctopImage={`${data[0].attributes?.blogs.main.mainSection.data.attributes.url}`}
           alt="people laugh"
           scale
         />
-        <Description />
-        <RelatedPosts />
+        <Description data={data} />
+        <RelatedPosts data={data} />
       </main>
 
       <BottomComponent className={styles.bottomComponent} />

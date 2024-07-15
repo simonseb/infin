@@ -3,7 +3,7 @@
 import React, { useContext, useRef, useEffect } from 'react';
 import styles from '../../../styles/components/organisms/Capitalism/BlackCard.module.scss';
 import { AppContext, IAppContext } from '@/context/app.context';
-import PlusIcon from '../../../../public/icons/plus.svg';
+import Image from 'next/image';
 import useTargetInView from '@/hooks/useTargetInView';
 import { Section } from '@/components/atoms/Section';
 
@@ -85,9 +85,27 @@ export default function BlackCard({ data }: BlackCardProps) {
 
         <div className={styles.bottomBlock}>
           <div className={styles.pluses}>
-            <PlusIcon className={styles.plusIcon} />
-            <PlusIcon className={styles.plusIcon} />
-            <PlusIcon className={styles.plusIcon} />
+            <Image
+              src="/icons/plus.svg"
+              width={100}
+              height={100}
+              alt={'plusicon'}
+              className={styles.plusIcon}
+            />
+            <Image
+              src="/icons/plus.svg"
+              width={100}
+              height={100}
+              alt={'plusicon'}
+              className={styles.plusIcon}
+            />
+            <Image
+              src="/icons/plus.svg"
+              width={100}
+              height={100}
+              alt={'plusicon'}
+              className={styles.plusIcon}
+            />
           </div>
         </div>
 
