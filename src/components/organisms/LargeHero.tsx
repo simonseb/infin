@@ -7,6 +7,7 @@ import clsx from 'clsx';
 import { Section } from '@/components/atoms/Section';
 import { Button } from '@/components/atoms/Button';
 import { useRouter } from 'next/navigation';
+import useCheckIsMobile from '@/hooks/useCheckIsMobile';
 
 import Image from 'next/image';
 
@@ -42,20 +43,18 @@ export default function LargeHero({
   ...props
 }: LargeHeroProps) {
   const router = useRouter();
+  const { isMobile, isTablet } = useCheckIsMobile();
 
   return (
-    <Section
-      className={clsx(styles.hero, className)}
-      type="ghost"
-      {...props}
-      style={{
-        display: 'flex',
-        width: '100%',
-        height: imageText ? '100vh' : '200vh',
-        flexDirection: 'column',
-      }}
-    >
-      <div className={styles.topBlock}>
+    <Section className={clsx(styles.hero, className)} type="ghost" {...props}>
+      <div
+        className={styles.topBlock}
+        style={{
+          width: '100%',
+          flexDirection: 'column',
+          height: !isMobile && !isTablet ? '75vh' : 'auto',
+        }}
+      >
         <div className={styles.leftBlock}>
           <Image
             className={styles.plusIcon}
@@ -75,7 +74,10 @@ export default function LargeHero({
           </div>
         </div>
 
-        <div className={styles.rightBlock}>
+        <div
+          className={styles.rightBlock}
+          style={{ display: 'flex', justifyContent: 'space-between' }}
+        >
           <div className={styles.imageContainer}>
             <Image
               src={imageSrc}
@@ -104,7 +106,11 @@ export default function LargeHero({
             className={styles.button}
             appearance="primary"
             onClick={() => router.push('/contact')}
-            style={imageText ? { marginTop: '74px' } : { marginTop: 0 }}
+            style={
+              imageText
+                ? { marginTop: '74px' }
+                : { marginTop: 0, marginBottom: '10px' }
+            }
           >
             Schedule a demo
           </Button>

@@ -36,6 +36,7 @@ export default function Hero({ data }: HeroProps) {
         width: '100%',
         height: '100vh',
         flexDirection: 'column',
+        justifyContent: 'space-between',
       }}
     >
       <div>
@@ -43,7 +44,7 @@ export default function Hero({ data }: HeroProps) {
       </div>
       <h2 className={styles.title}>{blocks[0].title}</h2>
 
-      <div className={styles.bottomBlock} style={{ marginTop: '237px' }}>
+      <div className={styles.bottomBlock}>
         <p className={styles.bottomText}> {blocks[0].quesion}</p>
         <Button className={styles.button} appearance="primary">
           Schedule a demo

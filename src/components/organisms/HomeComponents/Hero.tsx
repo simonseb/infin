@@ -12,6 +12,7 @@ import { Button } from '../../atoms/Button';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import Cursor from '@/components/atoms/Cursor';
+import useCheckIsMobile from '@/hooks/useCheckIsMobile';
 
 interface IHomeData {
   attributes?: {
@@ -37,6 +38,7 @@ export default function Hero({ data }: HeroProps) {
   const { cursorVisibility, setCursorVisibility } = useContext(
     AppContext,
   ) as IAppContext;
+  const { isMobile, isTablet } = useCheckIsMobile();
 
   const handleMouseEnter = () => {
     setCursorVisibility('block');
@@ -65,12 +67,21 @@ export default function Hero({ data }: HeroProps) {
         type="ghost"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        style={{ display: 'flex', width: '100%', height: '100vh' }}
+        style={{
+          height: !isMobile && !isTablet ? '100vh' : 'auto',
+          paddingBottom: '20px',
+        }}
       >
         <div
           id="home_wrapper"
           className={styles.wrapper}
-          style={{ width: '100%' }}
+          style={{
+            display: 'flex',
+            width: '100%',
+            height: '100%',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+          }}
         >
           {/* <Cursor cursorDisplay={cursorVisibility} /> */}
           <div className={styles.topBlock}>

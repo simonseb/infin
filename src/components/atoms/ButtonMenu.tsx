@@ -6,6 +6,8 @@ import styles from '../../styles/components/atoms/ButtonMenu.module.scss';
 import BurgerIcon from '../../../public/icons/burger-menu.svg';
 import CloseIcon from '../../../public/icons/close.svg';
 
+import Image from 'next/image';
+
 import { usePathname } from 'next/navigation';
 
 interface ButtonMenuProps
@@ -45,9 +47,18 @@ export default function ButtonMenu({
       {...props}
     >
       {isOpen ? (
-        <CloseIcon />
+        <Image
+          src="/icons/close.svg"
+          width={100}
+          height={100}
+          alt={'closeIcon'}
+        />
       ) : (
-        <BurgerIcon
+        <Image
+          src="/icons/burger-menu.svg"
+          width={100}
+          height={100}
+          alt={'burgerMenu'}
           style={{ stroke: pathname === '/contact' ? '#fff' : '#121212' }}
         />
       )}

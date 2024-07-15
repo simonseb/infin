@@ -7,6 +7,7 @@ import { Section } from '@/components/atoms/Section';
 import { Button } from '@/components/atoms/Button';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import useCheckIsMobile from '@/hooks/useCheckIsMobile';
 interface IMarketing {
   attributes?: {
     blocks: {
@@ -26,6 +27,7 @@ export default function Hero({ data }: HeroProps) {
   const [cursorVisibility, setCursorVisibility] = useState<'block' | 'none'>(
     'none',
   );
+  const { isMobile, isTablet } = useCheckIsMobile();
 
   const handleMouseEnter = () => {
     setCursorVisibility('block');
@@ -51,7 +53,11 @@ export default function Hero({ data }: HeroProps) {
       className={styles.section}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      style={{ display: 'flex', width: '100%', height: '100vh' }}
+      style={{
+        display: 'flex',
+        width: '100%',
+        height: !isMobile && !isTablet ? '100vh' : 'auto',
+      }}
     >
       <div id="home_wrapper" className={styles.wrapper}>
         {/* <Cursor cursorDisplay={cursorVisibility} className={styles.whitePluses} /> */}

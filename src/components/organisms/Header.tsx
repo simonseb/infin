@@ -19,6 +19,7 @@ import PlusIcon from '../../../public/icons/plus.svg';
 import Link from 'next/link';
 import { calcVwToPx } from '@/lib/helpers';
 import { getHeader } from '@/lib/strapi/strapi-fetch';
+import Image from 'next/image';
 interface IHeaderData {
   attributes?: {
     data: {
@@ -454,8 +455,20 @@ export default function Header({}: HeaderProps) {
           >
             <div>
               <div className={styles.topPluses}>
-                <PlusIcon className={styles.plusIcon} />
-                <PlusIcon className={styles.plusIcon} />
+                <Image
+                  src="/icons/plus.svg"
+                  width={100}
+                  height={100}
+                  alt={'plusIcon'}
+                  className={styles.plusIcon}
+                />
+                <Image
+                  src="/icons/plus.svg"
+                  width={100}
+                  height={100}
+                  alt={'plusIcon'}
+                  className={styles.plusIcon}
+                />
               </div>
 
               <div className={styles.navMobileBox}>
@@ -506,8 +519,20 @@ export default function Header({}: HeaderProps) {
 
             <div>
               <div className={styles.bottomPluses}>
-                <PlusIcon className={styles.plusIcon} />
-                <PlusIcon className={styles.plusIcon} />
+                <Image
+                  src="/icons/plus.svg"
+                  width={100}
+                  height={100}
+                  alt={'plusIcon'}
+                  className={styles.plusIcon}
+                />
+                <Image
+                  src="/icons/plus.svg"
+                  width={100}
+                  height={100}
+                  alt={'plusIcon'}
+                  className={styles.plusIcon}
+                />
               </div>
 
               <Button
