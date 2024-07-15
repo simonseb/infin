@@ -49,7 +49,18 @@ export default function RootLayout({
       <body className={neueHaasGrotesk.className}>
         <link rel="icon" href="/images/icon.webp" sizes="any" />
         <AppContextProvider>
-          <ClientLayout>{children}</ClientLayout>
+          {/* <ClientLayout>{children}</ClientLayout> */}
+          <div
+            style={{
+              display: 'flex',
+              width: '100%',
+              justifyContent: 'center',
+              alignItems: 'center',
+              height: '100vh',
+            }}
+          >
+            It is in maintenance
+          </div>
         </AppContextProvider>
       </body>
     </html>
