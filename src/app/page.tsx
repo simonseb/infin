@@ -18,8 +18,9 @@ import LargeImage from '@/components/organisms/LargeImage';
 import { getHome } from '@/lib/strapi/strapi-fetch';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
+import { MotionPathPlugin } from 'gsap/all';
 import useCheckIsMobile from '@/hooks/useCheckIsMobile';
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
 interface HomePageProps {}
 
