@@ -1,7 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import styles from '../../../styles/components/organisms/Blog/Description.module.scss';
-import { Controlled as CodeMirror } from 'react-codemirror2';
 import { marked } from 'marked';
 
 import { Section } from '@/components/atoms/Section';
@@ -16,6 +15,13 @@ interface IBlogData {
       main?: {
         article?: string;
         publisher?: string;
+        avata: {
+          data: {
+            attributes: {
+              url: string;
+            };
+          };
+        };
       };
     };
   };
@@ -36,7 +42,7 @@ export default function Description({ data }: DescriptionProps) {
     return null;
   }
 
-  const { article, publisher } = attributes.blogs.main;
+  const { article, publisher, avata } = attributes.blogs.main;
 
   // Convert Markdown to HTML
   const markedString = (markdown: string) => {
@@ -53,7 +59,7 @@ export default function Description({ data }: DescriptionProps) {
 
         <div className={styles.bottomBlock}>
           <Avatar
-            imageSrc="/images/olivia.png"
+            imageSrc={avata.data.attributes.url}
             position="Publisher"
             name={`${publisher}`}
           />
