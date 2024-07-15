@@ -76,7 +76,7 @@ export default function Benefits({ data }: BenefitsProps) {
   useEffect(() => {
     isInViewRef.current = isInView;
     triggerSection();
-  }, [isInView, triggerSection, handleScroll]);
+  }, [isInView]);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
