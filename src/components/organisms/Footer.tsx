@@ -34,9 +34,9 @@ interface IFooterData {
     }[];
   };
 }
-interface FooterProps { }
+interface FooterProps {}
 
-export default function Footer({ }: FooterProps) {
+export default function Footer({}: FooterProps) {
   const [dataList, setDataList] = useState<IFooterData[]>();
   const getData = async () => {
     try {
@@ -94,7 +94,7 @@ export default function Footer({ }: FooterProps) {
             <h4 className={styles.title}>Business page</h4>
             {business.map((item, index) => (
               <a
-                href={item.url}
+                // href={item.url}
                 key={index}
                 onClick={() => Gsap.prototype.scrollToSection(item.url)}
               >
