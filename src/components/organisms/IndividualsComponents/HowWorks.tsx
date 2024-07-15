@@ -4,8 +4,9 @@ import styles from '../../../styles/components/organisms/Individuals/HowWorks.mo
 import { Section } from '@/components/atoms/Section';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
+import CSSPlugin from 'gsap/CSSPlugin';
 import Image from 'next/image';
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, CSSPlugin);
 
 interface IDividualData {
   attributes?: {
