@@ -50,11 +50,6 @@ export default function Benefits({ data }: BenefitsProps) {
   const { isInView } = useTargetInView(target);
   const isInViewRef = useRef(isInView);
 
-  useEffect(() => {
-    isInViewRef.current = isInView;
-    triggerSection();
-  }, [isInView]);
-
   const triggerSection = () => {
     if (target.current) {
       const boundRect = (target.current as HTMLElement).getBoundingClientRect();
@@ -77,6 +72,11 @@ export default function Benefits({ data }: BenefitsProps) {
   const handleScroll = () => {
     triggerSection();
   };
+
+  useEffect(() => {
+    isInViewRef.current = isInView;
+    triggerSection();
+  }, [isInView, triggerSection, handleScroll]);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
