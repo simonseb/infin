@@ -442,7 +442,11 @@ export default function Header({}: HeaderProps) {
           </motion.button>
 
           {isTablet && (
-            <ButtonMenu isOpen={isMenuOpen} setIsOpen={handleMenuOpen} />
+            <ButtonMenu
+              isOpen={isMenuOpen}
+              setIsOpen={handleMenuOpen}
+              color={calculateLogoColor() as string}
+            />
           )}
         </motion.div>
 

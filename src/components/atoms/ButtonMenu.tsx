@@ -14,11 +14,13 @@ interface ButtonMenuProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   isOpen: boolean;
   setIsOpen: () => void;
+  color: string;
 }
 
 export default function ButtonMenu({
   isOpen,
   setIsOpen,
+  color,
   ...props
 }: ButtonMenuProps) {
   const pathname = usePathname();
@@ -54,13 +56,18 @@ export default function ButtonMenu({
           alt={'closeIcon'}
         />
       ) : (
-        <Image
-          src="/icons/burger-menu.svg"
-          width={24}
-          height={24}
-          alt={'burgerMenu'}
-          style={{ stroke: pathname === '/contact' ? '#fff' : '#121212' }}
-        />
+        <svg
+          width="24px"
+          height="24px"
+          viewBox="0 0 24 24"
+          fill={color}
+          xmlns="http://www.w3.org/2000/svg"
+          style={{ transition: '.5s' }}
+        >
+          <path d="M5 6.5H19V8H5V6.5Z" />
+          <path d="M5 16.5H19V18H5V16.5Z" />
+          <path d="M5 11.5H19V13H5V11.5Z" />
+        </svg>
       )}
     </button>
   );

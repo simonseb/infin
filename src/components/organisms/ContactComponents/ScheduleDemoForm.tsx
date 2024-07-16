@@ -9,6 +9,7 @@ import PhoneInput from 'react-phone-input-2';
 import { Controller, useForm } from 'react-hook-form';
 import { Input } from '@/components/atoms/Input';
 import { Button } from '@/components/atoms/Button';
+import { validateForm } from '@/lib/validation';
 
 interface ScheduleDemoFormProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLFormElement>, HTMLFormElement> {
@@ -22,7 +23,7 @@ interface IScheduleDemoForm {
   phone: string;
   jobTitle: string;
   company: string;
-  employees: number;
+  employees: string;
 }
 
 export default function ScheduleDemoForm({
@@ -37,13 +38,19 @@ export default function ScheduleDemoForm({
     reset,
   } = useForm<IScheduleDemoForm>();
 
-  console.log(errors);
-
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
-  const [error, setError] = useState<string>();
+  const [error, setError] = useState<any>({});
 
   const onSubmit = async (data: IScheduleDemoForm) => {
-    reset();
+    console.log(validateForm(data));
+    const { errors, formValid } = validateForm(data);
+    if (formValid) {
+      alert(formValid);
+    } else {
+      setError(errors as any);
+      alert(formValid);
+    }
+    // reset();
   };
 
   return (
@@ -61,7 +68,7 @@ export default function ScheduleDemoForm({
             })}
             className={styles.input}
             placeholder="Enter your first name"
-            error={errors.firstName}
+            error={error.firstName}
           />
         </label>
 
@@ -73,7 +80,7 @@ export default function ScheduleDemoForm({
             })}
             placeholder="Enter your last name"
             className={styles.input}
-            error={errors.lastName}
+            error={error.lastName}
           />
         </label>
       </div>
@@ -86,7 +93,7 @@ export default function ScheduleDemoForm({
           })}
           placeholder="Enter your business email"
           className={styles.input}
-          error={errors.email}
+          error={error.email}
         />
       </label>
 
@@ -102,6 +109,7 @@ export default function ScheduleDemoForm({
               inputProps={{
                 name: 'phone',
                 required: true,
+                error: error.phone,
               }}
               specialLabel={''}
               countryCodeEditable={false}
@@ -123,7 +131,7 @@ export default function ScheduleDemoForm({
           })}
           placeholder="Enter your current job title"
           className={styles.input}
-          error={errors.jobTitle}
+          error={error.jobTitle}
         />
       </label>
 
@@ -136,7 +144,7 @@ export default function ScheduleDemoForm({
             })}
             placeholder="Enter the name of company"
             className={styles.input}
-            error={errors.company}
+            error={error.company}
           />
         </label>
 
@@ -148,7 +156,7 @@ export default function ScheduleDemoForm({
             })}
             placeholder="51 - 100"
             className={styles.input}
-            error={errors.employees}
+            error={error.employees}
           />
         </label>
       </div>
