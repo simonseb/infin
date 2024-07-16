@@ -55,7 +55,7 @@ export default function Chart({ data }: ChartProps) {
   const { blocks = [] } = attributes;
 
   return (
-    <Section type="ghost" className={styles.section}>
+    <Section type="ghost" className={styles.section} id="chart">
       <div className={styles.topBlock}>
         <h3 className={styles.title}>
           The INFIN <br /> gets you seen

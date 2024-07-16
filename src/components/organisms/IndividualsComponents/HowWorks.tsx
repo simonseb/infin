@@ -2,11 +2,10 @@ import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import styles from '../../../styles/components/organisms/Individuals/HowWorks.module.scss';
 
 import { Section } from '@/components/atoms/Section';
-import gsap from 'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger';
-import CSSPlugin from 'gsap/CSSPlugin';
+// import gsap from 'gsap';
+// import ScrollTrigger from 'gsap/ScrollTrigger';
+import { gsap, ScrollTrigger } from '@/components/GsapLib';
 import Image from 'next/image';
-gsap.registerPlugin(ScrollTrigger, CSSPlugin);
 
 interface IDividualData {
   attributes?: {
@@ -85,7 +84,10 @@ export default function HowWorks({ data }: HowWorksProps) {
       });
     }, document.body);
 
-    return () => ctx.revert();
+    return () => {
+      ctx.revert();
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
   });
 
   if (!data) {
@@ -100,7 +102,11 @@ export default function HowWorks({ data }: HowWorksProps) {
 
   const { blocks = [] } = attributes;
   return (
-    <Section type="filled" className={styles.section + ' container'}>
+    <Section
+      type="filled"
+      className={styles.section + ' container'}
+      id="howItWorks"
+    >
       <div className={styles.topBlock}>
         <p className={styles.smallText}>{blocks[0].title || ''}</p>
 

@@ -49,15 +49,15 @@ export default function ButtonMenu({
       {isOpen ? (
         <Image
           src="/icons/close.svg"
-          width={100}
-          height={100}
+          width={24}
+          height={24}
           alt={'closeIcon'}
         />
       ) : (
         <Image
           src="/icons/burger-menu.svg"
-          width={100}
-          height={100}
+          width={24}
+          height={24}
           alt={'burgerMenu'}
           style={{ stroke: pathname === '/contact' ? '#fff' : '#121212' }}
         />

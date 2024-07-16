@@ -93,13 +93,23 @@ export default function Footer({}: FooterProps) {
           <li className={styles.listItem}>
             <h4 className={styles.title}>Business page</h4>
             {business.map((item, index) => (
-              <a
-                // href={item.url}
+              // <a
+              //   // href={item.url}
+              //   key={index}
+              //   onClick={() => Gsap.prototype.scrollToSection(item.url)}
+              // >
+              //   {item.title}
+              // </a>
+
+              <Link
                 key={index}
-                onClick={() => Gsap.prototype.scrollToSection(item.url)}
+                href={`/business/#${item.url}`}
+                // onClick={() => {
+                //   location.href = `/business/#${item.url}`;
+                // }}
               >
                 {item.title}
-              </a>
+              </Link>
             ))}
           </li>
 
@@ -107,9 +117,16 @@ export default function Footer({}: FooterProps) {
             <h4 className={styles.title}>For Individuals</h4>
 
             {individuals.map((item, index) => (
-              <a href={item.url} key={index}>
+              <Link
+                key={index}
+                href={`/individuals/#${item.url}`}
+                // onClick={() => {
+                //   location.href = `/individuals/#${item.url}`;
+                // }}
+                // onClick={() => Gsap.prototype.scrollToSection(item.url)}
+              >
                 {item.title}
-              </a>
+              </Link>
             ))}
           </li>
 

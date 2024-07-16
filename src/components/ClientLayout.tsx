@@ -9,12 +9,11 @@ import WelcomeAnimation from './organisms/WelcomeAnimation';
 import { AppContext, IAppContext } from '@/context/app.context';
 import { usePathname } from 'next/navigation';
 import { colors } from '@/lib/constants';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ScrollSmoother } from 'gsap/ScrollSmoother';
+// import { gsap } from 'gsap';
+// import { ScrollTrigger } from 'gsap/ScrollTrigger';
+// import { ScrollSmoother } from 'gsap/ScrollSmoother';
+import { gsap, ScrollTrigger, ScrollSmoother } from '@/components/GsapLib';
 import { useLayoutEffect } from 'react';
-
-gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 interface ClientLayoutProps {
   children: React.ReactNode;

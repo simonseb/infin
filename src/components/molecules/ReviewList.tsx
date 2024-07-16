@@ -76,7 +76,13 @@ export default function ReviewList({
           className={styles.buttonRight}
           onClick={() => goToPage(currentPage + 1, 'next')}
         >
-          <Image src="/icons/arrow.svg" alt="" width={100} height={100} />
+          <Image
+            src="/icons/arrow.svg"
+            alt=""
+            width={100}
+            height={100}
+            style={{ transform: 'rotateZ(180deg)' }}
+          />
         </button>
       </div>
     </div>

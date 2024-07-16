@@ -83,7 +83,7 @@ export default function Benefits({ data }: BenefitsProps) {
 
   const { blocks = [] } = attributes;
   return (
-    <div ref={target}>
+    <div ref={target} id="benefits">
       <Section type="filled" className={styles.benefits}>
         <div className={styles.leftBlock}>
           <CardTitle

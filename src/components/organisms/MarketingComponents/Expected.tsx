@@ -5,11 +5,11 @@ import styles from '../../../styles/components/organisms/Marketing/Expected.modu
 
 import { Section } from '@/components/atoms/Section';
 import Cursor from '@/components/atoms/Cursor';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+// import gsap from 'gsap';
+// import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { gsap, ScrollTrigger } from '@/components/GsapLib';
 import Image from 'next/image';
 
-gsap.registerPlugin(ScrollTrigger);
 interface IMarketing {
   attributes?: {
     blocks: {
@@ -44,56 +44,61 @@ export default function Expected({ data }: ExpectedProps) {
   };
 
   useLayoutEffect(() => {
-    let ctx = gsap.context(() => {
-      let panels = gsap.utils.toArray('.panel');
-      let underlines = gsap.utils.toArray('.underline');
+    const timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: steps.current,
+        pin: screenWidth <= 1080 ? true : '.container',
+        scrub: 1,
+        start: 'bottom bottom',
+        end: () => '+=' + (steps.current?.offsetWidth || 0),
+        onUpdate: () => {
+          if (underline.current) {
+            const elementStyle = getComputedStyle(underline.current);
+            const matrix = elementStyle.transform;
+            const left =
+              (parseFloat(matrix.split(',')[4]) /
+                ((steps.current?.clientWidth || 0) - 80)) *
+              100;
+            let num = 0;
 
-      gsap.to(underlines, {
-        xPercent: 100 * (panels.length - 1),
-        ease: 'none',
-        scrollTrigger: {
-          trigger: steps.current,
-          pin: screenWidth <= 1080 ? true : '.container',
-          scrub: 1,
-          start: 'bottom bottom',
-          end: () => '+=' + steps.current?.offsetWidth,
-          onUpdate: () => {
-            if (underline.current) {
-              const elementStyle = getComputedStyle(underline.current);
-              const matrix = elementStyle.transform;
-              const left =
-                (parseFloat(matrix.split(',')[4]) /
-                  ((steps.current?.clientWidth as number) - 80)) *
-                100;
-              let num = 0;
-              if (left < 15) {
-                num = 0;
-              } else if (left < 35 && left >= 15) {
-                num = 1;
-              } else if (left < 55 && left >= 35) {
-                num = 2;
-              } else if (left < 70 && left >= 55) {
-                num = 3;
-              } else if (left >= 70) {
-                num = 4;
-              }
+            if (left < 15) {
+              num = 0;
+            } else if (left < 35 && left >= 15) {
+              num = 1;
+            } else if (left < 55 && left >= 35) {
+              num = 2;
+            } else if (left < 70 && left >= 55) {
+              num = 3;
+            } else if (left >= 70) {
+              num = 4;
+            }
 
-              for (let i = 0; i < 5; i++) {
-                const panel: any = document.getElementById(`panel${i}`);
-                if (panel) {
-                  panel.style.color = i === num ? '#ffcd00' : 'black';
-                  panel.style.borderBottom =
-                    i === num ? '2px solid black' : '2px solid white';
-                }
+            for (let i = 0; i < 5; i++) {
+              const panel = document.getElementById(`panel${i}`);
+              if (panel) {
+                panel.style.color = i === num ? '#ffcd00' : 'black';
+                panel.style.borderBottom =
+                  i === num ? '2px solid black' : '2px solid white';
               }
             }
-          },
+          }
         },
-      });
-    }, document.body);
+      },
+    });
 
-    return () => ctx.revert();
-  });
+    const panels = gsap.utils.toArray('.panel');
+    const underlines = gsap.utils.toArray('.underline');
+
+    timeline.to(underlines, {
+      xPercent: 100 * (panels.length - 1),
+      ease: 'none',
+    });
+
+    return () => {
+      timeline.kill();
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, [screenWidth]);
 
   useEffect(() => {
     window.addEventListener('resize', () => setScreenWidth(innerWidth));

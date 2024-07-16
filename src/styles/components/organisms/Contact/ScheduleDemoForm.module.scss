@@ -57,7 +57,8 @@
   padding: 8px 16px !important;
 
   height: 48px !important;
-  width: 123px !important;
+  // width: 123px !important;
+  width: 80px !important;
   border-radius: 6px !important;
 
   background-color: $lightGrey !important;
@@ -116,7 +117,8 @@
     padding: sizeVW(8) sizeVW(16) !important;
 
     height: sizeVW(48) !important;
-    width: sizeVW(123) !important;
+    // width: sizeVW(123) !important;
+    width: sizeVW(65) !important;
     border-radius: sizeVW(6) !important;
   }
 

@@ -52,7 +52,10 @@ export default function Description({ data }: DescriptionProps) {
     <Section type="ghost" className={styles.section}>
       <div className={styles.container}>
         {article ? (
-          <div dangerouslySetInnerHTML={markedString(article)} />
+          <div
+            dangerouslySetInnerHTML={markedString(article)}
+            className={styles.article}
+          />
         ) : (
           <p>No content available</p>
         )}

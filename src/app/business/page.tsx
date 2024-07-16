@@ -59,6 +59,28 @@ export default function BusinessPage({}: BusinessPageProps) {
   };
 
   useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.substring(1); // get hash from URL
+      if (hash) {
+        const targetElement = document.getElementById(hash);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 60,
+            behavior: 'smooth',
+          });
+        }
+      }
+    };
+
+    handleHashChange();
+    window.addEventListener('hashchange', handleHashChange);
+
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+    };
+  }, [data]);
+
+  useEffect(() => {
     getData();
   }, []);
   if (!data) {
