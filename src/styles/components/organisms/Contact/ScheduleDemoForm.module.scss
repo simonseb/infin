@@ -54,7 +54,8 @@
 
 .buttonClass {
   position: static !important;
-  padding: 8px 16px !important;
+  // padding: 8px 16px !important;
+  padding: 0 !important;
 
   height: 48px !important;
   // width: 123px !important;
@@ -114,7 +115,8 @@
   }
 
   .buttonClass {
-    padding: sizeVW(8) sizeVW(16) !important;
+    // padding: sizeVW(8) sizeVW(16) !important;
+    padding: 0 !important;
 
     height: sizeVW(48) !important;
     // width: sizeVW(123) !important;
@@ -125,6 +127,9 @@
   .inputClass::placeholder {
     font-size: sizeVW(16) !important;
     line-height: sizeVW(22) !important;
+  }
+  .inputClass {
+    font-size: sizeVW(16) !important;
   }
 
   .phoneInput {

@@ -37,3 +37,8 @@ button {
   font-family: inherit;
   @include cursor-pointer;
 }
+
+.selected-flag {
+  width: 100% !important;
+  padding-left: 24px !important;
+}
