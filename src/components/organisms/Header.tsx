@@ -318,7 +318,11 @@ export default function Header({}: HeaderProps) {
         animate={!isTablet && isInView ? 'large' : 'short'}
         variants={variantsHeader}
       >
-        <motion.div className={styles.topBlock} variants={variantsTopBlock}>
+        <motion.div
+          className={styles.topBlock}
+          variants={variantsTopBlock}
+          style={isTablet ? { paddingBottom: '20px' } : {}}
+        >
           <motion.div
             variants={variantsLogo}
             transition={{ duration: 0.7, delay: 0.1 }}
