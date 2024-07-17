@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from '../../../styles/components/organisms/Blog/RelatedPosts.module.scss';
 
 import { Section } from '@/components/atoms/Section';
@@ -14,6 +14,7 @@ interface IBlogData {
         title: string;
         publisher: string;
         summary: string;
+        lastest_date: string;
         mainSection: {
           data: {
             attributes: {
@@ -48,7 +49,39 @@ export default function RelatedPosts({ data }: RelatedPostsProps) {
     return null;
   }
 
+  function parseDateString(dateString: any) {
+    const [day, month, year] = dateString.split(' • ')[0].split(' ');
+    return new Date(`${month} ${day}, ${year}`);
+  }
+
   const { related_posts } = attributes.blogs;
+
+  // Parse and sort the date strings
+  const sorted_related_posts = related_posts
+    .map((related_post) => ({
+      date: parseDateString(related_post.lastest_date),
+      id: related_post.id,
+      title: related_post.title,
+      publisher: related_post.publisher,
+      summary: related_post.summary,
+      lastest_date: related_post.lastest_date,
+      mainSection: {
+        data: {
+          attributes: {
+            url: related_post.mainSection.data.attributes.url,
+          },
+        },
+      },
+      avata: {
+        data: {
+          attributes: {
+            url: related_post.avata.data.attributes.url,
+          },
+        },
+      },
+    }))
+    .sort((a: any, b: any) => a.date - b.date);
+
   return (
     <Section type="filled" className={styles.section}>
       <div className={styles.topBlock}>
@@ -66,7 +99,7 @@ export default function RelatedPosts({ data }: RelatedPostsProps) {
       </div>
 
       <ul className={styles.postList}>
-        {related_posts.map((post) => (
+        {sorted_related_posts.map((post) => (
           <li key={post.id + 'key'}>
             <PostCard {...post} />
           </li>

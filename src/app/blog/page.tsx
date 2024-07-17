@@ -38,6 +38,7 @@ interface IBlogData {
         title: string;
         publisher: string;
         summary: string;
+        lastest_date: string;
         mainSection: {
           data: {
             attributes: {
