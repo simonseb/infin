@@ -117,6 +117,7 @@ export default function RelatedPosts({
                 setCurrentBlog(index + 1);
               }
             }}
+            style={{ width: '33%' }}
           >
             <PostCard {...post} />
           </li>
