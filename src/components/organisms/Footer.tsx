@@ -157,7 +157,7 @@ export default function Footer({}: FooterProps) {
         rel="noopener noreferrer"
         className={styles.thinkseb}
       >
-        <Image src="/icons/thinkseb.svg" alt="ddd" width={100} height={100} />
+        <Image src="/icons/thinkseb.svg" alt="ddd" width={18} height={22} />
         <div className={styles.copyright}>
           <span className={styles.copyrightAccent}>© 2024 • Curated by </span>
           ThinkSeb
