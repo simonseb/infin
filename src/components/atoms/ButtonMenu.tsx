@@ -44,7 +44,7 @@ export default function ButtonMenu({
       onClick={setIsOpen}
       style={{
         backgroundColor: isOpen ? '#c1c1c1' : 'transparent',
-        borderColor: calculateBorderColor(),
+        borderColor: color,
       }}
       {...props}
     >

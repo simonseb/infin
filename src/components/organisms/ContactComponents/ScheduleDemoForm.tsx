@@ -42,13 +42,10 @@ export default function ScheduleDemoForm({
   const [error, setError] = useState<any>({});
 
   const onSubmit = async (data: IScheduleDemoForm) => {
-    console.log(validateForm(data));
     const { errors, formValid } = validateForm(data);
     if (formValid) {
-      alert(formValid);
     } else {
       setError(errors as any);
-      alert(formValid);
     }
     // reset();
   };
