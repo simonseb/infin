@@ -44,6 +44,8 @@ export default function ScheduleDemoForm({
   const onSubmit = async (data: IScheduleDemoForm) => {
     const { errors, formValid } = validateForm(data);
     if (formValid) {
+      setError({});
+      reset();
     } else {
       setError(errors as any);
     }
@@ -115,6 +117,7 @@ export default function ScheduleDemoForm({
               inputClass={styles.inputClass}
               buttonClass={styles.buttonClass}
               dropdownClass={styles.dropdownClass}
+              inputStyle={{ border: error.phone ? '1px solid red' : 'none' }}
             />
           )}
         />
