@@ -29,14 +29,15 @@ interface IBlogData {
 
 interface DescriptionProps {
   data?: IBlogData[];
+  currentBlog?: number;
 }
 
-export default function Description({ data }: DescriptionProps) {
+export default function Description({ data, currentBlog }: DescriptionProps) {
   if (!data || data.length === 0) {
     return null;
   }
 
-  const { attributes } = data[0];
+  const { attributes } = data[currentBlog || 0];
 
   if (!attributes || !attributes.blogs || !attributes.blogs.main) {
     return null;

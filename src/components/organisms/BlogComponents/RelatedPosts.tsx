@@ -36,20 +36,27 @@ interface IBlogData {
 
 interface RelatedPostsProps {
   data?: IBlogData[];
+  setCurrentBlog: (blog: any) => void;
+  currentBlog: number;
 }
 
-export default function RelatedPosts({ data }: RelatedPostsProps) {
+export default function RelatedPosts({
+  data,
+  setCurrentBlog,
+  currentBlog,
+}: RelatedPostsProps) {
   if (!data || data.length === 0) {
     return null;
   }
 
-  const { attributes } = data[0];
+  const { attributes } = data[currentBlog];
 
   if (!attributes || !attributes.blogs || !attributes.blogs.related_posts) {
     return null;
   }
 
   function parseDateString(dateString: any) {
+    console.log(dateString);
     const [day, month, year] = dateString.split(' • ')[0].split(' ');
     return new Date(`${month} ${day}, ${year}`);
   }
@@ -99,8 +106,18 @@ export default function RelatedPosts({ data }: RelatedPostsProps) {
       </div>
 
       <ul className={styles.postList}>
-        {sorted_related_posts.map((post) => (
-          <li key={post.id + 'key'}>
+        {sorted_related_posts.map((post, index) => (
+          <li
+            key={post.id + 'key'}
+            onClick={() => {
+              if (currentBlog > index && currentBlog !== 0) {
+                console.log(index);
+                setCurrentBlog(index);
+              } else {
+                setCurrentBlog(index + 1);
+              }
+            }}
+          >
             <PostCard {...post} />
           </li>
         ))}

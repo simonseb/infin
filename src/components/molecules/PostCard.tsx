@@ -52,6 +52,7 @@ export default function PostCard({
       className={clsx(styles.postCard, className)}
       {...props}
       ref={containerRef}
+      style={{ cursor: 'pointer' }}
     >
       <div className={styles.imageContainer}>
         <motion.div style={{ scale }}>

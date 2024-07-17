@@ -61,6 +61,7 @@ interface BlogPageProps {}
 
 export default function BlogPage({}: BlogPageProps) {
   const [data, setData] = useState<IBlogData[]>();
+  const [currentBlog, setCurrentBlog] = useState(0);
 
   const [loading, setLoading] = useState(false);
 
@@ -72,7 +73,8 @@ export default function BlogPage({}: BlogPageProps) {
 
   const getData = async () => {
     try {
-      const res = await getBlog();
+      const res: any = await getBlog();
+      res.data.sort((a: any, b: any) => parseInt(a.id) - parseInt(b.id));
       if (res) {
         setData(res.data as IBlogData[]);
       }
@@ -106,12 +108,16 @@ export default function BlogPage({}: BlogPageProps) {
         <LargeImage
           sectionName="home-image"
           mobileImage=""
-          desctopImage={`${data[0].attributes?.blogs.main.mainSection.data.attributes.url}`}
+          desctopImage={`${data[currentBlog].attributes?.blogs.main.mainSection.data.attributes.url}`}
           alt="people laugh"
           scale
         />
-        <Description data={data} />
-        <RelatedPosts data={data} />
+        <Description data={data} currentBlog={currentBlog} />
+        <RelatedPosts
+          data={data}
+          setCurrentBlog={setCurrentBlog}
+          currentBlog={currentBlog}
+        />
       </main>
 
       <BottomComponent className={styles.bottomComponent} />
