@@ -67,6 +67,11 @@
   line-height: 38px;
 }
 
+.article img {
+  width: 100%;
+  border-radius: 20px;
+}
+
 @media screen and (min-width: $largeScreen) {
   .section {
     margin-top: vw(120);
