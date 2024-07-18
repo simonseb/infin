@@ -393,6 +393,25 @@ export async function getSEO(slug: string) {
   return responseHandler(resp);
 }
 
+export async function sendEmail(
+  to: string,
+  subject: string,
+  text: string,
+  html: string,
+) {
+  const resp = await strapi.axios.post(
+    (process.env.STRAPI_URL + 'api/send-email') as string,
+    {
+      to,
+      subject,
+      text,
+      html,
+    },
+  );
+
+  return resp.data;
+}
+
 // handle response data
 function responseHandler(resp: StrapiResponse<any>) {
   const { data, meta } = resp;

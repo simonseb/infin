@@ -8,6 +8,8 @@ import { useForm } from 'react-hook-form';
 import { Input } from '@/components/atoms/Input';
 import { Button } from '@/components/atoms/Button';
 import { TextArea } from '@/components/atoms/TextArea';
+import { validateFormTouch } from '@/lib/validation';
+import { sendEmail } from '@/lib/strapi/strapi-fetch';
 
 interface GetInTouchFormProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLFormElement>, HTMLFormElement> {
@@ -34,10 +36,30 @@ export default function GetInTouchForm({
   } = useForm<IScheduleDemoForm>();
 
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
-  const [error, setError] = useState<string>();
+  const [error, setError] = useState<any>({});
 
   const onSubmit = async (data: IScheduleDemoForm) => {
-    reset();
+    const { errors, formValid } = validateFormTouch(data);
+
+    if (formValid) {
+      setError(errors);
+
+      const text = `from: ${data.firstName + ' ' + data.lastName}
+                    email: ${data.email}
+                    message: ${data.message}`;
+      const res = sendEmail(
+        'joseph.jackson0811@gmail.com',
+        'Schedule a Demo',
+        text,
+        '',
+      );
+
+      console.log(res);
+
+      reset();
+    } else {
+      setError(errors);
+    }
   };
 
   return (

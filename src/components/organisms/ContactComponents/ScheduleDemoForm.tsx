@@ -9,7 +9,8 @@ import PhoneInput from 'react-phone-input-2';
 import { Controller, useForm } from 'react-hook-form';
 import { Input } from '@/components/atoms/Input';
 import { Button } from '@/components/atoms/Button';
-import { validateForm } from '@/lib/validation';
+import { validateFormDemo } from '@/lib/validation';
+import { sendEmail } from '@/lib/strapi/strapi-fetch';
 
 interface ScheduleDemoFormProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLFormElement>, HTMLFormElement> {
@@ -42,9 +43,23 @@ export default function ScheduleDemoForm({
   const [error, setError] = useState<any>({});
 
   const onSubmit = async (data: IScheduleDemoForm) => {
-    const { errors, formValid } = validateForm(data);
+    const { errors, formValid } = validateFormDemo(data);
     if (formValid) {
       setError({});
+      const text = `from: ${data.firstName + ' ' + data.lastName}
+                    email: ${data.email}
+                    phone: ${data.phone},
+                    job title: ${data.jobTitle},
+                    company: ${data.company},
+                    employees: ${data.employees}`;
+      const res = sendEmail(
+        'joseph.jackson0811@gmail.com',
+        'Schedule a Demo',
+        text,
+        '',
+      );
+
+      console.log(res);
       reset();
     } else {
       setError(errors as any);

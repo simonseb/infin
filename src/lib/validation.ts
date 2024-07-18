@@ -13,7 +13,7 @@ function validateNumberOfEmployees(num: string) {
   return Number.isInteger(number) && number > 50 && number <= 100;
 }
 
-export const validateForm = (formData: any) => {
+export const validateFormDemo = (formData: any) => {
   let formValid = true;
   let errors = {
     firstName: '',
@@ -68,5 +68,40 @@ export const validateForm = (formData: any) => {
     errors.employees = 'Invalid employees number';
     formValid = false;
   }
+  return { errors, formValid };
+};
+
+export const validateFormTouch = (formData: any) => {
+  let formValid = true;
+  let errors = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    message: '',
+  };
+
+  if (!formData.firstName.trim()) {
+    errors.firstName = 'Name is required';
+    formValid = false;
+  }
+
+  if (!formData.lastName.trim()) {
+    errors.lastName = 'Name is required';
+    formValid = false;
+  }
+
+  if (!formData.email.trim()) {
+    errors.email = 'Email is required';
+    formValid = false;
+  } else if (!validateEmail(formData.email)) {
+    errors.email = 'Invalid email format';
+    formValid = false;
+  }
+
+  if (!formData.message.trim()) {
+    errors.message = 'Message is required';
+    formValid = false;
+  }
+
   return { errors, formValid };
 };
