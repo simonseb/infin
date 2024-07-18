@@ -393,6 +393,22 @@ export async function getSEO(slug: string) {
   return responseHandler(resp);
 }
 
+export async function getSettings() {
+  const resp = await strapi.find('settings', {
+    populate: {
+      setting: {
+        populate: {
+          favicon: {
+            populate: '*',
+          },
+        },
+      },
+    },
+  });
+
+  return responseHandler(resp);
+}
+
 export async function sendEmail(
   to: string,
   subject: string,

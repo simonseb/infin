@@ -10,13 +10,14 @@ import ClientLayout from '@/components/ClientLayout';
 
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
+import { Settings } from './headerSetting';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export const metadata: Metadata = {
-  title: 'The Infin',
-  description: 'The official landing page, built with Next.js',
-};
+// export const metadata: Metadata = {
+//   // title: 'The Infin',
+//   description: 'The official landing page, built with Next.js',
+// };
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -47,7 +48,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={neueHaasGrotesk.className}>
-        <link rel="icon" href="/images/icon.webp" sizes="any" />
+        <Settings />
         <AppContextProvider>
           <ClientLayout>{children}</ClientLayout>
           {/* <div

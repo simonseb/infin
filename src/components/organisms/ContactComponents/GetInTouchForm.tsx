@@ -10,7 +10,6 @@ import { Button } from '@/components/atoms/Button';
 import { TextArea } from '@/components/atoms/TextArea';
 import { validateFormTouch } from '@/lib/validation';
 import { sendEmail } from '@/lib/strapi/strapi-fetch';
-
 interface GetInTouchFormProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLFormElement>, HTMLFormElement> {
   className: string;
@@ -40,7 +39,6 @@ export default function GetInTouchForm({
 
   const onSubmit = async (data: IScheduleDemoForm) => {
     const { errors, formValid } = validateFormTouch(data);
-    console.log(data, formValid);
 
     if (formValid) {
       setError({});
