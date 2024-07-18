@@ -52,22 +52,30 @@ export default function PostCard({
       className={clsx(styles.postCard, className)}
       {...props}
       ref={containerRef}
-      style={{ cursor: 'pointer' }}
+      style={{
+        cursor: 'pointer',
+        height: '100%',
+        display: 'flex',
+        justifyContent: 'space-between',
+        flexDirection: 'column',
+      }}
     >
-      <div className={styles.imageContainer}>
-        <motion.div style={{ scale }}>
-          <Image
-            className={styles.image}
-            src={`https://dependable-creativity-a1557309a6.media.strapiapp.com/${mainSection.data.attributes.url}`}
-            // src={`http://localhost:1337${mainSection.data.attributes.url}`}
-            alt={title}
-            width={441}
-            height={300}
-          />
-        </motion.div>
+      <div>
+        <div className={styles.imageContainer}>
+          <motion.div style={{ scale }}>
+            <Image
+              className={styles.image}
+              src={`https://dependable-creativity-a1557309a6.media.strapiapp.com/${mainSection.data.attributes.url}`}
+              // src={`http://localhost:1337${mainSection.data.attributes.url}`}
+              alt={title}
+              width={441}
+              height={300}
+            />
+          </motion.div>
+        </div>
+        <h4 className={styles.title}>{title}</h4>
+        <p className={styles.description}>{summary}</p>
       </div>
-      <h4 className={styles.title}>{title}</h4>
-      <p className={styles.description}>{summary}</p>
 
       <Avatar
         className={styles.avatar}
