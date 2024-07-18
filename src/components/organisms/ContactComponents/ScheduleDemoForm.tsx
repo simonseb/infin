@@ -52,12 +52,7 @@ export default function ScheduleDemoForm({
                     job title: ${data.jobTitle},
                     company: ${data.company},
                     employees: ${data.employees}`;
-      const res = sendEmail(
-        'joseph.jackson0811@gmail.com',
-        'Schedule a Demo',
-        text,
-        '',
-      );
+      const res = sendEmail('info@TheINFIN.com', 'Schedule a Demo', text, '');
 
       console.log(res);
       reset();
