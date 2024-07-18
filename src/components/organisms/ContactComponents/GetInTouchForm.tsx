@@ -40,9 +40,10 @@ export default function GetInTouchForm({
 
   const onSubmit = async (data: IScheduleDemoForm) => {
     const { errors, formValid } = validateFormTouch(data);
+    console.log(data, formValid);
 
     if (formValid) {
-      setError(errors);
+      setError({});
 
       const text = `from: ${data.firstName + ' ' + data.lastName}
                     email: ${data.email}
@@ -72,7 +73,7 @@ export default function GetInTouchForm({
             })}
             className={styles.input}
             placeholder="Enter your first name"
-            error={errors.firstName}
+            error={error.firstName}
           />
         </label>
 
@@ -84,7 +85,7 @@ export default function GetInTouchForm({
             })}
             placeholder="Enter your last name"
             className={styles.input}
-            error={errors.lastName}
+            error={error.lastName}
           />
         </label>
       </div>
@@ -97,7 +98,7 @@ export default function GetInTouchForm({
           })}
           placeholder="Enter your business email"
           className={styles.input}
-          error={errors.email}
+          error={error.email}
         />
       </label>
 
@@ -109,7 +110,7 @@ export default function GetInTouchForm({
           })}
           placeholder="Enter the message you want to share with us"
           className={styles.textarea}
-          error={errors.message}
+          error={error.message}
         />
       </label>
 
