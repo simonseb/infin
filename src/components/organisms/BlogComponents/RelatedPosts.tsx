@@ -7,6 +7,7 @@ import { Button } from '@/components/atoms/Button';
 import PostCard from '@/components/molecules/PostCard';
 
 interface IBlogData {
+  id?: string;
   attributes?: {
     blogs?: {
       related_posts: {
@@ -55,8 +56,7 @@ export default function RelatedPosts({
     return null;
   }
 
-  function parseDateString(dateString: any) {
-    console.log(dateString);
+  function parseDateString(dateString: string) {
     const [day, month, year] = dateString.split(' • ')[0].split(' ');
     return new Date(`${month} ${day}, ${year}`);
   }
@@ -64,6 +64,7 @@ export default function RelatedPosts({
   const { related_posts } = attributes.blogs;
 
   // Parse and sort the date strings
+  console.log(related_posts);
   const sorted_related_posts = related_posts
     .map((related_post) => ({
       date: parseDateString(related_post.lastest_date),
@@ -111,10 +112,11 @@ export default function RelatedPosts({
             key={post.id + 'key'}
             onClick={() => {
               if (currentBlog > index && currentBlog !== 0) {
-                console.log(index);
-                setCurrentBlog(index);
+                // setCurrentBlog(index);
+                window.location.href = `/blog/${data[index].id}`;
               } else {
-                setCurrentBlog(index + 1);
+                // setCurrentBlog(index + 1);
+                window.location.href = `/blog/${parseInt(data[index + 1].id as string)}`;
               }
             }}
             style={{ width: '33%' }}
