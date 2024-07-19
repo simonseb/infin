@@ -38,9 +38,10 @@ interface IHomeData {
 
 interface GetStartedProps extends CardProps {
   data?: IHomeData[] | undefined;
+  style?: {}
 }
 
-export default function GetStarted({ className }: GetStartedProps) {
+export default function GetStarted({ className, style }: GetStartedProps) {
   const { setActiveSection, removeActiveSection } = useContext(
     AppContext,
   ) as IAppContext;
@@ -73,6 +74,7 @@ export default function GetStarted({ className }: GetStartedProps) {
       className={clsx(styles.section, className)}
       type="filled"
       id="getstarted"
+      style={{ ...style }}
     >
       <div ref={containerRef} style={{ textAlign: 'center' }}>
         <CardTitle

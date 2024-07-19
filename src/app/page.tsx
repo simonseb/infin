@@ -16,12 +16,11 @@ import Reviews from '@/components/organisms/HomeComponents/Reviews';
 import BottomComponent from '@/components/BottomComponent';
 import LargeImage from '@/components/organisms/LargeImage';
 import { getHome } from '@/lib/strapi/strapi-fetch';
-// import { gsap } from 'gsap';
-// import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import GetStarted from '../components/organisms/GetStarted';
 import { gsap, ScrollTrigger } from '@/components/GsapLib';
 import useCheckIsMobile from '@/hooks/useCheckIsMobile';
 gsap.registerPlugin(ScrollTrigger);
-interface HomePageProps {}
+interface HomePageProps { }
 
 interface IHomeData {
   attributes?: {
@@ -52,7 +51,7 @@ interface IHomeData {
   };
 }
 
-export default function HomePage({}: HomePageProps) {
+export default function HomePage({ }: HomePageProps) {
   const [data, setData] = useState<IHomeData[]>();
   const [elementHeight, setElementHeight] = useState<number>(0);
   const [loaded, setLoaded] = useState<boolean>(false);
@@ -93,22 +92,23 @@ export default function HomePage({}: HomePageProps) {
     const height =
       (document.getElementById('business')?.clientHeight as number) - 30 || 900;
     const cards = gsap.utils.toArray('.homeCard');
-
+    const duration = [0.6, 0.3, 0]
     let ctx = gsap.context(() => {
       loaded &&
         gsap.from('.homeCard', {
           y: (index) => height * (cards.length - (index + 1)),
-          duration: (index) => 0.6 / (index + 1),
-          transformOrigin: 'top center',
+          duration: (index) => duration[index],
+          transformOrigin: 'bottom center',
           ease: 'none',
           stagger: (index) => 0.3 * index,
           scrollTrigger: {
             trigger: '.homeCard',
             start: 'top+=130px bottom',
-            end: 'bottom top',
-            endTrigger: '.cardList',
+            end: 'bottom+=200px top',
+            endTrigger: '.last',
             scrub: true,
             pin: '.cardList',
+            markers: true
           },
         });
     });
@@ -158,7 +158,7 @@ export default function HomePage({}: HomePageProps) {
           />
           <Individuals
             data={data}
-            className="homeCard"
+            className="homeCard last"
             style={{ position: 'relative', zIndex: '3' }}
           />
           <Reviews
