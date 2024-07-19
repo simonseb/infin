@@ -16,8 +16,6 @@ import Reviews from '@/components/organisms/HomeComponents/Reviews';
 import BottomComponent from '@/components/BottomComponent';
 import LargeImage from '@/components/organisms/LargeImage';
 import { getHome } from '@/lib/strapi/strapi-fetch';
-// import { gsap } from 'gsap';
-// import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { gsap, ScrollTrigger } from '@/components/GsapLib';
 import useCheckIsMobile from '@/hooks/useCheckIsMobile';
 import GetStarted from '@/components/organisms/GetStarted';
@@ -95,9 +93,7 @@ export default function HomePage({}: HomePageProps) {
     const height =
       (document.getElementById('business')?.clientHeight as number) - 30 || 900;
     const cards = gsap.utils.toArray('.homeCard');
-
-    console.log(height);
-
+    const duration = [0.6, 0.3, 0];
     let ctx = gsap.context(() => {
       loaded &&
         gsap.from('.homeCard', {
@@ -109,12 +105,11 @@ export default function HomePage({}: HomePageProps) {
           scrollTrigger: {
             trigger: '.homeCard',
             start: 'top+=130px bottom',
-            end: 'bottom top',
-            endTrigger: '.cardList',
-            scrub: 0,
+            end: 'bottom+=200px top',
+            endTrigger: '.last',
+            scrub: true,
             pin: '.cardList',
             markers: true,
-            // once: true,
           },
         });
     });
@@ -164,7 +159,7 @@ export default function HomePage({}: HomePageProps) {
           />
           <Individuals
             data={data}
-            className="homeCard"
+            className="homeCard last"
             style={{ position: 'relative', zIndex: '3' }}
           />
           <Reviews
