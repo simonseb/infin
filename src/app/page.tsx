@@ -20,6 +20,8 @@ import { getHome } from '@/lib/strapi/strapi-fetch';
 // import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { gsap, ScrollTrigger } from '@/components/GsapLib';
 import useCheckIsMobile from '@/hooks/useCheckIsMobile';
+import GetStarted from '@/components/organisms/GetStarted';
+import Footer from '@/components/organisms/Footer';
 gsap.registerPlugin(ScrollTrigger);
 interface HomePageProps {}
 
@@ -94,21 +96,25 @@ export default function HomePage({}: HomePageProps) {
       (document.getElementById('business')?.clientHeight as number) - 30 || 900;
     const cards = gsap.utils.toArray('.homeCard');
 
+    console.log(height);
+
     let ctx = gsap.context(() => {
       loaded &&
         gsap.from('.homeCard', {
           y: (index) => height * (cards.length - (index + 1)),
-          duration: (index) => 0.6 / (index + 1),
+          duration: (index) => 0.6 / (index + 1), // 0.6, 0.3, 0.2,
           transformOrigin: 'top center',
           ease: 'none',
-          stagger: (index) => 0.3 * index,
+          stagger: (index) => 0.3 * index, // 0, 0.3, 0.6
           scrollTrigger: {
             trigger: '.homeCard',
             start: 'top+=130px bottom',
             end: 'bottom top',
             endTrigger: '.cardList',
-            scrub: true,
+            scrub: 0,
             pin: '.cardList',
+            markers: true,
+            // once: true,
           },
         });
     });
@@ -166,10 +172,16 @@ export default function HomePage({}: HomePageProps) {
             className="homeCard"
             style={{ position: 'relative', zIndex: '4' }}
           />
+          <GetStarted
+            className="homeCard"
+            style={{ position: 'relative', zIndex: '5' }}
+          />
         </div>
       </main>
 
-      <BottomComponent />
+      {/* <GetStarted /> */}
+      {/* <BottomComponent /> */}
+      <Footer />
       <div id="space" style={{ height: 0, zIndex: 0 }}></div>
     </div>
   );

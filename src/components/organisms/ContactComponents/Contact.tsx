@@ -13,9 +13,39 @@ import ScheduleDemoForm from './ScheduleDemoForm';
 import GetInTouchForm from './GetInTouchForm';
 import Image from 'next/image';
 
-interface ContactProps {}
+interface ContactProps {
+  data?: IContactData | undefined;
+}
+interface IContactData {
+  demo: [
+    {
+      title: string;
+      text: string;
+    },
+  ];
+  touch: [
+    {
+      title: string;
+      text: string;
+    },
+  ];
+  image: {
+    image: {
+      data: {
+        attributes: {
+          url: string;
+        };
+      };
+    };
+  };
+  email_address: string;
+}
 
-export default function Contact({}: ContactProps) {
+export default function Contact({ data }: ContactProps) {
+  if (!data) {
+    return null;
+  }
+
   const { setActiveSection, removeActiveSection } = useContext(
     AppContext,
   ) as IAppContext;
@@ -82,7 +112,11 @@ export default function Contact({}: ContactProps) {
         />
 
         <div className={styles.wrapper}>
-          {isActiveSection === 'left' ? <ScheduleDemo /> : <GetInTouch />}
+          {isActiveSection === 'left' ? (
+            <ScheduleDemo demo={data.demo} />
+          ) : (
+            <GetInTouch touch={data.touch} />
+          )}
 
           <div className={styles.separator}>
             <Image
@@ -111,9 +145,17 @@ export default function Contact({}: ContactProps) {
               </p>
 
               {isActiveSection === 'left' ? (
-                <ScheduleDemoForm id="#schedule" className={styles.form} />
+                <ScheduleDemoForm
+                  id="#schedule"
+                  className={styles.form}
+                  to={data.email_address}
+                />
               ) : (
-                <GetInTouchForm id="#getintouch" className={styles.form} />
+                <GetInTouchForm
+                  id="#getintouch"
+                  className={styles.form}
+                  to={data.email_address}
+                />
               )}
             </div>
           </div>
