@@ -48,7 +48,7 @@ export default function GetInTouchForm({
       const text = `from: ${data.firstName + ' ' + data.lastName}
                     email: ${data.email}
                     message: ${data.message}`;
-      const res = sendEmail(to, 'Schedule a Demo', text, '');
+      const res = sendEmail(to, 'Get In Touch', text, '');
 
       console.log(res);
 
