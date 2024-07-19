@@ -48,11 +48,11 @@ export default function ScheduleDemoForm({
     const { errors, formValid } = validateFormDemo(data);
     if (formValid) {
       setError({});
-      const text = `from: ${data.firstName + ' ' + data.lastName}
-                    email: ${data.email}
-                    phone: ${data.phone},
-                    job title: ${data.jobTitle},
-                    company: ${data.company},
+      const text = `from: ${data.firstName + ' ' + data.lastName}<br/>
+                    email: ${data.email}<br/>
+                    phone: ${data.phone}<br/>
+                    job title: ${data.jobTitle}<br/>
+                    company: ${data.company}<br/>
                     employees: ${data.employees}`;
       const res = sendEmail(to, 'Schedule a Demo', 'Schedule a Demo', text);
 

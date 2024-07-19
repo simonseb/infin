@@ -45,8 +45,8 @@ export default function GetInTouchForm({
     if (formValid) {
       setError({});
 
-      const text = `from: ${data.firstName + ' ' + data.lastName}
-                    email: ${data.email}
+      const text = `from: ${data.firstName + ' ' + data.lastName} <br/>
+                    email: ${data.email}<br/>
                     message: ${data.message}`;
       const res = sendEmail(to, 'Get In Touch', 'Get In Touch', text);
 
