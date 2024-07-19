@@ -128,29 +128,32 @@ export default function RelatedPosts({
       </div>
 
       <ul className={styles.postList}>
-        {sorted_related_posts.map((post, index) => (
-          <li
-            key={post.id + 'key'}
-            onClick={() => {
-              // if (currentBlog > index && currentBlog !== 0) {
+        {sorted_related_posts.map(
+          (post, index) =>
+            index <= 2 && (
+              <li
+                key={post.id + 'key'}
+                onClick={() => {
+                  // if (currentBlog > index && currentBlog !== 0) {
 
-              //   // setCurrentBlog(index);
-              //   window.location.href = `/blog/${data[index].id}`;
-              // } else {
-              //   // setCurrentBlog(index + 1);
-              //   window.location.href = `/blog/${parseInt(data[index + 1].id as string)}`;
-              // }
-              for (let i = 0; i < data.length; i++) {
-                if (post.title === data[i].attributes?.blogs?.main.title) {
-                  window.location.href = `/blog/${data[i].id}`;
-                }
-              }
-            }}
-            style={{ width: '33%' }}
-          >
-            <PostCard {...post} />
-          </li>
-        ))}
+                  //   // setCurrentBlog(index);
+                  //   window.location.href = `/blog/${data[index].id}`;
+                  // } else {
+                  //   // setCurrentBlog(index + 1);
+                  //   window.location.href = `/blog/${parseInt(data[index + 1].id as string)}`;
+                  // }
+                  for (let i = 0; i < data.length; i++) {
+                    if (post.title === data[i].attributes?.blogs?.main.title) {
+                      window.location.href = `/blog/${data[i].id}`;
+                    }
+                  }
+                }}
+                style={{ width: '33%' }}
+              >
+                <PostCard {...post} />
+              </li>
+            ),
+        )}
       </ul>
     </Section>
   );
