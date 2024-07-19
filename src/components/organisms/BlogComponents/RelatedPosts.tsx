@@ -51,6 +51,7 @@ interface IBlogData {
             };
           };
         };
+        related_blog_id: string;
       }[];
     };
   };
@@ -83,6 +84,7 @@ export default function RelatedPosts({
   }
 
   const { related_posts } = attributes.blogs;
+  console.log(related_posts);
 
   // Parse and sort the date strings
   console.log(related_posts);
@@ -108,6 +110,7 @@ export default function RelatedPosts({
           },
         },
       },
+      related_blog_id: related_post.related_blog_id,
     }))
     .sort((a: any, b: any) => a.date - b.date);
 
@@ -134,19 +137,9 @@ export default function RelatedPosts({
               <li
                 key={post.id + 'key'}
                 onClick={() => {
-                  // if (currentBlog > index && currentBlog !== 0) {
-
-                  //   // setCurrentBlog(index);
-                  //   window.location.href = `/blog/${data[index].id}`;
-                  // } else {
-                  //   // setCurrentBlog(index + 1);
-                  //   window.location.href = `/blog/${parseInt(data[index + 1].id as string)}`;
-                  // }
-                  for (let i = 0; i < data.length; i++) {
-                    if (post.title === data[i].attributes?.blogs?.main.title) {
-                      window.location.href = `/blog/${data[i].id}`;
-                    }
-                  }
+                  // console.log(post);
+                  console.log(post.related_blog_id);
+                  window.location.href = `/blog/${parseInt(post.related_blog_id)}`;
                 }}
                 style={{ width: '33%' }}
               >

@@ -54,6 +54,7 @@ interface IBlogData {
             };
           };
         };
+        related_blog_id: string;
       }[];
     };
   };
