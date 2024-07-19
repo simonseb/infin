@@ -98,7 +98,7 @@ export default function HomePage({}: HomePageProps) {
       loaded &&
         gsap.from('.homeCard', {
           y: (index) => height * (cards.length - (index + 1)),
-          duration: (index) => 0.6 / (index + 1), // 0.6, 0.3, 0.2,
+          duration: (index) => duration[index], // 0.6, 0.3, 0.2,
           transformOrigin: 'top center',
           ease: 'none',
           stagger: (index) => 0.3 * index, // 0, 0.3, 0.6
@@ -109,7 +109,7 @@ export default function HomePage({}: HomePageProps) {
             endTrigger: '.last',
             scrub: true,
             pin: '.cardList',
-            markers: true,
+            // markers: true,
           },
         });
     });
