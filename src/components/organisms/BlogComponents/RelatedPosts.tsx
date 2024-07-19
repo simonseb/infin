@@ -10,6 +10,27 @@ interface IBlogData {
   id?: string;
   attributes?: {
     blogs?: {
+      main: {
+        lastest_date: string;
+        title: string;
+        publisher: string;
+        summary: string;
+        article: string;
+        avata: {
+          data: {
+            attributes: {
+              url: string;
+            };
+          };
+        };
+        mainSection: {
+          data: {
+            attributes: {
+              url: string;
+            };
+          };
+        };
+      };
       related_posts: {
         id: string;
         title: string;
@@ -111,12 +132,18 @@ export default function RelatedPosts({
           <li
             key={post.id + 'key'}
             onClick={() => {
-              if (currentBlog > index && currentBlog !== 0) {
-                // setCurrentBlog(index);
-                window.location.href = `/blog/${data[index].id}`;
-              } else {
-                // setCurrentBlog(index + 1);
-                window.location.href = `/blog/${parseInt(data[index + 1].id as string)}`;
+              // if (currentBlog > index && currentBlog !== 0) {
+
+              //   // setCurrentBlog(index);
+              //   window.location.href = `/blog/${data[index].id}`;
+              // } else {
+              //   // setCurrentBlog(index + 1);
+              //   window.location.href = `/blog/${parseInt(data[index + 1].id as string)}`;
+              // }
+              for (let i = 0; i < data.length; i++) {
+                if (post.title === data[i].attributes?.blogs?.main.title) {
+                  window.location.href = `/blog/${data[i].id}`;
+                }
               }
             }}
             style={{ width: '33%' }}
