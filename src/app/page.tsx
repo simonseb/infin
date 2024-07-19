@@ -19,6 +19,7 @@ import { getHome } from '@/lib/strapi/strapi-fetch';
 import GetStarted from '../components/organisms/GetStarted';
 import { gsap, ScrollTrigger } from '@/components/GsapLib';
 import useCheckIsMobile from '@/hooks/useCheckIsMobile';
+import Footer from '@/components/organisms/Footer'
 gsap.registerPlugin(ScrollTrigger);
 interface HomePageProps { }
 
@@ -91,20 +92,32 @@ export default function HomePage({ }: HomePageProps) {
     // ScrollTrigger && gsap.registerPlugin(ScrollTrigger);
     const height =
       (document.getElementById('business')?.clientHeight as number) - 30 || 900;
+    // const hegihts = [2800, 1870, 940, -220]
+    const hegihts = [3020, 2090, 1160, 0];
+    const stagger = [0, 0.25, 0.5, 0.75];
+    const duration = [0.8, 0.55, 0.3, 0];
     const cards = gsap.utils.toArray('.homeCard');
-    const duration = [0.6, 0.3, 0]
+    const heightList = cards.map(item => (item as HTMLElement)?.clientHeight as number).reverse().slice(1).reduce((arr, cur) => {
+      const array = arr as number[];
+      const current = cur as number;
+
+      const last = array[array.length - 1] + current
+      return [...array, last];
+    }, [0]).reverse();
+    console.log(heightList);
+
     let ctx = gsap.context(() => {
       loaded &&
         gsap.from('.homeCard', {
-          y: (index) => height * (cards.length - (index + 1)),
+          y: (index) => heightList[index],
           duration: (index) => duration[index],
           transformOrigin: 'bottom center',
           ease: 'none',
-          stagger: (index) => 0.3 * index,
+          stagger: (index) => stagger[index],
           scrollTrigger: {
             trigger: '.homeCard',
-            start: 'top+=130px bottom',
-            end: 'bottom+=200px top',
+            start: 'top+=120px bottom',
+            end: 'bottom top-=210px',
             endTrigger: '.last',
             scrub: true,
             pin: '.cardList',
@@ -158,18 +171,23 @@ export default function HomePage({ }: HomePageProps) {
           />
           <Individuals
             data={data}
-            className="homeCard last"
+            className="homeCard"
             style={{ position: 'relative', zIndex: '3' }}
           />
           <Reviews
             data={data}
-            className="homeCard"
+            className="homeCard last"
             style={{ position: 'relative', zIndex: '4' }}
           />
+          <GetStarted className="homeCard"
+            style={{ position: 'relative', zIndex: '5' }} />
+
         </div>
       </main>
 
-      <BottomComponent />
+      {/* <BottomComponent /> */}
+      {/* {pathname !== '/contact' && <GetStarted />} */}
+      <Footer />
       <div id="space" style={{ height: 0, zIndex: 0 }}></div>
     </div>
   );
