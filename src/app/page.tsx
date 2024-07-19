@@ -90,10 +90,9 @@ export default function HomePage({ }: HomePageProps) {
 
   useEffect(() => {
     // ScrollTrigger && gsap.registerPlugin(ScrollTrigger);
-    const height =
-      (document.getElementById('business')?.clientHeight as number) - 30 || 900;
+    // const height = (document.getElementById('business')?.clientHeight as number) - 30 || 900;
     // const hegihts = [2800, 1870, 940, -220]
-    const hegihts = [3020, 2090, 1160, 0];
+    // const hegihts = [3020, 2090, 1160, 0];
     // mobile : [4607, 3107, 1706, 0]
     let stagger = [0, 0.261, 0.504, 0.75];
     let duration = [0.8, 0.539, 0.296, 0.05];
@@ -105,13 +104,15 @@ export default function HomePage({ }: HomePageProps) {
       const last = array[array.length - 1] + current
       return [...array, last];
     }, [0]).reverse();
+    let width = window.innerWidth;
+
 
     duration[1] = heightList[1] / heightList[0] * duration[0];
     stagger[1] = 0.8 - duration[1];
     duration[2] = heightList[2] / heightList[0] * duration[0];
     stagger[2] = 0.8 - duration[2];
     console.log(heightList);
-
+    const offset = width * 0.013 + 38;
     let ctx = gsap.context(() => {
       loaded &&
         gsap.from('.homeCard', {
@@ -122,7 +123,7 @@ export default function HomePage({ }: HomePageProps) {
           stagger: (index) => stagger[index],
           scrollTrigger: {
             trigger: '.homeCard',
-            start: 'top+=65px bottom',
+            start: `top+=${offset}px bottom`,
             end: 'bottom top-=210px',
             endTrigger: '.last',
             scrub: true,
