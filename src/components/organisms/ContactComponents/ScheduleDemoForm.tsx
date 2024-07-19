@@ -54,7 +54,7 @@ export default function ScheduleDemoForm({
                     job title: ${data.jobTitle},
                     company: ${data.company},
                     employees: ${data.employees}`;
-      const res = sendEmail(to, 'Schedule a Demo', text, '');
+      const res = sendEmail(to, 'Schedule a Demo', text, text);
 
       console.log(res);
       reset();
