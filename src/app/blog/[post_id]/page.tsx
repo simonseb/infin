@@ -113,7 +113,7 @@ export default function BlogPage({}: BlogPageProps) {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
-        <Hero data={data} />
+        <Hero data={data} currentBlog={currentBlog} />
         <LargeImage
           sectionName="home-image"
           mobileImage=""

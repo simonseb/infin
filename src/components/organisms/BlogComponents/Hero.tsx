@@ -27,14 +27,15 @@ interface IBlogData {
 }
 interface HeroProps {
   data?: IBlogData[] | undefined;
+  currentBlog?: number;
 }
 
-export default function Hero({ data }: HeroProps) {
+export default function Hero({ data, currentBlog }: HeroProps) {
   if (!data) {
     return null;
   }
 
-  const { attributes } = data[0];
+  const { attributes } = data[currentBlog || 0];
 
   if (!attributes) {
     return null;
