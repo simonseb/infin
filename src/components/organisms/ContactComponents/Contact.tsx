@@ -42,13 +42,12 @@ interface IContactData {
 }
 
 export default function Contact({ data }: ContactProps) {
-  if (!data) {
-    return null;
-  }
-
   const { setActiveSection, removeActiveSection } = useContext(
     AppContext,
   ) as IAppContext;
+  const [isActiveSection, setIsActiveSection] = useState<'left' | 'right'>(
+    'left',
+  );
 
   const target = useRef(null);
   const { isInView } = useTargetInView(target);
@@ -90,9 +89,10 @@ export default function Contact({ data }: ContactProps) {
     };
   }, []);
 
-  const [isActiveSection, setIsActiveSection] = useState<'left' | 'right'>(
-    'left',
-  );
+  if (!data) {
+    return null;
+  }
+
 
   const leftButtonClick = () => {
     setIsActiveSection('left');
