@@ -25,6 +25,18 @@ export async function getLayout() {
 
   return responseHandler(resp);
 }
+
+export async function getHome() {
+  const resp = await strapi.find('homes', {
+    populate: {
+      blocks: {
+        populate: '*',
+      },
+    },
+  });
+  return resp;
+}
+
 // get contact
 export async function getContact() {
   const resp = await strapi.find('contact', {
@@ -36,17 +48,6 @@ export async function getContact() {
   });
 
   return responseHandler(resp);
-}
-
-export async function getHome() {
-  const resp = await strapi.find('homes', {
-    populate: {
-      blocks: {
-        populate: '*',
-      },
-    },
-  });
-  return resp;
 }
 
 export async function getBusiness() {
@@ -393,6 +394,25 @@ export async function getSEO(slug: string) {
   return responseHandler(resp);
 }
 
+// get contacts
+export async function getContacts() {
+  const resp = await strapi.find('contacts', {
+    // fields: ['id', 'image'],
+    populate: {
+      demo: {
+        populate: '*',
+      },
+      touch: { populate: '*' },
+      image: {
+        populate: '*',
+      },
+    },
+  });
+
+  return responseHandler(resp);
+}
+
+// get settings
 export async function getSettings() {
   const resp = await strapi.find('settings', {
     populate: {
@@ -415,6 +435,9 @@ export async function sendEmail(
   text: string,
   html: string,
 ) {
+  strapi.axios.defaults.method = 'POST';
+  // strapi.axios.defaults.headers. = '';
+
   const resp = await strapi.axios.post(
     (process.env.STRAPI_URL + 'api/send-email') as string,
     {

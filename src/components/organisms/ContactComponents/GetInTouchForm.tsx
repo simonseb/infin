@@ -13,6 +13,7 @@ import { sendEmail } from '@/lib/strapi/strapi-fetch';
 interface GetInTouchFormProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLFormElement>, HTMLFormElement> {
   className: string;
+  to: string;
 }
 
 interface IScheduleDemoForm {
@@ -24,6 +25,7 @@ interface IScheduleDemoForm {
 
 export default function GetInTouchForm({
   className,
+  to,
   ...props
 }: GetInTouchFormProps) {
   const {
@@ -46,7 +48,7 @@ export default function GetInTouchForm({
       const text = `from: ${data.firstName + ' ' + data.lastName}
                     email: ${data.email}
                     message: ${data.message}`;
-      const res = sendEmail('info@TheINFIN.com', 'Schedule a Demo', text, '');
+      const res = sendEmail(to, 'Schedule a Demo', text, '');
 
       console.log(res);
 

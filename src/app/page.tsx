@@ -16,10 +16,10 @@ import Reviews from '@/components/organisms/HomeComponents/Reviews';
 import BottomComponent from '@/components/BottomComponent';
 import LargeImage from '@/components/organisms/LargeImage';
 import { getHome } from '@/lib/strapi/strapi-fetch';
-import GetStarted from '../components/organisms/GetStarted';
 import { gsap, ScrollTrigger } from '@/components/GsapLib';
 import useCheckIsMobile from '@/hooks/useCheckIsMobile';
-import Footer from '@/components/organisms/Footer'
+import GetStarted from '@/components/organisms/GetStarted';
+import Footer from '@/components/organisms/Footer';
 gsap.registerPlugin(ScrollTrigger);
 interface HomePageProps { }
 
@@ -127,7 +127,7 @@ export default function HomePage({ }: HomePageProps) {
             endTrigger: '.last',
             scrub: true,
             pin: '.cardList',
-            markers: true
+            // markers: true,
           },
         });
     });

@@ -49,11 +49,7 @@ export const Settings = () => {
   return (
     <>
       <title>{setting.title}</title>
-      <link
-        rel="icon"
-        href={process.env.STRAPI_URL + setting.favicon.data.attributes.url}
-        sizes="any"
-      />
+      <link rel="icon" href={setting.favicon.data.attributes.url} sizes="any" />
     </>
   );
 };

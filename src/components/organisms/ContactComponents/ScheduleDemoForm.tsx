@@ -15,6 +15,7 @@ import { sendEmail } from '@/lib/strapi/strapi-fetch';
 interface ScheduleDemoFormProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLFormElement>, HTMLFormElement> {
   className: string;
+  to: string;
 }
 
 interface IScheduleDemoForm {
@@ -29,6 +30,7 @@ interface IScheduleDemoForm {
 
 export default function ScheduleDemoForm({
   className,
+  to,
   ...props
 }: ScheduleDemoFormProps) {
   const {
@@ -52,7 +54,7 @@ export default function ScheduleDemoForm({
                     job title: ${data.jobTitle},
                     company: ${data.company},
                     employees: ${data.employees}`;
-      const res = sendEmail('info@TheINFIN.com', 'Schedule a Demo', text, '');
+      const res = sendEmail(to, 'Schedule a Demo', text, '');
 
       console.log(res);
       reset();
