@@ -10,6 +10,7 @@ import { Button } from '@/components/atoms/Button';
 import { TextArea } from '@/components/atoms/TextArea';
 import { validateFormTouch } from '@/lib/validation';
 import { sendEmail } from '@/lib/strapi/strapi-fetch';
+import Modal from '@/components/atoms/Modal';
 interface GetInTouchFormProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLFormElement>, HTMLFormElement> {
   className: string;
@@ -38,6 +39,7 @@ export default function GetInTouchForm({
 
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
   const [error, setError] = useState<any>({});
+  const [isModal, setIsModal] = useState(false);
 
   const onSubmit = async (data: IScheduleDemoForm) => {
     const { errors, formValid } = validateFormTouch(data);
@@ -48,9 +50,12 @@ export default function GetInTouchForm({
       const text = `from: ${data.firstName + ' ' + data.lastName} <br/>
                     email: ${data.email}<br/>
                     message: ${data.message}`;
-      const res = sendEmail(to, 'Get In Touch', 'Get In Touch', text);
+      const res = await sendEmail(to, 'Get In Touch', 'Get In Touch', text);
 
-      console.log(res);
+      if (res.success) {
+        // alert(res.message);
+        setIsModal(true);
+      }
 
       reset();
     } else {
@@ -64,6 +69,9 @@ export default function GetInTouchForm({
       className={clsx(styles.form, className)}
       {...props}
     >
+      <Modal active={isModal} setActive={setIsModal}>
+        <div style={{ color: 'white', fontSize: '40px' }}>Thank you</div>
+      </Modal>
       <div className={styles.nameBox}>
         <label className={styles.label}>
           First name <span className={styles.labelAccent}>*</span>
