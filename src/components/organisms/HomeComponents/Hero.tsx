@@ -101,7 +101,10 @@ export default function Hero({ data }: HeroProps) {
             </motion.div>
           </div>
 
-          <div className={styles.bottomBlock} style={{ marginTop: '150px' }}>
+          <div
+            className={styles.bottomBlock}
+            style={{ marginTop: isTablet ? '15px' : '150px' }}
+          >
             <AnimatedText
               el="p"
               className={styles.description}
