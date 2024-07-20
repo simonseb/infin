@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import styles from '../styles/components/ClientLayout.module.scss';
 
 import Header from './organisms/Header';
@@ -14,6 +14,7 @@ import { colors } from '@/lib/constants';
 // import { ScrollSmoother } from 'gsap/ScrollSmoother';
 import { gsap, ScrollTrigger, ScrollSmoother } from '@/components/GsapLib';
 import { useLayoutEffect } from 'react';
+import path from 'path';
 
 interface ClientLayoutProps {
   children: React.ReactNode;
@@ -25,6 +26,7 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
   const pathname = usePathname();
   const wrapperRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const [preloading, setPreloading] = useState(true);
 
   const backgroundColor = () => {
     switch (pathname) {
@@ -55,9 +57,18 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
     }
   }, [showAllDom]);
 
+  useLayoutEffect(() => {
+    pathname === '/' && setPreloading(true);
+  }, [pathname]);
+
   return (
     <>
-      <WelcomeAnimation setShowAllDom={setShowAllDom} />
+      {preloading && (
+        <WelcomeAnimation
+          setShowAllDom={setShowAllDom}
+          setPreloading={setPreloading}
+        />
+      )}
       {showAllDom && (
         <div
           className={styles.layout}

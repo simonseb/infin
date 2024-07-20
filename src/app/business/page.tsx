@@ -65,7 +65,7 @@ export default function BusinessPage({}: BusinessPageProps) {
         const targetElement = document.getElementById(hash);
         if (targetElement) {
           window.scrollTo({
-            top: targetElement.offsetTop - 60,
+            top: targetElement.offsetTop,
             behavior: 'smooth',
           });
         }

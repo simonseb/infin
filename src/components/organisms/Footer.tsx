@@ -38,6 +38,7 @@ interface FooterProps {}
 
 export default function Footer({}: FooterProps) {
   const [dataList, setDataList] = useState<IFooterData[]>();
+
   const getData = async () => {
     try {
       const res = await getFooter();
@@ -104,9 +105,13 @@ export default function Footer({}: FooterProps) {
               <Link
                 key={index}
                 href={`/business/#${item.url}`}
-                // onClick={() => {
-                //   location.href = `/business/#${item.url}`;
-                // }}
+                scroll={false}
+                onClick={() => {
+                  if (location.pathname === '/business') {
+                    // location.hash = `#${item.url}`;
+                    Gsap.prototype.scrollToSection(item.url);
+                  }
+                }}
               >
                 {item.title}
               </Link>
@@ -120,10 +125,13 @@ export default function Footer({}: FooterProps) {
               <Link
                 key={index}
                 href={`/individuals/#${item.url}`}
-                // onClick={() => {
-                //   location.href = `/individuals/#${item.url}`;
-                // }}
-                // onClick={() => Gsap.prototype.scrollToSection(item.url)}
+                scroll={false}
+                onClick={() => {
+                  if (location.pathname === '/individuals') {
+                    // location.hash = `#${item.url}`;
+                    Gsap.prototype.scrollToSection(item.url);
+                  }
+                }}
               >
                 {item.title}
               </Link>

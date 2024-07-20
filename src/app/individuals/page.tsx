@@ -61,7 +61,7 @@ export default function IndividualsPage({}: IndividualsPageProps) {
         const targetElement = document.getElementById(hash);
         if (targetElement) {
           window.scrollTo({
-            top: targetElement.offsetTop - 60,
+            top: targetElement.offsetTop,
             behavior: 'smooth',
           });
         }

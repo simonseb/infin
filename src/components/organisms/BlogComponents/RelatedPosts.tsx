@@ -5,6 +5,7 @@ import { Section } from '@/components/atoms/Section';
 import { Button } from '@/components/atoms/Button';
 
 import PostCard from '@/components/molecules/PostCard';
+import { useRouter } from 'next/navigation';
 
 interface IBlogData {
   id?: string;
@@ -68,6 +69,8 @@ export default function RelatedPosts({
   setCurrentBlog,
   currentBlog,
 }: RelatedPostsProps) {
+  const router = useRouter();
+
   if (!data || data.length === 0) {
     return null;
   }
@@ -139,7 +142,8 @@ export default function RelatedPosts({
                 onClick={() => {
                   // console.log(post);
                   console.log(post.related_blog_id);
-                  window.location.href = `/blog/${parseInt(post.related_blog_id)}`;
+                  router.push(`/blog/${parseInt(post.related_blog_id)}`);
+                  // window.location.href = `/blog/${parseInt(post.related_blog_id)}`;
                 }}
                 style={{ width: '33%' }}
               >

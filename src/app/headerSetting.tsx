@@ -2,7 +2,6 @@
 
 import { getSettings } from '@/lib/strapi/strapi-fetch';
 import React, { useEffect, useState } from 'react';
-import d from '../../public/images/icon.png';
 
 interface ILayoutData {
   setting: {

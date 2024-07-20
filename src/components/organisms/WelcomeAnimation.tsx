@@ -12,10 +12,12 @@ import TheIcon from '../../../public/icons/logo/the';
 
 interface WelcomeAnimationProps {
   setShowAllDom: (value: boolean) => void;
+  setPreloading: (value: boolean) => void;
 }
 
 export default function WelcomeAnimation({
   setShowAllDom,
+  setPreloading,
 }: WelcomeAnimationProps) {
   const [mounted, setMounted] = useState(false);
 
@@ -31,9 +33,13 @@ export default function WelcomeAnimation({
     }, 1500);
 
     setTimeout(() => {
+      setPreloading(false);
+    }, 3000);
+
+    setTimeout(() => {
       document.body.style.overflow = 'scroll';
     }, 3000);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

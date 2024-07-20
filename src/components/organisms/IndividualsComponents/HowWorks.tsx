@@ -102,12 +102,8 @@ export default function HowWorks({ data }: HowWorksProps) {
 
   const { blocks = [] } = attributes;
   return (
-    <Section
-      type="filled"
-      className={styles.section + ' container'}
-      id="howItWorks"
-    >
-      <div className={styles.topBlock}>
+    <Section type="filled" className={styles.section + ' container'}>
+      <div className={styles.topBlock} id="howItWorks">
         <p className={styles.smallText}>{blocks[0].title || ''}</p>
 
         <h3 className={styles.title}>
