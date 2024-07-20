@@ -11,6 +11,7 @@ import { Input } from '@/components/atoms/Input';
 import { Button } from '@/components/atoms/Button';
 import { validateFormDemo } from '@/lib/validation';
 import { sendEmail } from '@/lib/strapi/strapi-fetch';
+import Modal from '@/components/atoms/Modal';
 
 interface ScheduleDemoFormProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLFormElement>, HTMLFormElement> {
@@ -43,6 +44,7 @@ export default function ScheduleDemoForm({
 
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
   const [error, setError] = useState<any>({});
+  const [isModal, setIsModal] = useState(false);
 
   const onSubmit = async (data: IScheduleDemoForm) => {
     const { errors, formValid } = validateFormDemo(data);
@@ -54,9 +56,17 @@ export default function ScheduleDemoForm({
                     job title: ${data.jobTitle}<br/>
                     company: ${data.company}<br/>
                     employees: ${data.employees}`;
-      const res = sendEmail(to, 'Schedule a Demo', 'Schedule a Demo', text);
+      const res = await sendEmail(
+        to,
+        'Schedule a Demo',
+        'Schedule a Demo',
+        text,
+      );
+      if (res.success) {
+        // alert(res.message);
+        setIsModal(true);
+      }
 
-      console.log(res);
       reset();
     } else {
       setError(errors as any);
@@ -70,6 +80,9 @@ export default function ScheduleDemoForm({
       className={clsx(styles.form, className)}
       {...props}
     >
+      <Modal active={isModal} setActive={setIsModal}>
+        <div style={{ color: 'white', fontSize: '40px' }}>Thank you</div>
+      </Modal>
       <div className={styles.labelBox}>
         <label className={styles.label}>
           First name <span className={styles.labelAccent}>*</span>
@@ -95,7 +108,6 @@ export default function ScheduleDemoForm({
           />
         </label>
       </div>
-
       <label className={styles.label}>
         Business email <span className={styles.labelAccent}>*</span>
         <Input
@@ -107,7 +119,6 @@ export default function ScheduleDemoForm({
           error={error.email}
         />
       </label>
-
       <label className={styles.label}>
         Phone number <span className={styles.labelAccent}>*</span>
         <Controller
@@ -134,7 +145,6 @@ export default function ScheduleDemoForm({
           )}
         />
       </label>
-
       <label className={styles.label}>
         Job Title <span className={styles.labelAccent}>*</span>
         <Input
@@ -146,7 +156,6 @@ export default function ScheduleDemoForm({
           error={error.jobTitle}
         />
       </label>
-
       <div className={styles.labelBox}>
         <label className={styles.label}>
           Company name <span className={styles.labelAccent}>*</span>
@@ -172,7 +181,6 @@ export default function ScheduleDemoForm({
           />
         </label>
       </div>
-
       <Button
         appearance="primary"
         type="submit"
