@@ -26,7 +26,7 @@ export default function Avatar({
     <div className={clsx(styles.avatar, className)} {...props}>
       <Image
         className={styles.image}
-        src={`https://dependable-creativity-a1557309a6.media.strapiapp.com/${imageSrc}`}
+        src={`https://cheerful-crown-70fbfb15f1.media.strapiapp.com/${imageSrc}`}
         alt={name}
         width={52}
         height={52}

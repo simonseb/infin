@@ -15,6 +15,7 @@ import { colors } from '@/lib/constants';
 import { gsap, ScrollTrigger, ScrollSmoother } from '@/components/GsapLib';
 import { useLayoutEffect } from 'react';
 import path from 'path';
+import Modal from './atoms/Modal';
 
 interface ClientLayoutProps {
   children: React.ReactNode;
@@ -76,6 +77,9 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
         >
           <div className={styles.container}>
             <Header />
+            {/* <Modal active={true} setActive={() => {}}>
+              <div style={{ color: 'white', fontSize: '40px' }}>Thank you</div>
+            </Modal> */}
             <div id="wrapper" ref={wrapperRef}>
               <div id="content" ref={contentRef}>
                 {children}

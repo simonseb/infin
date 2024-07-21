@@ -13,7 +13,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'dependable-creativity-a1557309a6.media.strapiapp.com',
+        hostname: 'cheerful-crown-70fbfb15f1.media.strapiapp.com',
       },
       // {
       //   protocol: 'http',
@@ -47,7 +47,7 @@ const nextConfig = {
     return config;
   },
   env: {
-    STRAPI_URL: 'https://dependable-creativity-a1557309a6.strapiapp.com/',
+    STRAPI_URL: 'https://cheerful-crown-70fbfb15f1.strapiapp.com/',
   },
 };
 

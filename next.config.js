@@ -3,7 +3,7 @@ module.exports = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'dependable-creativity-a1557309a6.media.strapiapp.com',
+        hostname: 'cheerful-crown-70fbfb15f1.media.strapiapp.com',
       },
       // {
       //   protocol: 'http',
@@ -12,8 +12,8 @@ module.exports = {
     ],
   },
   env: {
-    STRAPI_URL: 'https://dependable-creativity-a1557309a6.strapiapp.com/',
+    STRAPI_URL: 'https://cheerful-crown-70fbfb15f1.strapiapp.com/',
     TOKEN:
-      '95e005e3a9fb9de4d73a8018430e4fc2e1fd06d6ae51339ec83e3d3ea94f3a2e65a2a5161af0b3f4a43327d84a2effd75f0b62ce70940e37e8cb6a9ca1dee6e15a6e1b91d9914fb42d407c571bc42fe731166d7167c417f9f33870c87e8351906c28f9d6cee9b45ebc5e40c6b8aa8286116dd957cc1b8802f9c401f9c6d81824',
+      '28c62aa47a1caec3aec849d5137a3b850385a4527cf563db45b6c49c2c0af22d1ff18ab7f5b3001b05d590d42e5f8ede82104cc1425e97e2f84507846e4e8747096be63d313c41b85416b3d7c879cde5a9add5d78457b5afa5767b56aca3c4be9b29b0cf8ebc2a3bf5cb4b96e52c20303c906199e388666eb39af8b214121443',
   },
 };

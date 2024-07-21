@@ -65,7 +65,7 @@ export default function PostCard({
           <motion.div style={{ scale }}>
             <Image
               className={styles.image}
-              src={`https://dependable-creativity-a1557309a6.media.strapiapp.com/${mainSection.data.attributes.url}`}
+              src={`https://cheerful-crown-70fbfb15f1.media.strapiapp.com/${mainSection.data.attributes.url}`}
               // src={`http://localhost:1337${mainSection.data.attributes.url}`}
               alt={title}
               width={441}

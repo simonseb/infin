@@ -1,6 +1,11 @@
 'use clien';
 
-import React, { DetailedHTMLProps, HTMLAttributes, useState } from 'react';
+import React, {
+  DetailedHTMLProps,
+  HTMLAttributes,
+  useEffect,
+  useState,
+} from 'react';
 import styles from '../../../styles/components/organisms/Contact/ScheduleDemoForm.module.scss';
 import clsx from 'clsx';
 
@@ -46,6 +51,26 @@ export default function ScheduleDemoForm({
   const [error, setError] = useState<any>({});
   const [isModal, setIsModal] = useState(false);
 
+  function adjustTopPosition() {
+    const textElement = document.getElementById('modal-1');
+    const scrollTop = window.scrollY;
+    const viewportHeight = window.innerHeight;
+
+    if (textElement) {
+      const elementHeight = textElement.offsetHeight;
+
+      const topPosition = (viewportHeight - elementHeight) / 2 + scrollTop;
+      textElement.style.top = `${topPosition}px`;
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', adjustTopPosition);
+    window.addEventListener('resize', adjustTopPosition);
+
+    adjustTopPosition();
+  }, []);
+
   const onSubmit = async (data: IScheduleDemoForm) => {
     const { errors, formValid } = validateFormDemo(data);
     if (formValid) {
@@ -80,7 +105,7 @@ export default function ScheduleDemoForm({
       className={clsx(styles.form, className)}
       {...props}
     >
-      <Modal active={isModal} setActive={setIsModal}>
+      <Modal active={isModal} setActive={setIsModal} id={'modal-1'}>
         <div style={{ color: 'white', fontSize: '40px' }}>Thank you</div>
       </Modal>
       <div className={styles.labelBox}>

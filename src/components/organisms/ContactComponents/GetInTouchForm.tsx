@@ -1,6 +1,11 @@
 'use client';
 
-import React, { DetailedHTMLProps, HTMLAttributes, useState } from 'react';
+import React, {
+  DetailedHTMLProps,
+  HTMLAttributes,
+  useEffect,
+  useState,
+} from 'react';
 import styles from '../../../styles/components/organisms/Contact/GetInTouchForm.module.scss';
 import clsx from 'clsx';
 
@@ -41,6 +46,26 @@ export default function GetInTouchForm({
   const [error, setError] = useState<any>({});
   const [isModal, setIsModal] = useState(false);
 
+  function adjustTopPosition() {
+    const textElement = document.getElementById('modal-2');
+    const scrollTop = window.scrollY;
+    const viewportHeight = window.innerHeight;
+
+    if (textElement) {
+      const elementHeight = textElement.offsetHeight;
+
+      const topPosition = (viewportHeight - elementHeight) / 2 + scrollTop;
+      textElement.style.top = `${topPosition}px`;
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', adjustTopPosition);
+    window.addEventListener('resize', adjustTopPosition);
+
+    adjustTopPosition();
+  }, []);
+
   const onSubmit = async (data: IScheduleDemoForm) => {
     const { errors, formValid } = validateFormTouch(data);
 
@@ -69,7 +94,7 @@ export default function GetInTouchForm({
       className={clsx(styles.form, className)}
       {...props}
     >
-      <Modal active={isModal} setActive={setIsModal}>
+      <Modal active={isModal} setActive={setIsModal} id={'modal-2'}>
         <div style={{ color: 'white', fontSize: '40px' }}>Thank you</div>
       </Modal>
       <div className={styles.nameBox}>
