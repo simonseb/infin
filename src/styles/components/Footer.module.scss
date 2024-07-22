@@ -147,8 +147,8 @@
 
 @media screen and (max-width: $maxMobile) {
   .footer {
-    padding-left: 4px;
-    padding-right: 4px;
+    padding-left: 16px;
+    padding-right: 16px;
   }
   .list {
     grid-template-columns: repeat(2, 113px);
