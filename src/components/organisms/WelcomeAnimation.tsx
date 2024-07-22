@@ -48,14 +48,14 @@ export default function WelcomeAnimation({
         className={styles.wrapper}
         initial={{ opacity: 1 }}
         animate={{ opacity: 0 }}
-        transition={{ duration: 1.4, delay: 2.6 }}
+        transition={{ duration: 0.7, delay: 2.3 }}
       >
         <motion.div className={styles.logo}>
           <motion.div
             className={styles.the}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1.4, delay: 1 }}
+            transition={{ duration: 0.7, delay: 0.7 }}
           >
             <TheIcon />
           </motion.div>
@@ -63,7 +63,7 @@ export default function WelcomeAnimation({
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1.4, delay: 1.7 }}
+            transition={{ duration: 0.7, delay: 1.4 }}
           >
             <IIcon />
           </motion.div>
@@ -71,7 +71,7 @@ export default function WelcomeAnimation({
           <motion.div
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1, rotate: 360 }}
-            transition={{ duration: 1.4 }}
+            transition={{ duration: 0.7 }}
           >
             <NIcon />
           </motion.div>
@@ -79,7 +79,7 @@ export default function WelcomeAnimation({
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1.4, delay: 2.4 }}
+            transition={{ duration: 0.7, delay: 2.1 }}
           >
             <FinIcon />
           </motion.div>
