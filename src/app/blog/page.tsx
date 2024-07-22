@@ -8,6 +8,7 @@ import LargeImage from '@/components/organisms/LargeImage';
 import Description from '@/components/organisms/BlogComponents/Description';
 import RelatedPosts from '@/components/organisms/BlogComponents/RelatedPosts';
 import { getBlog } from '@/lib/strapi/strapi-fetch';
+import { motion } from 'framer-motion';
 
 interface IBlogData {
   attributes?: {
@@ -101,25 +102,31 @@ export default function BlogPage({}: BlogPageProps) {
   }
 
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Hero data={data} />
-        <LargeImage
-          sectionName="home-image"
-          mobileImage=""
-          desctopImage={`${data[currentBlog].attributes?.blogs.main.mainSection.data.attributes.url}`}
-          alt="people laugh"
-          scale
-        />
-        <Description data={data} currentBlog={currentBlog} />
-        <RelatedPosts
-          data={data}
-          setCurrentBlog={setCurrentBlog}
-          currentBlog={currentBlog}
-        />
-      </main>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+    >
+      <div className={styles.page}>
+        <main className={styles.main}>
+          <Hero data={data} />
+          <LargeImage
+            sectionName="home-image"
+            mobileImage=""
+            desctopImage={`${data[currentBlog].attributes?.blogs.main.mainSection.data.attributes.url}`}
+            alt="people laugh"
+            scale
+          />
+          <Description data={data} currentBlog={currentBlog} />
+          <RelatedPosts
+            data={data}
+            setCurrentBlog={setCurrentBlog}
+            currentBlog={currentBlog}
+          />
+        </main>
 
-      <BottomComponent className={styles.bottomComponent} />
-    </div>
+        <BottomComponent className={styles.bottomComponent} />
+      </div>
+    </motion.div>
   );
 }

@@ -8,6 +8,7 @@ import Discover from '@/components/organisms/BusinessComponents/Discover';
 import DiscoverImage from '@/components/organisms/BusinessComponents/DiscoverImage';
 import Directing from '@/components/organisms/BusinessComponents/Directing';
 import { getBusiness } from '@/lib/strapi/strapi-fetch';
+import { motion } from 'framer-motion';
 
 interface IBusinessData {
   attributes?: {
@@ -98,32 +99,38 @@ export default function BusinessPage({}: BusinessPageProps) {
 
   const { blocks = [] } = attributes;
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <div className={styles.topBlock}>
-          <LargeHero
-            text={blocks[0].text || ''}
-            titleFirstRow="Learn the ROI"
-            titleSecondRow="of each employee"
-            bottomTextAccent="It’s an open secret of any workplace:"
-            bottomTextFirst={blocks[1].descritpiontop || ''}
-            bottomTextSecond={blocks[1].descritpionBottom || ''}
-            imageSrc="/images/Business/hero-mobile.png"
-            imageMobileSrc="/images/Business/hero-mobile.png"
-            imageAlt="girl is doing presentation"
-            id="howItWorks"
-          />
-          <Benefits data={data} />
-        </div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+    >
+      <div className={styles.page}>
+        <main className={styles.main}>
+          <div className={styles.topBlock}>
+            <LargeHero
+              text={blocks[0].text || ''}
+              titleFirstRow="Learn the ROI"
+              titleSecondRow="of each employee"
+              bottomTextAccent="It’s an open secret of any workplace:"
+              bottomTextFirst={blocks[1].descritpiontop || ''}
+              bottomTextSecond={blocks[1].descritpionBottom || ''}
+              imageSrc="/images/Business/hero-mobile.png"
+              imageMobileSrc="/images/Business/hero-mobile.png"
+              imageAlt="girl is doing presentation"
+              id="howItWorks"
+            />
+            <Benefits data={data} />
+          </div>
 
-        <div className={styles.bottomBlock}>
-          <Discover data={data} />
-          <DiscoverImage />
-          <Directing />
-        </div>
-      </main>
+          <div className={styles.bottomBlock}>
+            <Discover data={data} />
+            <DiscoverImage />
+            <Directing />
+          </div>
+        </main>
 
-      <BottomComponent />
-    </div>
+        <BottomComponent />
+      </div>
+    </motion.div>
   );
 }

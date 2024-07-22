@@ -8,6 +8,7 @@ import What from '@/components/organisms/MarketingComponents/What';
 import Expected from '@/components/organisms/MarketingComponents/Expected';
 import WeBeginWith from '@/components/organisms/MarketingComponents/WeBeginWith';
 import { getMarketing } from '@/lib/strapi/strapi-fetch';
+import { motion } from 'framer-motion';
 interface MarketingPageProps {}
 
 interface IMarketing {
@@ -56,21 +57,27 @@ export default function MarketingPage({}: MarketingPageProps) {
     return null;
   }
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <div className={styles.topBlock}>
-          <Hero data={data} />
-          <HeroDescription data={data} />
-        </div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+    >
+      <div className={styles.page}>
+        <main className={styles.main}>
+          <div className={styles.topBlock}>
+            <Hero data={data} />
+            <HeroDescription data={data} />
+          </div>
 
-        <div className={styles.bottomBlock}>
-          <What data={data} />
-          <Expected data={data} />
-          <WeBeginWith data={data} />
-        </div>
-      </main>
+          <div className={styles.bottomBlock}>
+            <What data={data} />
+            <Expected data={data} />
+            <WeBeginWith data={data} />
+          </div>
+        </main>
 
-      <BottomComponent />
-    </div>
+        <BottomComponent />
+      </div>
+    </motion.div>
   );
 }

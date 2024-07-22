@@ -9,6 +9,7 @@ import BottomComponent from '@/components/BottomComponent';
 import LargeImage from '@/components/organisms/LargeImage';
 import Contact from '@/components/organisms/ContactComponents/Contact';
 import { getContacts } from '@/lib/strapi/strapi-fetch';
+import { motion } from 'framer-motion';
 
 interface ContactPageProps {}
 
@@ -79,19 +80,25 @@ export default function ContactPage({}: ContactPageProps) {
   }
 
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Hero />
-        <Contact data={data && data[0]} />
-        <LargeImage
-          mobileImage="/images/Contact/handphone-mobile.png"
-          desctopImage={data[0].image.image.data.attributes.url}
-          alt="hand with phone"
-          scale
-        />
-      </main>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+    >
+      <div className={styles.page}>
+        <main className={styles.main}>
+          <Hero />
+          <Contact data={data && data[0]} />
+          <LargeImage
+            mobileImage="/images/Contact/handphone-mobile.png"
+            desctopImage={data[0].image.image.data.attributes.url}
+            alt="hand with phone"
+            scale
+          />
+        </main>
 
-      <BottomComponent className={styles.bottomComponent} />
-    </div>
+        <BottomComponent className={styles.bottomComponent} />
+      </div>
+    </motion.div>
   );
 }

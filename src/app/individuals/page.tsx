@@ -8,6 +8,7 @@ import Benefits from '@/components/organisms/IndividualsComponents/Benefits';
 import Directing from '@/components/organisms/IndividualsComponents/Directing';
 import Chart from '@/components/organisms/IndividualsComponents/Chart';
 import { getIndividual } from '@/lib/strapi/strapi-fetch';
+import { motion } from 'framer-motion';
 interface IndividualsPageProps {}
 
 interface IDividualData {
@@ -103,29 +104,35 @@ export default function IndividualsPage({}: IndividualsPageProps) {
 
   const { blocks = [] } = attributes;
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <LargeHero
-          className={styles.hero}
-          pluses
-          imageText
-          text={blocks[0].text || ''}
-          titleFirstRow="Not appreciated"
-          titleSecondRow="at work?"
-          bottomTextAccent=""
-          bottomTextFirst={blocks[0].descritpionOne || ''}
-          bottomTextSecond={blocks[0].descritpionTwo || ''}
-          imageSrc="/images/Individuals/individuals-hero.png"
-          imageMobileSrc="/images/Individuals/individuals-hero.png"
-          imageAlt="man portrait"
-        />
-        <HowWorks data={data} />
-        <Benefits data={data} />
-        <Chart data={data} />
-        <Directing data={data} />
-      </main>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+    >
+      <div className={styles.page}>
+        <main className={styles.main}>
+          <LargeHero
+            className={styles.hero}
+            pluses
+            imageText
+            text={blocks[0].text || ''}
+            titleFirstRow="Not appreciated"
+            titleSecondRow="at work?"
+            bottomTextAccent=""
+            bottomTextFirst={blocks[0].descritpionOne || ''}
+            bottomTextSecond={blocks[0].descritpionTwo || ''}
+            imageSrc="/images/Individuals/individuals-hero.png"
+            imageMobileSrc="/images/Individuals/individuals-hero.png"
+            imageAlt="man portrait"
+          />
+          <HowWorks data={data} />
+          <Benefits data={data} />
+          <Chart data={data} />
+          <Directing data={data} />
+        </main>
 
-      <BottomComponent className={styles.bottomComponent} />
-    </div>
+        <BottomComponent className={styles.bottomComponent} />
+      </div>
+    </motion.div>
   );
 }

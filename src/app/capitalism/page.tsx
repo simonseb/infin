@@ -9,6 +9,7 @@ import LargeImage from '@/components/organisms/LargeImage';
 import WhiteCard from '@/components/organisms/CapitalismComponents/WhiteCard';
 import BlackCard from '@/components/organisms/CapitalismComponents/BlackCard';
 import { getCapitalism } from '@/lib/strapi/strapi-fetch';
+import { motion } from 'framer-motion';
 interface ICapitalism {
   attributes?: {
     title: string;
@@ -46,22 +47,28 @@ export default function CapitalismPage({}: CapitalismPageProps) {
     return <></>;
   }
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Hero data={data} />
-        <Description data={data} />
-        <LargeImage
-          sectionName="capitalism-image"
-          mobileImage="/images/Capitalism/employees-mobile.png"
-          desctopImage="/images/Capitalism/employees.png"
-          alt="employees"
-          scale
-        />
-        <WhiteCard data={data} />
-        <BlackCard data={data} />
-      </main>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+    >
+      <div className={styles.page}>
+        <main className={styles.main}>
+          <Hero data={data} />
+          <Description data={data} />
+          <LargeImage
+            sectionName="capitalism-image"
+            mobileImage="/images/Capitalism/employees-mobile.png"
+            desctopImage="/images/Capitalism/employees.png"
+            alt="employees"
+            scale
+          />
+          <WhiteCard data={data} />
+          <BlackCard data={data} />
+        </main>
 
-      <BottomComponent />
-    </div>
+        <BottomComponent />
+      </div>
+    </motion.div>
   );
 }
