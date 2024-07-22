@@ -135,7 +135,7 @@ export default function HomePage({}: HomePageProps) {
             endTrigger: '.last',
             scrub: true,
             pin: '.cardList',
-            snap: 1,
+            // snap: 1,
             // markers: true,
           },
         });
