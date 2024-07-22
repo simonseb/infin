@@ -20,6 +20,7 @@ import { gsap, ScrollTrigger } from '@/components/GsapLib';
 import useCheckIsMobile from '@/hooks/useCheckIsMobile';
 import GetStarted from '@/components/organisms/GetStarted';
 import Footer from '@/components/organisms/Footer';
+import { motion } from 'framer-motion';
 gsap.registerPlugin(ScrollTrigger);
 interface HomePageProps {}
 
@@ -152,56 +153,62 @@ export default function HomePage({}: HomePageProps) {
   }
 
   return (
-    <div
-      className={styles.page}
-      onLoad={() => {
-        setLoaded(true);
-      }}
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
     >
-      <main className={styles.main}>
-        <Hero data={data} />
-        <LargeImage
-          sectionName="home-image"
-          mobileImage="/images/Home/presentation-mobile.png"
-          desctopImage="/images/Home/presentation.png"
-          alt="presentation"
-          scale
-        />
-        <WhyChoose data={data} setHeight={setElementHeight} />
+      <div
+        className={styles.page}
+        onLoad={() => {
+          setLoaded(true);
+        }}
+      >
+        <main className={styles.main}>
+          <Hero data={data} />
+          <LargeImage
+            sectionName="home-image"
+            mobileImage="/images/Home/presentation-mobile.png"
+            desctopImage="/images/Home/presentation.png"
+            alt="presentation"
+            scale
+          />
+          <WhyChoose data={data} setHeight={setElementHeight} />
 
-        <div
-          className={styles.cardList + ' cardList'}
-          ref={cardContainer}
-          style={{
-            position: 'relative',
-          }}
-        >
-          <Business
-            data={data}
-            className="homeCard"
-            style={{ position: 'relative', zIndex: '2' }}
-          />
-          <Individuals
-            data={data}
-            className="homeCard"
-            style={{ position: 'relative', zIndex: '3' }}
-          />
-          <Reviews
-            data={data}
-            className="homeCard last"
-            style={{ position: 'relative', zIndex: '4' }}
-          />
-          <GetStarted
-            className="homeCard"
-            style={{ position: 'relative', zIndex: '5' }}
-          />
-        </div>
-      </main>
+          <div
+            className={styles.cardList + ' cardList'}
+            ref={cardContainer}
+            style={{
+              position: 'relative',
+            }}
+          >
+            <Business
+              data={data}
+              className="homeCard"
+              style={{ position: 'relative', zIndex: '2' }}
+            />
+            <Individuals
+              data={data}
+              className="homeCard"
+              style={{ position: 'relative', zIndex: '3' }}
+            />
+            <Reviews
+              data={data}
+              className="homeCard last"
+              style={{ position: 'relative', zIndex: '4' }}
+            />
+            <GetStarted
+              className="homeCard"
+              style={{ position: 'relative', zIndex: '5' }}
+            />
+          </div>
+        </main>
 
-      {/* <BottomComponent /> */}
-      {/* {pathname !== '/contact' && <GetStarted />} */}
-      <Footer />
-      <div id="space" style={{ height: 0, zIndex: 0 }}></div>
-    </div>
+        {/* <BottomComponent /> */}
+        {/* {pathname !== '/contact' && <GetStarted />} */}
+        <Footer />
+        <div id="space" style={{ height: 0, zIndex: 0 }}></div>
+      </div>
+    </motion.div>
   );
 }
