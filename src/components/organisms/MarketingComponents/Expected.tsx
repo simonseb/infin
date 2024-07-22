@@ -44,6 +44,7 @@ export default function Expected({ data }: ExpectedProps) {
   };
 
   useLayoutEffect(() => {
+    ScrollTrigger.normalizeScroll(true);
     const timeline = gsap.timeline({
       scrollTrigger: {
         trigger: steps.current,

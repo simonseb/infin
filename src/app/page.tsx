@@ -119,6 +119,7 @@ export default function HomePage({}: HomePageProps) {
     stagger[2] = 0.8 - duration[2];
     const offset = width * 0.013 + 38;
     let ctx = gsap.context(() => {
+      ScrollTrigger.normalizeScroll(true);
       loaded &&
         gsap.from('.homeCard', {
           y: (index) => heightList[index],

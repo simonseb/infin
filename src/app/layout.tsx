@@ -11,7 +11,6 @@ import ClientLayout from '@/components/ClientLayout';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import { Settings } from './headerSetting';
-
 gsap.registerPlugin(ScrollTrigger);
 
 // export const metadata: Metadata = {

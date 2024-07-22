@@ -42,6 +42,8 @@ export default function HowWorks({ data }: HowWorksProps) {
       let panels = gsap.utils.toArray('.panel');
       let underlines = gsap.utils.toArray('.underline');
 
+      ScrollTrigger.normalizeScroll(true);
+
       gsap.to(underlines, {
         xPercent: 193 * (panels.length - 1),
         ease: 'none',
