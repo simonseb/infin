@@ -69,13 +69,14 @@ export default function IndividualsPage({}: IndividualsPageProps) {
     };
 
     handleHashChange();
+    window.addEventListener('DOMContentLoaded', handleHashChange);
 
     window.addEventListener('hashchange', handleHashChange);
 
     return () => {
       window.removeEventListener('hashchange', handleHashChange);
     };
-  }, [data]);
+  });
 
   const getData = async () => {
     try {

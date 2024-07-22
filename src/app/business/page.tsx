@@ -65,6 +65,7 @@ export default function BusinessPage({}: BusinessPageProps) {
         const targetElement = document.getElementById(hash);
         if (targetElement) {
           window.scrollTo({
+            // top: hash === 'data' ? 4474 : 'benefits' ? 1771 : 0,
             top: targetElement.offsetTop,
             behavior: 'smooth',
           });
@@ -73,12 +74,13 @@ export default function BusinessPage({}: BusinessPageProps) {
     };
 
     handleHashChange();
+    window.addEventListener('DOMContentLoaded', handleHashChange);
     window.addEventListener('hashchange', handleHashChange);
 
     return () => {
       window.removeEventListener('hashchange', handleHashChange);
     };
-  }, [data]);
+  });
 
   useEffect(() => {
     getData();
