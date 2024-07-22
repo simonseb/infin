@@ -132,7 +132,7 @@ export default function Reviews({ className, data, style }: ReviewsProps) {
           text={['Fair and', 'Objective']}
         /> */}
         <h3 className={styles.title}>
-          Fair and, <br /> <span>Objective</span>
+          Fair and <br /> <span>Objective</span>
         </h3>
 
         <motion.div
