@@ -64,11 +64,13 @@ export default function BusinessPage({}: BusinessPageProps) {
       if (hash) {
         const targetElement = document.getElementById(hash);
         if (targetElement) {
-          window.scrollTo({
-            // top: hash === 'data' ? 4474 : 'benefits' ? 1771 : 0,
-            top: targetElement.offsetTop,
-            behavior: 'smooth',
-          });
+          setTimeout(() => {
+            window.scrollTo({
+              // top: hash === 'data' ? 4474 : 'benefits' ? 1771 : 0,
+              top: targetElement.offsetTop,
+              behavior: 'smooth',
+            });
+          }, 100);
         }
       }
     };

@@ -60,10 +60,12 @@ export default function IndividualsPage({}: IndividualsPageProps) {
       if (hash) {
         const targetElement = document.getElementById(hash);
         if (targetElement) {
-          window.scrollTo({
-            top: hash === 'howItWorks' ? 2000 : targetElement.offsetTop,
-            behavior: 'smooth',
-          });
+          setTimeout(() => {
+            window.scrollTo({
+              top: hash === 'howItWorks' ? 2000 : targetElement.offsetTop,
+              behavior: 'smooth',
+            });
+          }, 100);
         }
       }
     };
