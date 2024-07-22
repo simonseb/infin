@@ -22,12 +22,10 @@ export const Settings = () => {
   const getData = async () => {
     try {
       const res = await getSettings();
-      console.log(res);
       if (res) {
         setData(res.data as ILayoutData[]);
       }
     } catch (err) {
-      console.log(err);
     }
   };
 

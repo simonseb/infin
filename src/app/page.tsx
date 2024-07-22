@@ -67,9 +67,7 @@ export default function HomePage({}: HomePageProps) {
       if (res) {
         setData(res.data as IHomeData[]);
       }
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
 
   useEffect(() => {
@@ -118,7 +116,6 @@ export default function HomePage({}: HomePageProps) {
     stagger[1] = 0.8 - duration[1];
     duration[2] = (heightList[2] / heightList[0]) * duration[0];
     stagger[2] = 0.8 - duration[2];
-    console.log(heightList);
     const offset = width * 0.013 + 38;
     let ctx = gsap.context(() => {
       loaded &&

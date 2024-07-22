@@ -45,9 +45,7 @@ export default function Footer({}: FooterProps) {
       if (res) {
         setDataList(res.data as IFooterData[]);
       }
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
 
   useEffect(() => {

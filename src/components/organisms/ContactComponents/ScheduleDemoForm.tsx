@@ -99,13 +99,26 @@ export default function ScheduleDemoForm({
     // reset();
   };
 
+  useEffect(() => {
+    if (isModal) {
+      setTimeout(() => {
+        setIsModal(false);
+      }, 2000);
+    }
+  }, [isModal]);
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
       className={clsx(styles.form, className)}
       {...props}
     >
-      <Modal active={isModal} setActive={setIsModal} id={'modal-1'}>
+      <Modal
+        active={isModal}
+        setActive={setIsModal}
+        id={'modal-1'}
+        style={{ transition: '0.5s' }}
+      >
         <div style={{ color: 'white', fontSize: '40px' }}>Thank you</div>
       </Modal>
       <div className={styles.labelBox}>

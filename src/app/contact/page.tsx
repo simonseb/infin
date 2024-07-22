@@ -57,9 +57,7 @@ export default function ContactPage({}: ContactPageProps) {
       if (res) {
         setData(res.data as IContactData[]);
       }
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
 
   useEffect(() => {

@@ -81,16 +81,13 @@ export default function BlogPage({}: BlogPageProps) {
       res.data.sort((a: any, b: any) => parseInt(a.id) - parseInt(b.id));
       if (res) {
         res.data.map((item: any, index: number) => {
-          console.log(item.id, params.post_id);
           if (item.id === parseInt(params.post_id as string)) {
             setCurrentBlog(index);
           }
         });
         setData(res.data as IBlogData[]);
       }
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
 
   useEffect(() => {

@@ -46,9 +46,7 @@ export default function MarketingPage({}: MarketingPageProps) {
       if (res) {
         setData(res.data as IMarketing[]);
       }
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
 
   useEffect(() => {

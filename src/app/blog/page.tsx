@@ -79,9 +79,7 @@ export default function BlogPage({}: BlogPageProps) {
       if (res) {
         setData(res.data as IBlogData[]);
       }
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
 
   useEffect(() => {

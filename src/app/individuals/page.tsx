@@ -86,9 +86,7 @@ export default function IndividualsPage({}: IndividualsPageProps) {
       if (res) {
         setData(res.data as [IDividualData]);
       }
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
 
   useEffect(() => {

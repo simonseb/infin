@@ -25,9 +25,9 @@ interface ICapitalism {
     }[];
   };
 }
-interface CapitalismPageProps { }
+interface CapitalismPageProps {}
 
-export default function CapitalismPage({ }: CapitalismPageProps) {
+export default function CapitalismPage({}: CapitalismPageProps) {
   const [data, setData] = useState<ICapitalism[]>();
 
   const getData = async () => {
@@ -36,9 +36,7 @@ export default function CapitalismPage({ }: CapitalismPageProps) {
       if (res) {
         setData(res.data as ICapitalism[]);
       }
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
 
   useEffect(() => {

@@ -290,9 +290,7 @@ export default function Header({}: HeaderProps) {
       if (res) {
         setDataList(res.data as IHeaderData[]);
       }
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
 
   useEffect(() => {

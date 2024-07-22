@@ -87,10 +87,8 @@ export default function RelatedPosts({
   }
 
   const { related_posts } = attributes.blogs;
-  console.log(related_posts);
 
   // Parse and sort the date strings
-  console.log(related_posts);
   const sorted_related_posts = related_posts
     .map((related_post) => ({
       date: parseDateString(related_post.lastest_date),
@@ -140,8 +138,6 @@ export default function RelatedPosts({
               <li
                 key={post.id + 'key'}
                 onClick={() => {
-                  // console.log(post);
-                  console.log(post.related_blog_id);
                   router.push(`/blog/${parseInt(post.related_blog_id)}`);
                   // window.location.href = `/blog/${parseInt(post.related_blog_id)}`;
                 }}
