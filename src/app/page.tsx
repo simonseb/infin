@@ -21,7 +21,7 @@ import useCheckIsMobile from '@/hooks/useCheckIsMobile';
 import GetStarted from '@/components/organisms/GetStarted';
 import Footer from '@/components/organisms/Footer';
 gsap.registerPlugin(ScrollTrigger);
-interface HomePageProps { }
+interface HomePageProps {}
 
 interface IHomeData {
   attributes?: {
@@ -52,7 +52,7 @@ interface IHomeData {
   };
 }
 
-export default function HomePage({ }: HomePageProps) {
+export default function HomePage({}: HomePageProps) {
   const [data, setData] = useState<IHomeData[]>();
   const [elementHeight, setElementHeight] = useState<number>(0);
   const [loaded, setLoaded] = useState<boolean>(false);
@@ -97,19 +97,26 @@ export default function HomePage({ }: HomePageProps) {
     let stagger = [0, 0.261, 0.504, 0.75];
     let duration = [0.8, 0.539, 0.296, 0.05];
     const cards = gsap.utils.toArray('.homeCard');
-    const heightList = cards.map(item => (item as HTMLElement)?.clientHeight as number).reverse().slice(1).reduce((arr, cur) => {
-      const array = arr as number[];
-      const current = cur as number;
+    const heightList = cards
+      .map((item) => (item as HTMLElement)?.clientHeight as number)
+      .reverse()
+      .slice(1)
+      .reduce(
+        (arr, cur) => {
+          const array = arr as number[];
+          const current = cur as number;
 
-      const last = array[array.length - 1] + current
-      return [...array, last];
-    }, [0]).reverse();
+          const last = array[array.length - 1] + current;
+          return [...array, last];
+        },
+        [0],
+      )
+      .reverse();
     let width = window.innerWidth;
 
-
-    duration[1] = heightList[1] / heightList[0] * duration[0];
+    duration[1] = (heightList[1] / heightList[0]) * duration[0];
     stagger[1] = 0.8 - duration[1];
-    duration[2] = heightList[2] / heightList[0] * duration[0];
+    duration[2] = (heightList[2] / heightList[0]) * duration[0];
     stagger[2] = 0.8 - duration[2];
     console.log(heightList);
     const offset = width * 0.013 + 38;
@@ -128,6 +135,7 @@ export default function HomePage({ }: HomePageProps) {
             endTrigger: '.last',
             scrub: true,
             pin: '.cardList',
+            snap: 1,
             // markers: true,
           },
         });
@@ -186,9 +194,10 @@ export default function HomePage({ }: HomePageProps) {
             className="homeCard last"
             style={{ position: 'relative', zIndex: '4' }}
           />
-          <GetStarted className="homeCard"
-            style={{ position: 'relative', zIndex: '5' }} />
-
+          <GetStarted
+            className="homeCard"
+            style={{ position: 'relative', zIndex: '5' }}
+          />
         </div>
       </main>
 
