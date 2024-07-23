@@ -12,10 +12,9 @@ import { colors } from '@/lib/constants';
 // import { gsap } from 'gsap';
 // import { ScrollTrigger } from 'gsap/ScrollTrigger';
 // import { ScrollSmoother } from 'gsap/ScrollSmoother';
-import { gsap, ScrollTrigger, ScrollSmoother } from '@/components/GsapLib';
+import { ScrollSmoother } from '@/components/GsapLib';
 import { useLayoutEffect } from 'react';
-import path from 'path';
-import Modal from './atoms/Modal';
+import { AnimatePresence } from 'framer-motion';
 
 interface ClientLayoutProps {
   children: React.ReactNode;
@@ -82,7 +81,7 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
             </Modal> */}
             <div id="wrapper" ref={wrapperRef}>
               <div id="content" ref={contentRef}>
-                {children}
+                <AnimatePresence>{children}</AnimatePresence>
               </div>
             </div>
           </div>
