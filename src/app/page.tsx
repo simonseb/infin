@@ -155,6 +155,7 @@ export default function HomePage({}: HomePageProps) {
 
   return (
     <motion.div
+      key={location.pathname}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
