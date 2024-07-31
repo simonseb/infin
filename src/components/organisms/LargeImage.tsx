@@ -20,6 +20,7 @@ interface LargeImageProps {
   desctopImage: string;
   alt: string;
   scale: boolean;
+  children?:React.ReactNode
 }
 
 export default function LargeImage({
