@@ -8,10 +8,61 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+  position: relative;
+}
+
+.page {
+  width: 100%;
+  height: 100%;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero {
+  position: relative;
+  width: 100%;
+}
+
+.heroContent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-90%, -25%);
+  height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.heroContent h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  line-height: 75px;
+}
+
+.heroContent p {
+  font-size: 1.25rem;
+  margin-top: 1rem;
+}
+
+.bottomPagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.bottomPageCount {
+  margin-right: 1rem;
+  font-size: 1rem;
 }
 
 .bottomComponent {
-  margin-top: 12px;
+  margin-top: 2rem;
 }
 
 @media screen and (min-width: $largeScreen) {
@@ -23,11 +74,26 @@
   }
 }
 
+
 @media screen and (max-width: $maxMobile) {
   .main {
     gap: 10px;
+    height: 100% !important;
+    width: 100% !important;
+    position: unset;
   }
   .bottomComponent {
     margin-top: 10px;
   }
+  .bottomPagination {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-left: 0;
+  }
+  .bottomPageCount{
+    padding-left: 10px;
+  }
+
 }

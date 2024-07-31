@@ -22,7 +22,7 @@ export default function BottomComponent({
 
   return (
     <div className={clsx(styles.wrapper, className)} {...props} style={style}>
-      {pathname !== '/contact' && <GetStarted />}
+      {pathname !== '/contact' && pathname !== '/privacy' && <GetStarted />}
       <Footer />
     </div>
   );

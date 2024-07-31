@@ -1,3 +1,5 @@
+"use client"
+
 import { StrapiResponse } from 'strapi-sdk-js';
 import { strapi } from './strapi-client';
 import {
