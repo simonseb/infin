@@ -1,15 +1,19 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Hero from '@/components/organisms/BlogComponents/Hero';
+import Hero_New from '@/components/organisms/BlogComponents/Hero_New';
 import styles from '../../styles/components/organisms/Blog/BlogPage.module.scss';
 import BottomComponent from '@/components/BottomComponent';
 import LargeImage from '@/components/organisms/LargeImage';
 import Description from '@/components/organisms/BlogComponents/Description';
-import RelatedPosts from '@/components/organisms/BlogComponents/RelatedPosts';
+import RelatedBlogPosts from '@/components/organisms/BlogComponents/RelatedBlogPosts';
 import { getBlog } from '@/lib/strapi/strapi-fetch';
 import { motion } from 'framer-motion';
-
+import Image from 'next/image';
+import mobileImage from '@public/images/Blog/blog-mobile.png';
+import useCheckIsMobile from '@/hooks/useCheckIsMobile';
+import BottomPagination from '@/app/blogpost/BottomPagination';
+import TopPagination from '@/app/blogpost/TopPagination'
 
 interface IBlogData {
   attributes?: {
@@ -60,13 +64,17 @@ interface IBlogData {
     };
   };
 }
+
 interface BlogPageProps {}
 
 export default function BlogPage({}: BlogPageProps) {
   const [data, setData] = useState<IBlogData[]>();
-  const [currentBlog, setCurrentBlog] = useState(0);
+  const [currentBlog, setCurrentBlog] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [blogsPerPage] = useState(1);
 
   const [loading, setLoading] = useState(false);
+  const { isMobile } = useCheckIsMobile();
 
   useEffect(() => {
     setTimeout(() => {
@@ -102,6 +110,13 @@ export default function BlogPage({}: BlogPageProps) {
     );
   }
 
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    setCurrentBlog((page - 1) * blogsPerPage);
+  };
+
+  const totalPages = Math.ceil(data.length / blogsPerPage);
+
   return (
     <motion.div
       key={location.pathname}
@@ -112,22 +127,69 @@ export default function BlogPage({}: BlogPageProps) {
     >
       <div className={styles.page}>
         <main className={styles.main}>
-          <Hero data={data} />
+          {isMobile ? (
+            <Image
+              src={mobileImage}
+              alt="people laughing"
+              layout="fill"
+              objectFit="cover"
+            />
+          ) : (
               <LargeImage
                 sectionName="home-image"
                 mobileImage=""
                 desctopImage={`${data[currentBlog].attributes?.blogs.main.mainSection.data.attributes.url}`}
                 alt="people laugh"
                 scale
-              />
-          <Description data={data} currentBlog={currentBlog} />
-          <RelatedPosts
+              >
+                <div className={styles.heroContent}>
+                <h1>
+                  The Impact of Custom <br /> Orthotics on Athletic
+                  <br /> Performance
+                </h1>
+                <p style={{lineHeight:'22px'}}>{data[currentBlog].attributes?.blogs.main.summary}</p>
+              </div>
+              </LargeImage>
+            // <div
+            //   className={styles.hero}
+            //   style={{
+            //     backgroundImage: `url(${data[currentBlog].attributes?.blogs.main.mainSection.data.attributes.url})`,
+            //     backgroundSize: 'cover',
+            //     backgroundPosition: 'center',
+            //     height: '100vh',
+            //     color: '#fff',
+            //   }}
+            // >
+            //   <div className={styles.heroContent}>
+            //     <h1>
+            //       The Impact of Custom <br /> Orthotics on Athletic
+            //       <br /> Performance
+            //     </h1>
+            //     <p>{data[currentBlog].attributes?.blogs.main.summary}</p>
+            //   </div>
+            // </div>
+          )}
+          <TopPagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
+          <RelatedBlogPosts
             data={data}
             setCurrentBlog={setCurrentBlog}
             currentBlog={currentBlog}
           />
+          <div className={styles.bottomPagination}>
+            <div className={styles.bottomPageCount}>
+              {currentPage} / {data.length}
+            </div>
+            <BottomPagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+            />
+          </div>
         </main>
-
         <BottomComponent className={styles.bottomComponent} />
       </div>
     </motion.div>

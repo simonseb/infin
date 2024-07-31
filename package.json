@@ -27,7 +27,9 @@
     "react-share": "^5.1.0",
     "react-swipeable": "^7.0.1",
     "sharp": "^0.33.3",
-    "strapi-sdk-js": "^2.3.3"
+    "strapi-sdk-js": "^2.3.3",
+    "swiper": "^11.1.8",
+    "yarn": "^1.22.22"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",

@@ -1,0 +1,108 @@
+@import '../../../mixins';
+@import '../../../variables';
+@import '../../../functions';
+
+@font-face {
+  font-family: 'Neue Haas Grotesk Display Pro';
+  src: url('./fonts/NeueHaasDisplayLight.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.page {
+  background-color: #fff;
+}
+
+.body {
+  padding-left: 48px;
+  padding-right: 48px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.title {
+  height: 100%;
+  width: 45%;
+  padding-top: 240px;
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.titleContent {
+  font-family: 'Neue Haas Grotesk Display Pro';
+  font-size: 62px;
+  font-weight: 500;
+  line-height: 68px;
+  letter-spacing: -0.01em;
+  text-align: left;
+}
+
+.updatedData {
+  font-family: 'Neue Haas Grotesk Display Pro';
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: left;
+  min-width: 342px;
+}
+
+.content {
+  height: auto;
+  width: 55%;
+  padding-top: 240px;
+}
+
+.privacyContent {
+  width: 80%;
+  height: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 160px;
+}
+
+.explain {
+  font-family: 'Neue Haas Grotesk Display Pro';
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
+  text-align: left;
+}
+
+@media screen and (max-width: 935px) {
+  .titleContent{
+      font-family: 'Neue Haas Grotesk Display Pro';
+      font-size: 42px;
+      font-weight: 500;
+      line-height: 46.2px;
+      letter-spacing: -0.01em;
+      text-align: left;
+  }
+
+  .body{
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .privacyContent{
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 682px) {
+  .content{
+    padding-top: 40px;
+    width: 100%;
+  }
+
+  .privacyContent{
+    padding-left: 0;
+    width: 100%;
+  }
+
+  .title{
+    padding-top: 160px;
+  }
+}

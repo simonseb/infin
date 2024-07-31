@@ -2,14 +2,14 @@
 
 import { useEffect, useState } from 'react';
 import Hero from '@/components/organisms/BlogComponents/Hero';
-import styles from '../../styles/components/organisms/Blog/BlogPage.module.scss';
+import styles from '../../../styles/components/organisms/Blog/BlogPage.module.scss';
 import BottomComponent from '@/components/BottomComponent';
 import LargeImage from '@/components/organisms/LargeImage';
 import Description from '@/components/organisms/BlogComponents/Description';
 import RelatedPosts from '@/components/organisms/BlogComponents/RelatedPosts';
 import { getBlog } from '@/lib/strapi/strapi-fetch';
+import { useParams } from 'next/navigation';
 import { motion } from 'framer-motion';
-
 
 interface IBlogData {
   attributes?: {
@@ -68,6 +68,8 @@ export default function BlogPage({}: BlogPageProps) {
 
   const [loading, setLoading] = useState(false);
 
+  const params = useParams();
+
   useEffect(() => {
     setTimeout(() => {
       setLoading(true);
@@ -79,6 +81,11 @@ export default function BlogPage({}: BlogPageProps) {
       const res: any = await getBlog();
       res.data.sort((a: any, b: any) => parseInt(a.id) - parseInt(b.id));
       if (res) {
+        res.data.map((item: any, index: number) => {
+          if (item.id === parseInt(params.post_id as string)) {
+            setCurrentBlog(index);
+          }
+        });
         setData(res.data as IBlogData[]);
       }
     } catch (err) {}
@@ -112,14 +119,14 @@ export default function BlogPage({}: BlogPageProps) {
     >
       <div className={styles.page}>
         <main className={styles.main}>
-          <Hero data={data} />
-              <LargeImage
-                sectionName="home-image"
-                mobileImage=""
-                desctopImage={`${data[currentBlog].attributes?.blogs.main.mainSection.data.attributes.url}`}
-                alt="people laugh"
-                scale
-              />
+          <Hero data={data} currentBlog={currentBlog} />
+          <LargeImage
+            sectionName="home-image"
+            mobileImage=""
+            desctopImage={`${data[currentBlog].attributes?.blogs.main.mainSection.data.attributes.url}`}
+            alt="people laugh"
+            scale
+          />
           <Description data={data} currentBlog={currentBlog} />
           <RelatedPosts
             data={data}

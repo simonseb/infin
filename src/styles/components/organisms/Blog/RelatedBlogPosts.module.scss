@@ -1,0 +1,91 @@
+@import '../../../mixins';
+@import '../../../variables';
+@import '../../../functions';
+
+.section {
+  padding-top: 80px;
+  padding-bottom: 80px;
+
+  background-color: $light;
+}
+
+.topBlock {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  @include h3;
+  color: $dark;
+}
+
+.underTitle {
+  margin-top: 16px;
+  color: $darkGrey;
+  opacity: 0.4;
+}
+
+.button {
+  color: $dark;
+
+  &:hover,
+  &:focus {
+    color: $dark;
+  }
+}
+
+.postList {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 60px;
+}
+
+.postBlog {
+    width: 33%;
+}
+
+@media screen and (min-width: $largeScreen) {
+  .section {
+    padding-top: sizeVW(80);
+    padding-bottom: sizeVW(80);
+  }
+
+  .underTitle {
+    margin-top: sizeVW(16);
+  }
+
+  .postList {
+    gap: sizeVW(16);
+    margin-top: sizeVW(60);
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .postList {
+    flex-direction: column;
+  }
+  .postBlog {
+      width: 100%;
+  }
+}
+
+@media screen and (max-width: $maxMobile) {
+  .section {
+    padding-top: 40px;
+    padding-bottom: 20px;
+
+    background-color: $light;
+  }
+  .topBlock {
+    flex-direction: column;
+  }
+  .button {
+    margin-top: 20px;
+    margin-left: auto;
+    height: 72px;
+  }
+  .postList {
+    margin-top: 30px;
+  }
+}

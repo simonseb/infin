@@ -20,6 +20,7 @@ interface LargeImageProps {
   desctopImage: string;
   alt: string;
   scale: boolean;
+  children?:React.ReactNode
 }
 
 export default function LargeImage({
@@ -65,27 +66,38 @@ export default function LargeImage({
         style={{ scale: scale ? scaleAnimation : 1 }}
         className={clsx(styles.imageContainer, className)}
       >
-        {isMobile ? (
-          <Image
-            className={clsx(styles.image, classNameImage)}
-            src={mobileImage}
-            alt={alt}
-            width={355}
-            height={640}
-            quality={100}
-            priority
-          />
-        ) : (
-          <Image
-            className={clsx(styles.image, classNameImage)}
-            src={`${desctopImage}`}
-            alt={alt}
-            quality={100}
-            width={1416}
-            height={720}
-            priority
-          />
-        )}
+        <div className={styles.content}>
+          <h1 className={styles.heading}>
+            The Impact of Custom <br /> Orthotics on Athletic Performance
+          </h1>
+          <p className={styles.subtext}>
+            If left unaddressed, your foot conditions can rapidly spiral out of
+            control leading to serious, painful, interrelated problems. Our
+            world-class podiatrists base your personalized orthotic designs on
+            your current foot conditions.
+          </p>
+          {isMobile ? (
+            <Image
+              className={clsx(styles.image, classNameImage)}
+              src={mobileImage}
+              alt={alt}
+              width={355}
+              height={640}
+              quality={100}
+              priority
+            />
+          ) : (
+            <Image
+              className={clsx(styles.image, classNameImage)}
+              src={desctopImage}
+              alt={alt}
+              quality={100}
+              width={1416}
+              height={720}
+              priority
+            />
+          )}
+        </div>
       </motion.div>
     </div>
   );

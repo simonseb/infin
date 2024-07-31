@@ -1,0 +1,101 @@
+@import '../../../variables';
+
+.pagination {
+    width: 400px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 10px;
+    position: absolute;
+    top: 42%;
+    right: 10%;
+}
+
+.pageButton {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+}
+.navButton {
+    width: 84px;
+    height: 56px;
+    border-radius: 42px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+}
+
+.pageButton {
+    background-color: #f0f0f0;
+}
+
+.pageButton:hover {
+    background-color: #e0e0e0;
+}
+
+.navButton {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.navButton:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.active {
+    background-color: transparent;
+    color: #fff;
+}
+
+.dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 5px;
+}
+
+@media screen and (max-width: $maxTablet) {
+    .pagination {
+        width: 400px;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        gap: 10px;
+        position: absolute;
+        top: 33%;
+    }
+}
+@media screen and (max-width: 990px) {
+    .pagination {
+        width: 400px;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        gap: 10px;
+        position: absolute;
+        top: 22%;
+    }
+}
+
+@media screen and (max-width: $maxMobile) {
+    .pagination {
+        width: 400px;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        gap: 10px;
+        position: absolute;
+        top: 24%;
+        left: 0%;
+    }
+}

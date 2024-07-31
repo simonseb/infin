@@ -18,21 +18,21 @@
 .title {
   margin-bottom: 12px;
 
-  color: $light;
+  color: $dark;
   font-size: 28px;
   line-height: 110%;
 }
 
 .description {
   margin-bottom: 40px;
-  color: $light;
+  color: $dark;
   font-size: 16px;
   line-height: 150%;
   opacity: 0.4;
 }
 
 .avatar {
-  color: $light;
+  color: $dark;
 }
 
 .imageContainer {
@@ -62,4 +62,8 @@
     margin-bottom: sizeVW(40);
     font-size: sizeVW(16);
   }
+}
+
+@media screen and (min-width: $maxMobile){
+    
 }
